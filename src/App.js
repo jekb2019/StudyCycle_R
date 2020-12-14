@@ -11,7 +11,7 @@ const App = () => (
         <Banner/>
       </div>
       <TimerWrapper/>
-      <p>Copyright @ 2020 by Jekb2020</p>
+      <p className={styles.copyright}>Copyright @ 2020 by Jekb2020</p>
     </div>
 );
 

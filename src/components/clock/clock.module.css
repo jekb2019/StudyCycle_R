@@ -1,0 +1,8 @@
+@value veryLarge from '../../common/sizes.css';
+@value makerDarkGray from '../../common/colors.css';
+
+.clock span {
+    color: makerDarkGray;
+    font-size: veryLarge;
+    line-height: 0.8;
+}

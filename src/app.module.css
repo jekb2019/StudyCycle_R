@@ -1,15 +1,22 @@
+@value makerGray from './common/colors.css';
+
 .app {
     border-radius: 30px;
     width: 1000px;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: white;
     padding: 10px 40px;
 }
-
 .header {
     width: 100%;
     display: flex;
     justify-content: space-between;
+}
+.copyright{
+    position: absolute;
+    bottom: 10px;
+    color: makerGray;
 }

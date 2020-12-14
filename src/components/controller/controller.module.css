@@ -1,0 +1,40 @@
+@value makerSlightlyLightGray from '../../common/colors.css';
+@value makerGray from '../../common/colors.css';
+@value iconLarge from '../../common/sizes.css';
+@value iconVeryLarge from '../../common/sizes.css';
+
+.controllers {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 30px;
+}
+.controllers div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+div span {
+    color: makerGray;
+}
+.controller {
+    color: makerSlightlyLightGray;
+}
+.sub_controller {
+    font-size: iconLarge;
+}
+.primary_controller{
+    font-size: iconVeryLarge;
+}
+.button:hover .controller {
+    transition: 100ms;
+    color: makerGray;
+}
+.button:active .controller {
+    transition: 100ms;
+    color: black;
+}
+.sub_controller_wrapper {
+    margin-top: 10px;
+    cursor: pointer;
+}
