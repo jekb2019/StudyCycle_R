@@ -5,7 +5,7 @@ import styles from './timerWrapper.module.css'
 const TimerWrapper = (props) => (
     <div className={styles.wrapper}>
         <div className={styles.settings}>
-            <span>2 hr 0 min - 0 hr 10 min - 5 cycles</span>
+            <span>2 hr 0 min &mdash; 0 hr 10 min &mdash; 5 Cycle</span>
             <div className={styles.button}>
                 <i className={`fas fa-cog ${styles.icon}`} id="setting-icon"></i>
             </div>

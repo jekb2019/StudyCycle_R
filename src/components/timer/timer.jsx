@@ -9,8 +9,10 @@ const Timer = (props) => (
                 <span>Focus</span>
             </div>
             <div className={styles.status}>
-                <span className={styles.cycle}>Cycle 1/5</span>
-                <span className={styles.time_info}>2 Hours 0 Minutes</span>
+                <div>
+                    <i className={`fas fa-biking ${styles.cycle_icon}`}></i>
+                    <span className={styles.cycle}>1/5</span>
+                </div>
             </div>
             <div className={styles.indicator}>
                 <span>Break</span>
@@ -19,7 +21,7 @@ const Timer = (props) => (
         <div className={styles.clock_display}>
             <Clock className={styles.clock}/>
             <div className={styles.button}>
-                <i id="reset-icon" className={`fas fa-redo-alt ${styles.icon}`}></i>
+                <i className={`fas fa-redo-alt ${styles.reset_icon}`}></i>
             </div>
         </div>
 

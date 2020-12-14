@@ -1,11 +1,12 @@
 @value makerSlightlyLightGray from '../../common/colors.css';
 @value makerGray from '../../common/colors.css';
-@value iconLarge from '../../common/sizes.css';
+@value iconMedium from '../../common/sizes.css';
 @value iconVeryLarge from '../../common/sizes.css';
+@value small from '../../common/sizes.css';
 
 .controllers {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     margin-top: 30px;
 }
@@ -17,12 +18,13 @@
 .controllers span {
     color: makerGray;
     user-select: none;
+    font-size: small;
 }
 .controller {
     color: makerSlightlyLightGray;
 }
 .sub_controller {
-    font-size: iconLarge;
+    font-size: iconMedium;
 }
 .primary_controller{
     font-size: iconVeryLarge;
@@ -38,4 +40,10 @@
 .sub_controller_wrapper {
     margin-top: 10px;
     cursor: pointer;
+}
+.fast_backward {
+    margin-right: 40px;
+}
+.fast_forward {
+    margin-left: 40px;
 }

@@ -19,4 +19,26 @@
     position: absolute;
     bottom: 10px;
     color: makerGray;
+    user-select: none;
+}
+/* PC */
+@media only screen and (max-width: 999px) {
+    .app {
+        width: 800px;
+    }
+}
+/* Small Laptop */
+@media only screen and (max-width: 799px) {
+    .app {
+        width: 700px;
+    }
+    .header {
+        justify-content: center;
+    }
+}
+/* Tablet */
+@media only screen and (max-width: 699px) {
+    .app {
+        width: 610px;
+    }
 }

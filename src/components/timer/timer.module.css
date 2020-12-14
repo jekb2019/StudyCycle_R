@@ -1,9 +1,9 @@
 @value makerLightGray from '../../common/colors.css';
+@value makerSlightlierLightGray from '../../common/colors.css';
 @value makerGray from '../../common/colors.css';
-@value makerDarkGray from '../../common/colors.css';
 @value medium from '../../common/sizes.css';
 @value small from '../../common/sizes.css';
-@value iconMedium from '../../common/sizes.css';
+@value iconSmall from '../../common/sizes.css';
 
 .timer {
     background-color: makerLightGray;
@@ -24,13 +24,17 @@
     flex-direction: column;
     align-items: center;
 }
-.status span {
-    color: makerDarkGray;
+.cycle_icon {
+    color: makerGray;
+    font-size: medium;
+    margin-right: 10px;
 }
 .cycle {
     font-weight: 500;
     font-size: medium;
     margin-bottom: 5px;
+    color: makerGray;
+    user-select: none;
 }
 .time_info {
     font-size: small;
@@ -40,31 +44,32 @@
     height: 30px;
     border-radius: 20px;
     text-align: center;
-    background-color: #dbdbdb;
+    background-color: makerSlightlierLightGray;
 }
 .indicator span {
     line-height: 1.5;
     font-size: medium;
-    color: makerDarkGray;
+    color: makerGray;
+    user-select: none;
 }
 .clock_display {
     display: flex;
     justify-content: center;
     margin-top: 40px;
-    margin-left: 30px;
+    margin-left: 20px;
 }
 .button {
     height: 30px;
     cursor: pointer;
 }
-.button:hover .icon {
+.button:hover .reset_icon {
     color: makerDarkGray;
     transition: 2ms;
 }
-.button:active .icon {
+.button:active .reset_icon {
     color: black;
 }
-.icon {
-    font-size: iconMedium;
+.reset_icon {
+    font-size: iconSmall;
     color: makerGray;
 }
