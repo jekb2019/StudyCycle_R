@@ -42,3 +42,9 @@
         width: 610px;
     }
 }
+/* Mobile */
+@media only screen and (max-width: 609px) {
+    .app {
+        width: auto;
+    }
+}

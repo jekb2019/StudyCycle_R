@@ -1,6 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500&display=swap');
 @value makerLightGray from './common/colors.css';
 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: auto; 
+  overflow-x: hidden;
+}
 body {
   display: flex;
   flex-direction: column;
@@ -18,10 +28,4 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+} 

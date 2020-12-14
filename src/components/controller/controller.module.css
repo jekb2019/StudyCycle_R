@@ -1,7 +1,9 @@
 @value makerSlightlyLightGray from '../../common/colors.css';
 @value makerGray from '../../common/colors.css';
+@value iconSmall from '../../common/sizes.css';
 @value iconMedium from '../../common/sizes.css';
 @value iconVeryLarge from '../../common/sizes.css';
+@value verySmall from '../../common/sizes.css';
 @value small from '../../common/sizes.css';
 
 .controllers {
@@ -46,4 +48,16 @@
 }
 .fast_forward {
     margin-left: 40px;
+}
+/* Mobile */
+@media only screen and (max-width: 609px) {
+    .primary_controller {
+        font-size: iconMedium;
+    }
+    .sub_controller {
+        font-size: iconSmall;
+    }
+    .controllers span {
+        font-size: verySmall;
+    }
 }

@@ -73,3 +73,27 @@
     font-size: iconSmall;
     color: makerGray;
 }
+/* Mobile */
+/* Mobile */
+@media only screen and (max-width: 609px) {
+ .timer {
+     width: 300px;
+     height: 230px;
+ }
+ .indicator {
+     width: 80px;
+ }
+ .indicator span {
+    font-size: small;
+    line-height: 2;
+ }
+ .cycle_icon {
+     font-size: small;
+ }
+ .cycle {
+     font-size: small;
+ }
+ .reset_icon {
+     font-size: small;
+ }
+}

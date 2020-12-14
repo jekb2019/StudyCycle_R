@@ -1,3 +1,4 @@
+@value small from '../../common/sizes.css';
 @value medium from '../../common/sizes.css';
 @value makerGray from '../../common/colors.css';
 @value makerDarkGray from '../../common/colors.css';
@@ -28,4 +29,13 @@
 }
 .button:active .icon {
     color: black;
+}
+/* Mobile */
+@media only screen and (max-width: 609px) {
+    .wrapper {
+        height: 270px;
+    }
+    .settings span {
+        font-size: small;
+    }
 }
