@@ -1,25 +1,18 @@
-import logo from './logo.svg';
-import './App.css';
+import styles from './app.module.css';
+import Banner from "./components/banner/banner";
+import Header from "./components/header/header";
+import TimerWrapper from "./components/timer_wrapper/timerWrapper";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+const App = () => (
+    <div className={styles.app}>
+      <div className={styles.header}>
+        <Header/>
+        <Banner/>
+      </div>
+      <TimerWrapper/>
+      <p>Copyright @ 2020 by Jekb2020</p>
     </div>
-  );
-}
+);
 
 export default App;

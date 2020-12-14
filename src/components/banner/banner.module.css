@@ -1,0 +1,10 @@
+.banner {
+    border: 1px solid black;
+    display: inline-block;
+    text-align: center;
+    margin: 20px;
+    width: 500px;
+}
+.description {
+    line-height: 4.5;
+}
