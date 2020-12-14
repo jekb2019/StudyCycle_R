@@ -14,8 +14,9 @@
     flex-direction: column;
     align-items: center;
 }
-div span {
+.controllers span {
     color: makerGray;
+    user-select: none;
 }
 .controller {
     color: makerSlightlyLightGray;
