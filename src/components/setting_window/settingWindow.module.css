@@ -1,0 +1,87 @@
+@value makerSlightlyLightGray from '../../common/colors.css';
+@value makerSlightlierLightGray from '../../common/colors.css';
+@value makerGray from '../../common/colors.css';
+@value makerDarkGray from '../../common/colors.css';
+@value medium from '../../common/sizes.css';
+@value mediumLarge from '../../common/sizes.css';
+
+.window {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 40px;
+    position: fixed;
+    top: 150px;
+    width: 300px;
+    height: 400px;
+    background-color: white;
+    border: 1px solid black;
+    padding: 20px;
+}
+.header {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 3px;
+    border-bottom: 1px solid makerSlightlierLightGray;
+    width: 150px;
+    padding-right: 5px;
+}
+.logo {
+    width: 35px;
+    margin-right: 5px;
+}
+.header h1 {
+    font-size: mediumLarge;
+    font-weight: 400;
+    color: makerGray;
+}
+.close_button {
+    color: makerSlightlyLightGray;
+    font-size: mediumLarge;
+    position: absolute;
+    top: 10px;
+    right: 25px;
+    font-weight: 400;
+    height: 28px;
+    line-height: 0.9;
+    cursor: pointer;
+    user-select: none;
+}
+.close_button:hover {
+    color: makerGray;
+}
+.close_button:active {
+    color: black;
+}
+.setting_wrapper {
+    border-bottom: 1px solid makerSlightlierLightGray;
+    margin-top: 20px;
+    padding-bottom: 6px;
+}
+.subject {
+    font-size: medium;
+    color: makerGray;
+}
+
+
+
+.ok_button {
+    position: absolute;
+    bottom: 15px;
+    width: 90px;
+    height: 30px;
+    border-radius: 20px;
+    text-align: center;
+    background-color: makerSlightlierLightGray;
+}
+.ok_button:hover {
+    background-color: makerSlightlyLightGray;
+}
+.ok_button:active {
+    background-color: makerGray;
+    color: white;
+}
+.ok_button span {
+    line-height: 2;
+    user-select: none;
+}
