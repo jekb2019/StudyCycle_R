@@ -1,6 +1,8 @@
 @value verySmall: 10px;
 @value small: 15px;
+@value smallMedium 17px;
 @value medium: 20px;
+@value mediumMedium 25px;
 @value mediumLarge: 30px;
 @value large: 60px;
 @value veryLarge: 120px;

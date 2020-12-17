@@ -3,7 +3,9 @@
 @value makerGray from '../../common/colors.css';
 @value makerDarkGray from '../../common/colors.css';
 @value small from '../../common/sizes.css';
+@value smallMedium from '../../common/sizes.css';
 @value medium from '../../common/sizes.css';
+@value mediumMedium from '../../common/sizes.css';
 @value mediumLarge from '../../common/sizes.css';
 
 .window {
@@ -14,20 +16,106 @@
     height: 400px;
     background-color: white;
     border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .header {
+    margin-top: 20px;
+    padding-bottom: 3px;
     display: flex;
     justify-content: center;
+    border-bottom: 1px solid makerSlightlierLightGray;
+    width: 160px;
+}
+.subject {
+    font-size: mediumLarge;
+    font-weight: 400;
+    color: makerGray;
 }
 .close_button {
-    font-size: mediumLarge;
-    border: 1px solid black;
+    font-size: medium;
+    height: 18px;
     position: absolute;
-    right: 30px;
-    top: 5px;
+    right: 20px;
+    top: 10px;
     color: makerSlightlyLightGray;
+    margin-top: 2px;
+}
+.close_icon {
+    margin-bottom: 2px;
+}
+.close_button:hover .close_icon {
+    color:makerGray;
+    transition: 200ms;
+}
+.close_button:active .close_icon {
+    color:black;
+    transition: 200ms;
 }
 .logo {
     width: 35px;
+    height: 35px;
     margin-right: 5px;
+    margin-top: 1px;
+}
+.components {
+    width: 250px;
+}
+.component {
+    border-bottom: 1px solid makerSlightlierLightGray;
+    padding-bottom: 4px;
+}
+.component_header span {
+    font-size: mediumMedium;
+    color: makerGray;
+}
+.component_header {
+    margin-top: 20px;
+}
+.inputs_wrapper {
+    margin-top: 5px;
+}
+.inputs_wrapper label {
+    margin-right: 25px;
+}
+.inputs_wrapper label span{
+    font-size: smallMedium;
+    color: makerGray;
+}
+.input_box {
+    font-size: smallMedium;
+    color: makerGray;
+    width: 40px;
+    height: 30px;
+    margin-right: 5px;
+    border: 2px solid makerSlightlyLightGray;
+    border-radius: 10px;
+    text-align: center;
+}
+.ok_button {
+    width: 100px;
+    height: 30px;
+    border-radius: 40px;
+    font-size: medium;
+    border: none;
+    background-color: makerSlightlierLightGray;
+    color: makerGray;
+    position: absolute;
+    bottom: 10px;
+}
+.ok_button:hover {
+    border: 1px solid makerGray;
+    transition: 100ms;
+}
+.ok_button:focus {
+    outline:none;
+
+}
+.ok_button:active{
+	outline:none;
+    padding:0;
+    border: 1px solid black;
+    background-color: makerGray;
+    color: white;
 }
