@@ -62,37 +62,6 @@
 .components {
     width: 250px;
 }
-.component {
-    border-bottom: 1px solid makerSlightlierLightGray;
-    padding-bottom: 4px;
-}
-.component_header span {
-    font-size: mediumMedium;
-    color: makerGray;
-}
-.component_header {
-    margin-top: 20px;
-}
-.inputs_wrapper {
-    margin-top: 5px;
-}
-.inputs_wrapper label {
-    margin-right: 25px;
-}
-.inputs_wrapper label span{
-    font-size: smallMedium;
-    color: makerGray;
-}
-.input_box {
-    font-size: smallMedium;
-    color: makerGray;
-    width: 40px;
-    height: 30px;
-    margin-right: 5px;
-    border: 2px solid makerSlightlyLightGray;
-    border-radius: 10px;
-    text-align: center;
-}
 .ok_button {
     width: 100px;
     height: 30px;
@@ -105,17 +74,16 @@
     bottom: 10px;
 }
 .ok_button:hover {
-    border: 1px solid makerGray;
+    background-color: makerGray;
+    color: white;
     transition: 100ms;
 }
 .ok_button:focus {
     outline:none;
-
 }
 .ok_button:active{
 	outline:none;
     padding:0;
-    border: 1px solid black;
-    background-color: makerGray;
+    background-color: black;
     color: white;
 }

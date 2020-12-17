@@ -18,6 +18,16 @@ const App = () => {
     settingWindowOpen ? setSettingWindowOpen(false) : setSettingWindowOpen(true);
   }
   
+  // Handler when x button in the setting window is clicked
+  const handleSettingWindowClose = () => {
+    setSettingWindowOpen(false);
+  }
+
+  // Handler when OK button in the setting window is clicked
+  const handleSettingWindowOK = () => {
+    setSettingWindowOpen(false);   
+  }
+
   window.addEventListener('resize', handleResize);
 
   return(
@@ -29,7 +39,10 @@ const App = () => {
       <TimerWrapper handleSettingClick={handleSettingClick}/>
         {screenWidth < 800 && <Banner/>}
       <p className={styles.copyright}>Copyright @ 2020 by Jekb2020</p>
-      {settingWindowOpen && <SettingWindow/>}
+      {settingWindowOpen && 
+      <SettingWindow
+       handleSettingWindowClose={handleSettingWindowClose}
+       handleSettingWindowOK={handleSettingWindowOK}/>}
     </div>);
 };
 

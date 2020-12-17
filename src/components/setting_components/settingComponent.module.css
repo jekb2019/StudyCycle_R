@@ -1,0 +1,67 @@
+@value makerSlightlyLightGray from '../../common/colors.css';
+@value makerSlightlierLightGray from '../../common/colors.css';
+@value makerGray from '../../common/colors.css';
+@value makerDarkGray from '../../common/colors.css';
+@value small from '../../common/sizes.css';
+@value smallMedium from '../../common/sizes.css';
+@value medium from '../../common/sizes.css';
+@value mediumMedium from '../../common/sizes.css';
+@value mediumLarge from '../../common/sizes.css';
+
+.component {
+    border-bottom: 1px solid makerSlightlierLightGray;
+    padding-bottom: 4px;
+}
+.component_header {
+    display: flex;
+    justify-content: space-between;
+}
+.toggle_button {
+    text-align: center;
+    margin-right: 10px;
+    height: 20px;
+    width: 80px;
+    margin-top: 5px;
+    font-size: small;
+    line-height: 1.4;
+    border-radius: 10px;
+    background-color: makerSlightlierLightGray;
+    color: makerGray;
+    user-select: none;
+}
+.toggle_button:hover {
+    transition: 100ms;
+    background-color: makerGray;
+    color: white;
+}
+.toggle_button:active {
+    background-color: black;
+    color: white;
+}
+.component_header span {
+    font-size: mediumMedium;
+    color: makerGray;
+}
+.component_header {
+    margin-top: 20px;
+}
+.inputs_wrapper {
+    margin-top: 5px;
+}
+.inputs_wrapper label {
+    margin-right: 25px;
+}
+.inputs_wrapper label span{
+    font-size: smallMedium;
+    color: makerGray;
+}
+.input_box {
+    font-size: smallMedium;
+    color: makerGray;
+    width: 40px;
+    height: 30px;
+    margin-right: 5px;
+    border: 2px solid makerSlightlyLightGray;
+    border-radius: 10px;
+    text-align: center;
+}
