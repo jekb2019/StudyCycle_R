@@ -1,3 +1,6 @@
+@value verySmall from '../../common/sizes.css';
+@value slightlySmall from '../../common/sizes.css';
+@value slightlierSmall from '../../common/sizes.css';
 @value small from '../../common/sizes.css';
 @value medium from '../../common/sizes.css';
 @value makerGray from '../../common/colors.css';
@@ -13,11 +16,28 @@
 }
 .settings {
     font-size: medium;
-    color: gray;
+    color: makerGray;
     margin-bottom: 3px;
 }
 .settings span {
     user-select: none;
+}
+.small_description {
+    display: inline-block;
+    color: makerDarkGray;
+    font-size: slightlySmall;
+    height: 20px;
+    text-align: center;
+    width: 50px;
+    margin-right: 5px;
+    margin-left: 2px;
+    border-radius: 10px;
+    border: 1px solid makerGray;
+    position: relative;
+    bottom: 2px;
+}
+.small_description span {
+    line-height: 1.5;
 }
 .button {
     display: inline-block;
@@ -26,9 +46,12 @@
     margin-left: 12px;
     cursor: pointer;
 }
+.icon {
+    color: #cccccc;
+}
 .button:hover .icon {
     transition: 0.2s;
-    color: makerDarkGray;
+    color: makerGray;
 }
 .button:active .icon {
     color: black;
@@ -40,5 +63,20 @@
     }
     .settings span {
         font-size: small;
+    }
+    .small_description {
+        height: 15px;
+        text-align: center;
+        width: 40px;
+        margin-right: 2px;
+        border-radius: 10px;
+        position: relative;
+        bottom: 0px;
+    }
+    .small_description span {
+        font-size: slightlierSmall;
+        line-height: 1;
+        position: relative;
+        bottom: 1px;
     }
 }
