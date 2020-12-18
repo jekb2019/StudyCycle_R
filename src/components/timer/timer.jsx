@@ -20,12 +20,12 @@ const Timer = (props) => (
         </div>
         <div className={styles.clock_display}>
             <Clock className={styles.clock}/>
-            <div className={styles.button}>
+            <div className={styles.button} onClick={props.handleClickSound}>
                 <i className={`fas fa-redo-alt ${styles.reset_icon}`}></i>
             </div>
         </div>
 
-        <Controller/>
+        <Controller handleClickSound={props.handleClickSound}/>
     </div>
 );
 

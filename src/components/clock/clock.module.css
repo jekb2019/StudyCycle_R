@@ -3,6 +3,7 @@
 @value makerDarkGray from '../../common/colors.css';
 
 .clock span {
+    user-select: none;
     color: makerDarkGray;
     font-size: veryLarge;
     line-height: 0.8;

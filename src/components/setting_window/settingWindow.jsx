@@ -16,7 +16,8 @@ const SettingWindow = (props) => {
         <div className={styles.header}>
             <img className={styles.logo} src="/images/small-logo.png" alt="small logo"/>
             <h1 className={styles.subject}>Settings</h1>
-            <div className={styles.close_button} onClick={handleSettingWindowClose}>
+            <div className={styles.close_button} 
+            onClick={() => {handleSettingWindowClose(); props.handleClickSound()}}>
                 <i className={`fas fa-times ${styles.close_icon}`}></i>
             </div>
         </div>
@@ -34,11 +35,13 @@ const SettingWindow = (props) => {
             toggle={false}/>
             
             <SettingComponent 
+            handleClickSound={props.handleClickSound}
             title={`Goal Cycles`} 
             inputs={[{subjectName: `Cycles`, initial: 2, min: 0, max: 99}]}
             toggle={true}/>
         </div>
-        <button className={styles.ok_button} onClick={handleSettingWindowOK}>OK</button>
+        <button className={styles.ok_button} 
+        onClick={()=>{handleSettingWindowOK(); props.handleClickSound()}}>OK</button>
     </div>)
 };
 

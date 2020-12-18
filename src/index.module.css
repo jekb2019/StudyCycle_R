@@ -6,6 +6,9 @@
   padding: 0;
   box-sizing: border-box;
 }
+html {
+  filter: brightness(100%);
+}
 html, body {
   overflow-x: hidden;
 }

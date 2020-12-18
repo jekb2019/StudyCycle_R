@@ -16,6 +16,9 @@
     color: gray;
     margin-bottom: 3px;
 }
+.settings span {
+    user-select: none;
+}
 .button {
     display: inline-block;
     position: relative;

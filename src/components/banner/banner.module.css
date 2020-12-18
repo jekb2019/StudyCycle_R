@@ -10,6 +10,7 @@
     width: 500px;
 }
 .description {
+    user-select: none;
     line-height: 5;
     color: makerDarkGray;
 }
