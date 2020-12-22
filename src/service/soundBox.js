@@ -11,3 +11,5 @@ class SoundBox {
         
     }
 }
+
+export default SoundBox;

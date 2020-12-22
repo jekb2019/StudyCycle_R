@@ -16,7 +16,9 @@ const TimerWrapper = (props) => {
                 <i className={`fas fa-cog ${styles.icon}`} id="setting-icon"></i>
             </div>
         </div>
-        <Timer handleClickSound={props.handleClickSound}/>
+        <Timer 
+            handleClickSound={props.handleClickSound}
+            service={props.service}/>
     </div>);     
 };
 

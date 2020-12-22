@@ -1,7 +1,21 @@
-import React from 'react';
+import {useState} from 'react';
 import styles from './controller.module.css';
 
-const Controller = (props) => (
+const Controller = (props) => {
+    const [isClockRunning, setIsClockRunning] = useState(false);
+
+    const switchIsClockRunning = () => {
+        isClockRunning ? setIsClockRunning(false) : setIsClockRunning(true);
+    }
+
+    const handlePrimaryControllerClick = () => {
+        switchIsClockRunning();
+        props.handleClickSound();
+        
+        isClockRunning ? props.service.stopTimer() : props.service.startTimer();
+    }
+
+    return (
         <div className={styles.controllers}>
             <div className={styles.fast_backward}>
                 <div 
@@ -13,8 +27,16 @@ const Controller = (props) => (
             </div>
             <div 
             className={styles.button} 
-            onClick={props.handleClickSound}>
-                <i className={`fas fa-play ${styles.primary_controller} ${styles.controller}`} id="go"></i>
+            onClick={handlePrimaryControllerClick}>
+                {
+                isClockRunning ?
+                <div key="pause">
+                    <i className={`fas fa-pause ${styles.primary_controller} ${styles.controller}`}></i>
+                </div> :
+                <div key="play">
+                    <i className={`fas fa-play ${styles.primary_controller} ${styles.controller}`}></i>
+                </div>
+                }
             </div>
             <div className={styles.fast_forward}>
                 <div 
@@ -25,6 +47,6 @@ const Controller = (props) => (
                 <span>+10s</span>
             </div>
         </div>
-    );
+    )};
 
 export default Controller;

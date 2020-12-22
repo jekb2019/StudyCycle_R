@@ -4,10 +4,13 @@ import './index.module.css';
 import App from './app';
 import reportWebVitals from './reportWebVitals';
 import '@fortawesome/fontawesome-free/js/all.js';
+import TimerService from './service/timerService';
+
+const timerService = new TimerService();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App/>
+    <App service={timerService}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

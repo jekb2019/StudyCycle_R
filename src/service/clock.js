@@ -1,3 +1,5 @@
+import SoundBox from './soundBox.js';
+
 class Clock {
     timer = undefined;
     status = {
@@ -9,29 +11,32 @@ class Clock {
         this.currentTime = 0;
         this.currentCycle = 1;
         this.currentStatus = this.status.FOCUS;
-        this.timerPaused = true;
+        this.isClockRunning = false;
         this.soundBox = new SoundBox(); 
     }
 
     startTimer() {
+        this.isClockRunning = true;
         this.timer = setInterval(() => {
             this.currentTime++;
+            console.log(this.currentTime);
         }, 1000)
     }
 
     switchStatus(status) {
         if(status === this.status.FOCUS) {
             this.currentStatus = this.state.FOCUS;
-            soundBox.makeFocusStartSound();
+            this.soundBox.makeFocusStartSound();
         } else if (status === this.status.BREAK) {
             this.currentStatus = this.state.BREAK;
-            soundBox.makeBreakStartSound();
+            this.soundBox.makeBreakStartSound();
         } else {
             console.log("ERROR: incorrect status");
         }
     }
 
     stopTimer() {
+        this.isClockRunning = false;
         clearInterval(this.timer);
     }
 
@@ -55,7 +60,7 @@ class Clock {
 
     // Check whether it is focus or break time
     getCurrentStatus() {
-        this.currentStatus;
+        return this.currentStatus;
     }
 
     // return true only if both current time and current cycle is reset
@@ -67,3 +72,5 @@ class Clock {
         }
     }
 }
+
+export default Clock;
