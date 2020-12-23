@@ -1,8 +1,12 @@
-import {useState} from 'react';
+import {useState, forwardRef, useImperativeHandle} from 'react';
 import styles from './controller.module.css';
 
-const Controller = (props) => {
+const Controller = forwardRef((props, ref) => {
     const [isClockRunning, setIsClockRunning] = useState(false);
+
+    useImperativeHandle(ref, () => ({switchIsClockRunningToFalse() {
+        setIsClockRunning(false);
+    }}));
 
     const switchIsClockRunning = () => {
         isClockRunning ? setIsClockRunning(false) : setIsClockRunning(true);
@@ -11,7 +15,7 @@ const Controller = (props) => {
     const handlePrimaryControllerClick = () => {
         switchIsClockRunning();
         props.handleClickSound();
-        
+
         isClockRunning ? props.service.stopTimer() : props.service.startTimer();
     }
 
@@ -47,6 +51,6 @@ const Controller = (props) => {
                 <span>+10s</span>
             </div>
         </div>
-    )};
+    )});
 
 export default Controller;

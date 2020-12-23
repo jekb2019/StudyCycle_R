@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './clock.module.css';
 
-const Clock = (props) => (
+const Clock = (props) => {
+
+    return (
     <div className={styles.clock}>
-       <span>01:20:18</span>    
+       <span>{props.formattedTime}</span>    
     </div>
-    );
+    )};
 
 export default Clock;

@@ -20,6 +20,7 @@ class Clock {
         this.timer = setInterval(() => {
             this.currentTime++;
             console.log(this.currentTime);
+            console.log(this.getFormettedCurrentTime());
         }, 1000)
     }
 
@@ -50,8 +51,39 @@ class Clock {
         this.currentCycle = 1;
     }
 
+    // get current time in integer format
     getCurrentTime() {
         return this.currentTime;
+    }
+
+    //get current time formatted as [hours]:[minutes]:[seconds]
+    getFormettedCurrentTime() {
+        let time = this.currentTime;
+
+        const hours = Math.floor(time/(60*60));
+        time = time%(60*60);
+        const minutes = Math.floor(time/60);
+        const seconds = time%60;
+        
+        console.log(hours, minutes, seconds);
+
+        let stringHours, stringMinutes, stringSeconds;
+        if(hours < 10) {
+            stringHours = `0${hours}`;
+        } else {
+            stringHours = `${hours}`;
+        }
+        if(minutes < 10) {
+            stringMinutes = `0${minutes}`;
+        } else {
+            stringMinutes = `${minutes}`;
+        }
+        if(seconds < 10) {
+            stringSeconds = `0${seconds}`;
+        } else {
+            stringSeconds = `${seconds}`;
+        }
+        return `${stringHours}:${stringMinutes}:${stringSeconds}`;
     }
 
     getCurrentCycle() {

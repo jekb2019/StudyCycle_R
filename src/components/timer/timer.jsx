@@ -1,11 +1,14 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Clock from '../clock/clock';
 import Controller from '../controller/controller';
 import styles from './timer.module.css';
 const Timer = (props) => {
+    const controllerRef = useRef();
+
     const handleResetButtonClicked = () => {
         props.handleClickSound();
         props.service.resetTimer();
+        controllerRef.current.switchIsClockRunningToFalse();
     }
 
     return(
@@ -25,13 +28,14 @@ const Timer = (props) => {
             </div>
         </div>
         <div className={styles.clock_display}>
-            <Clock className={styles.clock}/>
+            <Clock className={styles.clock} formattedTime={props.service.getFormettedCurrentTime()}/>
             <div className={styles.button} onClick={handleResetButtonClicked}>
                 <i className={`fas fa-redo-alt ${styles.reset_icon}`}></i>
             </div>
         </div>
 
-        <Controller 
+        <Controller
+            ref={controllerRef} 
             handleClickSound={props.handleClickSound}
             service={props.service}/>
     </div>

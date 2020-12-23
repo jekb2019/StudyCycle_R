@@ -34,16 +34,20 @@ class TimerService {
     }
 
     getCurrentTime() {
-        this.clock.getCurrentTime();
+        return this.clock.getCurrentTime();
+    }
+
+    getFormettedCurrentTime() {
+        return this.clock.getFormettedCurrentTime();
     }
     
     getCurrentCycle() {
-        this.clock.getCurrentCycle();
+        return this.clock.getCurrentCycle();
     }
 
     // Check whether it is focus or break time
     getCurrentStatus() {
-        this.clock.getCurrentStatus();
+        return this.clock.getCurrentStatus();
     }
 
     // used for debugging
