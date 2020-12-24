@@ -2,11 +2,11 @@ class SoundBox {
     focusStartSound = new Audio("../sounds/focus.wav");
     breakStartSound = new Audio("../sounds/break.wav");
     makeFocusStartSound() {
-        // console.log("focusfou");
+        this.focusStartSound.play(); //fix error
     }
 
     makeBreakStartSound() {
-        this.breakStartSound.play();
+        this.breakStartSound.play(); //fix error
     }
 
     makeGoalReachedSound() {

@@ -44,13 +44,13 @@ class Clock {
 
     switchStatus(status) {
         if(status === this.status.FOCUS) {
-            console.log("FOCUS -> BREAK")
+            console.log("FOCUS")
             this.currentStatus = this.status.FOCUS;
-            this.soundBox.makeFocusStartSound(); //fix error
+            this.soundBox.makeFocusStartSound();
         } else if (status === this.status.BREAK) {
-            console.log("BREAK -> FOCUS")
+            console.log("BREAK")
             this.currentStatus = this.status.BREAK;
-            this.soundBox.makeBreakStartSound(); //fix error
+            this.soundBox.makeBreakStartSound();
         } else {
             console.log("ERROR: incorrect status");
         }
@@ -72,7 +72,20 @@ class Clock {
     }
 
     fastForward(sec) {
-        this.currentTime = this.currentTime + sec;
+        const tempCurrentTime = this.currentTime + sec;
+        if(this.currentStatus === this.status.FOCUS && tempCurrentTime > this.focusTime) {
+            this.currentTime = this.focusTime;
+        } else {
+            this.currentTime = tempCurrentTime;
+        }
+
+        if(this.currentStatus === this.status.BREAK && tempCurrentTime > this.breakTime) {
+            this.currentTime = this.breakTime;
+        } else {
+            this.currentTime = tempCurrentTime;
+        }
+
+
     }
 
     fastBackward(sec) {
