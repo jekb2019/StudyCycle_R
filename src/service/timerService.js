@@ -33,6 +33,14 @@ class TimerService {
         this.clock.resetCycle();
     }
 
+    fastForward(sec) {
+        this.clock.fastForward(sec);
+    }
+
+    fastBackward(sec) {
+        this.clock.fastBackward(sec);
+    }
+
     getCurrentTime() {
         return this.clock.getCurrentTime();
     }

@@ -19,7 +19,7 @@ class Clock {
         this.isClockRunning = true;
         this.timer = setInterval(() => {
             this.currentTime++;
-            console.log(this.getFormettedCurrentTime());
+            // console.log(this.getFormettedCurrentTime());
         }, 1000)
     }
 
@@ -50,6 +50,18 @@ class Clock {
         this.currentCycle = 1;
     }
 
+    fastForward(sec) {
+        this.currentTime = this.currentTime + sec;
+    }
+
+    fastBackward(sec) {
+        if(this.currentTime - sec < 0) {
+            this.currentTime = 0;
+        } else {
+            this.currentTime = this.currentTime - sec;
+        }
+    }
+
     // get current time in integer format
     getCurrentTime() {
         return this.currentTime;
@@ -64,7 +76,7 @@ class Clock {
         const minutes = Math.floor(time/60);
         const seconds = time%60;
         
-        console.log(hours, minutes, seconds);
+        // console.log(hours, minutes, seconds);
 
         let stringHours, stringMinutes, stringSeconds;
         if(hours < 10) {

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Clock from '../clock/clock';
 import Controller from '../controller/controller';
 import styles from './timer.module.css';
@@ -6,6 +6,7 @@ const Timer = (props) => {
 
     const [currentTime, setCurrentTime] = useState(props.service.getFormettedCurrentTime());
     const [isClockRunning, setIsClockRunning] = useState(false);
+    const [retrievalInterval, setRetrievalInterval] = useState();
 
     const switchIsClockRunning = (status) => {
         if(status === undefined) {
@@ -24,9 +25,34 @@ const Timer = (props) => {
         props.handleClickSound();
         props.service.resetTimer();
         switchIsClockRunning(false);
+        setCurrentTime(props.service.getFormettedCurrentTime());
     }
 
 
+    const handleFastForward = () => {
+        if(isClockRunning) {
+            props.service.fastForward(10);
+        }
+    }
+
+    const handleFastBackward = () => {
+        if(isClockRunning) {
+            props.service.fastBackward(10);
+        }
+    }
+
+    useEffect(() => {
+        // Retrieve current time from the service
+        if(isClockRunning) {
+            setRetrievalInterval(
+                setInterval(() => {
+                    setCurrentTime(props.service.getFormettedCurrentTime());
+                }, 1000)
+            );
+        } else {
+            clearInterval(retrievalInterval);
+        }   
+    }, [isClockRunning])
 
     return(
     <div className={styles.timer}>
@@ -55,7 +81,9 @@ const Timer = (props) => {
             handleClickSound={props.handleClickSound}
             service={props.service}
             isClockRunning={isClockRunning}
-            handleTimerRunningStatus={handleTimerRunningStatus}/>
+            handleTimerRunningStatus={handleTimerRunningStatus}
+            handleFastForward={handleFastForward}
+            handleFastBackward={handleFastBackward}/>
     </div>
 )};
 
