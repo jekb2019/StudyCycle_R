@@ -19,7 +19,6 @@ class Clock {
         this.isClockRunning = true;
         this.timer = setInterval(() => {
             this.currentTime++;
-            console.log(this.currentTime);
             console.log(this.getFormettedCurrentTime());
         }, 1000)
     }

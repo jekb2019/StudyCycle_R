@@ -1,23 +1,7 @@
 import {useState, forwardRef, useImperativeHandle} from 'react';
 import styles from './controller.module.css';
 
-const Controller = forwardRef((props, ref) => {
-    const [isClockRunning, setIsClockRunning] = useState(false);
-
-    useImperativeHandle(ref, () => ({switchIsClockRunningToFalse() {
-        setIsClockRunning(false);
-    }}));
-
-    const switchIsClockRunning = () => {
-        isClockRunning ? setIsClockRunning(false) : setIsClockRunning(true);
-    }
-
-    const handlePrimaryControllerClick = () => {
-        switchIsClockRunning();
-        props.handleClickSound();
-
-        isClockRunning ? props.service.stopTimer() : props.service.startTimer();
-    }
+const Controller = (props) => {
 
     return (
         <div className={styles.controllers}>
@@ -31,9 +15,9 @@ const Controller = forwardRef((props, ref) => {
             </div>
             <div 
             className={styles.button} 
-            onClick={handlePrimaryControllerClick}>
+            onClick={() => {props.handleTimerRunningStatus(); props.handleClickSound();}}>
                 {
-                isClockRunning ?
+                props.isClockRunning ?
                 <div key="pause">
                     <i className={`fas fa-pause ${styles.primary_controller} ${styles.controller}`}></i>
                 </div> :
@@ -51,6 +35,6 @@ const Controller = forwardRef((props, ref) => {
                 <span>+10s</span>
             </div>
         </div>
-    )});
+    )};
 
 export default Controller;

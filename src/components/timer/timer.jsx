@@ -1,15 +1,32 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Clock from '../clock/clock';
 import Controller from '../controller/controller';
 import styles from './timer.module.css';
 const Timer = (props) => {
-    const controllerRef = useRef();
+
+    const [currentTime, setCurrentTime] = useState(props.service.getFormettedCurrentTime());
+    const [isClockRunning, setIsClockRunning] = useState(false);
+
+    const switchIsClockRunning = (status) => {
+        if(status === undefined) {
+            isClockRunning ? setIsClockRunning(false) : setIsClockRunning(true);
+        } else {
+            status? setIsClockRunning(true) : setIsClockRunning(false);
+        }
+    }
+
+    const handleTimerRunningStatus = () => {
+        switchIsClockRunning();
+        isClockRunning ? props.service.stopTimer() : props.service.startTimer();
+    }
 
     const handleResetButtonClicked = () => {
         props.handleClickSound();
         props.service.resetTimer();
-        controllerRef.current.switchIsClockRunningToFalse();
+        switchIsClockRunning(false);
     }
+
+
 
     return(
     <div className={styles.timer}>
@@ -28,16 +45,17 @@ const Timer = (props) => {
             </div>
         </div>
         <div className={styles.clock_display}>
-            <Clock className={styles.clock} formattedTime={props.service.getFormettedCurrentTime()}/>
+            <Clock className={styles.clock} formattedTime={currentTime}/>
             <div className={styles.button} onClick={handleResetButtonClicked}>
                 <i className={`fas fa-redo-alt ${styles.reset_icon}`}></i>
             </div>
         </div>
 
         <Controller
-            ref={controllerRef} 
             handleClickSound={props.handleClickSound}
-            service={props.service}/>
+            service={props.service}
+            isClockRunning={isClockRunning}
+            handleTimerRunningStatus={handleTimerRunningStatus}/>
     </div>
 )};
 
