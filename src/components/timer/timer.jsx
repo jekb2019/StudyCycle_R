@@ -31,13 +31,13 @@ const Timer = (props) => {
 
     const handleFastForward = () => {
         if(isClockRunning) {
-            props.service.fastForward(10);
+            props.service.fastForward(180);
         }
     }
 
     const handleFastBackward = () => {
         if(isClockRunning) {
-            props.service.fastBackward(10);
+            props.service.fastBackward(180);
         }
     }
 

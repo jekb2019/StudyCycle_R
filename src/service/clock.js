@@ -1,6 +1,8 @@
 import SoundBox from './soundBox.js';
 
 class Clock {
+    focusTime = 2 * 60 * 60; 
+    breakTime = 10 * 60;
     timer = undefined;
     status = {
         FOCUS: 'focus',
@@ -8,7 +10,7 @@ class Clock {
     }
 
     constructor() {
-        this.currentTime = 0;
+        this.currentTime = 7198 ;
         this.currentCycle = 1;
         this.currentStatus = this.status.FOCUS;
         this.isClockRunning = false;
@@ -18,18 +20,37 @@ class Clock {
     startTimer() {
         this.isClockRunning = true;
         this.timer = setInterval(() => {
-            this.currentTime++;
+            const tempCurrentTime = this.currentTime + 1;
+
+            if(this.currentStatus === this.status.FOCUS) {
+                if(tempCurrentTime >= this.focusTime) {
+                    this.switchStatus(this.status.BREAK);
+                    this.currentTime = 0;
+                }  else {
+                    this.currentTime = tempCurrentTime;
+                }
+            } else if (this.currentStatus === this.status.BREAK) {
+                if(tempCurrentTime >= this.breakTime) {
+                    this.switchStatus(this.status.FOCUS);
+                    this.currentTime = 0;
+                }  else {
+                    this.currentTime = tempCurrentTime;
+                }
+            }
+
             // console.log(this.getFormettedCurrentTime());
         }, 1000)
     }
 
     switchStatus(status) {
         if(status === this.status.FOCUS) {
-            this.currentStatus = this.state.FOCUS;
-            this.soundBox.makeFocusStartSound();
+            console.log("FOCUS -> BREAK")
+            this.currentStatus = this.status.FOCUS;
+            this.soundBox.makeFocusStartSound(); //fix error
         } else if (status === this.status.BREAK) {
-            this.currentStatus = this.state.BREAK;
-            this.soundBox.makeBreakStartSound();
+            console.log("BREAK -> FOCUS")
+            this.currentStatus = this.status.BREAK;
+            this.soundBox.makeBreakStartSound(); //fix error
         } else {
             console.log("ERROR: incorrect status");
         }

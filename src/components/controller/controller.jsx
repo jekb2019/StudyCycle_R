@@ -11,7 +11,7 @@ const Controller = (props) => {
                 onClick={() => {props.handleClickSound(); props.handleFastBackward();}}>
                     <i className={`fas fa-backward ${styles.sub_controller} ${styles.controller}`}></i>
                 </div>
-                <span>-10s</span>
+                <span>-3 min</span>
             </div>
             <div 
             className={styles.button} 
@@ -32,7 +32,7 @@ const Controller = (props) => {
                 onClick={() => {props.handleClickSound(); props.handleFastForward();}}>
                     <i className={`fas fa-forward ${styles.sub_controller} ${styles.controller}`}></i>
                 </div>
-                <span>+10s</span>
+                <span>+3 min</span>
             </div>
         </div>
     )};
