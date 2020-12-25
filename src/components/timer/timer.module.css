@@ -46,6 +46,14 @@
     text-align: center;
     background-color: makerSlightlierLightGray;
 }
+
+.indicator.focusIndicator {
+    opacity: 100%;
+}
+.indicator.breakIndicator {
+    opacity: 100%;
+}
+
 .indicator span {
     line-height: 1.5;
     font-size: medium;

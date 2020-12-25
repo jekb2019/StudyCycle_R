@@ -1,20 +1,18 @@
-import SoundBox from './soundBox.js';
-
+import SoundBox from './soundBox';
+import Constants from '../common/constants';
 class Clock {
     focusTime = 2 * 60 * 60; 
     breakTime = 10 * 60;
     timer = undefined;
-    status = {
-        FOCUS: 'focus',
-        BREAK: 'break'
-    }
 
     constructor() {
         this.currentTime = 7198 ;
         this.currentCycle = 1;
-        this.currentStatus = this.status.FOCUS;
         this.isClockRunning = false;
-        this.soundBox = new SoundBox(); 
+        this.soundBox = new SoundBox();
+        this.constants = new Constants(); 
+        this.status = this.constants.getStatusConstants();
+        this.currentStatus = this.status.FOCUS;
     }
 
     startTimer() {
@@ -44,11 +42,9 @@ class Clock {
 
     switchStatus(status) {
         if(status === this.status.FOCUS) {
-            console.log("FOCUS")
             this.currentStatus = this.status.FOCUS;
             this.soundBox.makeFocusStartSound();
         } else if (status === this.status.BREAK) {
-            console.log("BREAK")
             this.currentStatus = this.status.BREAK;
             this.soundBox.makeBreakStartSound();
         } else {
@@ -64,6 +60,7 @@ class Clock {
     resetTimer() {
         this.stopTimer();
         this.currentTime = 0;
+        this.switchStatus(this.status.FOCUS);
     }
 
     resetCycle() {

@@ -1,18 +1,26 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Clock from '../clock/clock';
 import Controller from '../controller/controller';
 import styles from './timer.module.css';
+import Constants from '../../common/constants';
+
+const constants = new Constants();
+const timerStatusConstant = constants.getStatusConstants();
+
 const Timer = (props) => {
+    const focusIndicatorRef = useRef();
+    const breakIndicatorRef = useRef();
 
     const [currentTime, setCurrentTime] = useState(props.service.getFormettedCurrentTime());
     const [isClockRunning, setIsClockRunning] = useState(false);
     const [retrievalInterval, setRetrievalInterval] = useState();
+    const [timerStatus, setTimerStatus] = useState();
 
-    const switchIsClockRunning = (status) => {
-        if(status === undefined) {
+    const switchIsClockRunning = (operationStatus) => {
+        if(operationStatus === undefined) {
             isClockRunning ? setIsClockRunning(false) : setIsClockRunning(true);
         } else {
-            status? setIsClockRunning(true) : setIsClockRunning(false);
+            operationStatus? setIsClockRunning(true) : setIsClockRunning(false);
         }
     }
 
@@ -26,7 +34,22 @@ const Timer = (props) => {
         props.service.resetTimer();
         switchIsClockRunning(false);
         setCurrentTime(props.service.getFormettedCurrentTime());
+        setTimerStatus(timerStatusConstant.FOCUS);
+        switchStatusDisplay(timerStatusConstant.FOCUS);
     }
+
+    const switchStatusDisplay = (timerStatus) => {
+        if(timerStatus === timerStatusConstant.FOCUS) {
+            console.log("switch to focus display");
+            focusIndicatorRef.current.style.opacity = "1";
+            breakIndicatorRef.current.style.opacity = "0.3";
+
+        } else {
+            console.log("switch to break display");
+            focusIndicatorRef.current.style.opacity = "0.3";
+            breakIndicatorRef.current.style.opacity = "1";
+        }
+    }  
 
 
     const handleFastForward = () => {
@@ -52,12 +75,19 @@ const Timer = (props) => {
         } else {
             clearInterval(retrievalInterval);
         }   
-    }, [isClockRunning])
+    }, [isClockRunning]);
+
+    useEffect(() => {
+        if(timerStatus !== props.service.getCurrentStatus()) {
+            setTimerStatus(props.service.getCurrentStatus());
+            switchStatusDisplay(props.service.getCurrentStatus());
+        }
+    }, [currentTime]);
 
     return(
     <div className={styles.timer}>
         <div className={styles.indicators}>
-            <div className={styles.indicator}>
+            <div ref={focusIndicatorRef} className={`${styles.indicator} ${styles.focusIndicator}`}>
                 <span>Focus</span>
             </div>
             <div className={styles.status}>
@@ -66,7 +96,7 @@ const Timer = (props) => {
                     <span className={styles.cycle}>1/5</span>
                 </div>
             </div>
-            <div className={styles.indicator}>
+            <div ref={breakIndicatorRef} className={`${styles.indicator} ${styles.breakIndicator}`}>
                 <span>Break</span>
             </div>
         </div>

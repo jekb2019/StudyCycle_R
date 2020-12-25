@@ -2,11 +2,13 @@ class SoundBox {
     focusStartSound = new Audio("../sounds/focus.wav");
     breakStartSound = new Audio("../sounds/break.wav");
     makeFocusStartSound() {
-        this.focusStartSound.play(); //fix error
+        // let playPromise = this.focusStartSound.play(); //fix error
+        
+    
     }
 
     makeBreakStartSound() {
-        this.breakStartSound.play(); //fix error
+        // let playPromise = this.breakStartSound.play(); //fix error    
     }
 
     makeGoalReachedSound() {

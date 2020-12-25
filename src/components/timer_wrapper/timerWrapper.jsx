@@ -1,12 +1,15 @@
-import React from 'react';
-import Timer from '../timer/timer'
-import styles from './timerWrapper.module.css'
+import React, { useState } from 'react';
+import Timer from '../timer/timer';
+import styles from './timerWrapper.module.css';
+import Constants from '../../common/constants';
+
+const constants = new Constants();
+const status = constants.getStatusConstants();
 
 const TimerWrapper = (props) => {
     const handleSettingClick = () => {
         props.handleSettingClick();
-    }
-    
+    }    
 
     return(
     <div className={styles.wrapper}>
