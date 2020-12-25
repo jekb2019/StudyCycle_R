@@ -88,13 +88,16 @@ class Clock {
         const tempCurrentTime = this.currentTime + sec;
         if(this.currentStatus === this.status.FOCUS && tempCurrentTime > this.focusTime) {
             this.currentTime = this.focusTime;
-        } else {
+        } else if(this.currentStatus === this.status.FOCUS){
             this.currentTime = tempCurrentTime;
         }
 
         if(this.currentStatus === this.status.BREAK && tempCurrentTime > this.breakTime) {
             this.currentTime = this.breakTime;
-        } else {
+            if(this.currentCycle === this.maxCycle) {
+                this.processGoalCycleReached();
+            }
+        } else if(this.currentStatus === this.status.BREAK) {
             this.currentTime = tempCurrentTime;
         }
 

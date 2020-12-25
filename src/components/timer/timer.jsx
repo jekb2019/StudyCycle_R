@@ -55,15 +55,17 @@ const Timer = (props) => {
     }  
 
     const handleFastForward = () => {
-        if(isClockRunning) {
-            props.service.fastForward(180);
-        }
+        props.service.fastForward(180);
+        setCurrentTime(props.service.getFormettedCurrentTime());
+        setIsGoalCycleReached(props.service.getIsGoalCycleReached());
+
     }
 
     const handleFastBackward = () => {
-        if(isClockRunning) {
-            props.service.fastBackward(180);
-        }
+        
+        props.service.fastBackward(180);
+        setCurrentTime(props.service.getFormettedCurrentTime());
+        
     }
 
     const updateCurrentCycle = (cycleNum) => {

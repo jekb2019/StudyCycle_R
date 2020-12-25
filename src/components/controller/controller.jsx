@@ -24,24 +24,6 @@ const Controller = (props) => {
                 </div>
     }
 
-    // const pauseButton = (
-    //     <div key="pause">
-    //         <i className={`fas fa-pause ${styles.primary_controller} ${styles.controller}`}></i>
-    //     </div>
-    // )
-
-    // const playButton = (
-    //     <div key="play">
-    //         <i className={`fas fa-play ${styles.primary_controller} ${styles.controller}`}></i>
-    //     </div>
-    // )
-    
-    // const resetButton = (
-    //     <div key="reset">
-    //         <i className={`fas fa-redo-alt ${styles.primary_controller}`}></i>
-    //     </div>
-    // )
-
     const primaryControllerArray = [pauseButton, playButton, resetButton];
 
     return (
