@@ -2,7 +2,6 @@ import {useState, forwardRef, useImperativeHandle} from 'react';
 import styles from './controller.module.css';
 
 const Controller = (props) => {
-
     const pauseButton = {
         name: 'pause',
         element: <div key="pause">
@@ -34,7 +33,7 @@ const Controller = (props) => {
                 onClick={() => {props.handleClickSound(); props.handleFastBackward();}}>
                     <i className={`fas fa-backward ${styles.sub_controller} ${styles.controller}`}></i>
                 </div>
-                <span>-3 min</span>
+                <span>- 3 min</span>
             </div>
             <div 
             className={styles.button} 
@@ -52,18 +51,6 @@ const Controller = (props) => {
                         }
                     })
                 }
-                
-                {/* {
-                props.isClockRunning ?
-                <div key="pause">
-                    <i className={`fas fa-pause ${styles.primary_controller} ${styles.controller}`}></i>
-                </div> :
-                <div key="play">
-                    <i className={`fas fa-play ${styles.primary_controller} ${styles.controller}`}></i>
-                </div>
-                } */}
-                
-                
             </div>
             <div className={styles.fast_forward}>
                 <div 
@@ -71,7 +58,7 @@ const Controller = (props) => {
                 onClick={() => {props.handleClickSound(); props.handleFastForward();}}>
                     <i className={`fas fa-forward ${styles.sub_controller} ${styles.controller}`}></i>
                 </div>
-                <span>+3 min</span>
+                <span>+ 3 min</span>
             </div>
         </div>
     )};

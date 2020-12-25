@@ -43,8 +43,6 @@ class Clock {
                     this.currentTime = tempCurrentTime;
                 }
             }
-
-            // console.log(this.getFormettedCurrentTime());
         }, 1000)
     }
 

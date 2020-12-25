@@ -46,7 +46,6 @@
     text-align: center;
     background-color: makerSlightlierLightGray;
 }
-
 .indicator.focusIndicator {
     opacity: 100%;
 }
@@ -81,7 +80,7 @@
     font-size: iconSmall;
     color: makerGray;
 }
-/* Mobile */
+
 /* Mobile */
 @media only screen and (max-width: 609px) {
  .timer {

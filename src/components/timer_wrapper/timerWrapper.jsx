@@ -45,7 +45,8 @@ const TimerWrapper = (props) => {
         <Timer 
             handleClickSound={props.handleClickSound}
             service={props.service}/>
-    </div>);     
+    </div>
+    );     
 };
 
 export default TimerWrapper;

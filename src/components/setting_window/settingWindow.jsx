@@ -3,7 +3,6 @@ import SettingComponent from '../setting_components/settingComponent';
 import styles from './settingWindow.module.css';
 
 const SettingWindow = (props) => {
-
     const handleSettingWindowClose = () => {
         props.handleSettingWindowClose();
     };

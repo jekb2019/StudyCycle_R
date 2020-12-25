@@ -49,6 +49,7 @@
 .fast_forward {
     margin-left: 40px;
 }
+
 /* Mobile */
 @media only screen and (max-width: 609px) {
     .primary_controller {

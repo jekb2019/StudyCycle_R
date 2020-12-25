@@ -13,7 +13,7 @@ const SettingComponent = ({title, inputs, toggle, handleClickSound}) => (
                         <input className={styles.input_box} type="number" min={item.min} max={item.max} value={item.initial}/>
                         <span>{item.subjectName}</span>
                     </label>
-                    )
+                )
             }
         </div>
     </div>

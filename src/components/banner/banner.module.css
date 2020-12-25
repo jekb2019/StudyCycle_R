@@ -14,12 +14,14 @@
     line-height: 5;
     color: makerDarkGray;
 }
+
 /* Mobile */
 @media only screen and (max-width: 609px) {
     .banner {
         width: 350px;
     }
 }
+
 /* Small Mobile */
 @media only screen and (max-width: 349px) {
     .banner {
