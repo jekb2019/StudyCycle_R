@@ -10,11 +10,14 @@ const timerStatusConstant = constants.getStatusConstants();
 const Timer = (props) => {
     const focusIndicatorRef = useRef();
     const breakIndicatorRef = useRef();
+    const cycleIndicatorRef = useRef();
 
     const [currentTime, setCurrentTime] = useState(props.service.getFormettedCurrentTime());
     const [isClockRunning, setIsClockRunning] = useState(false);
     const [retrievalInterval, setRetrievalInterval] = useState();
     const [timerStatus, setTimerStatus] = useState();
+    const [currentCycle, setCurrentCycle] = useState(props.service.getCurrentCycle());
+    const [maxCycle, setMaxCycle] = useState(props.service.getMaxCycle());
 
     const switchIsClockRunning = (operationStatus) => {
         if(operationStatus === undefined) {
@@ -36,6 +39,7 @@ const Timer = (props) => {
         setCurrentTime(props.service.getFormettedCurrentTime());
         setTimerStatus(timerStatusConstant.FOCUS);
         switchStatusDisplay(timerStatusConstant.FOCUS);
+        updateCurrentCycle(1);
     }
 
     const switchStatusDisplay = (timerStatus) => {
@@ -51,7 +55,6 @@ const Timer = (props) => {
         }
     }  
 
-
     const handleFastForward = () => {
         if(isClockRunning) {
             props.service.fastForward(180);
@@ -62,6 +65,11 @@ const Timer = (props) => {
         if(isClockRunning) {
             props.service.fastBackward(180);
         }
+    }
+
+    const updateCurrentCycle = (cycleNum) => {
+        setCurrentCycle(cycleNum);
+        cycleIndicatorRef.current.innerHTML = `${cycleNum}/${maxCycle}`;
     }
 
     useEffect(() => {
@@ -82,6 +90,11 @@ const Timer = (props) => {
             setTimerStatus(props.service.getCurrentStatus());
             switchStatusDisplay(props.service.getCurrentStatus());
         }
+        const tempCurrentCycle = props.service.getCurrentCycle();
+        if(currentCycle !== tempCurrentCycle) {
+            updateCurrentCycle(tempCurrentCycle);
+        }
+        console.log(props.service.traceStatus())
     }, [currentTime]);
 
     return(
@@ -93,7 +106,7 @@ const Timer = (props) => {
             <div className={styles.status}>
                 <div>
                     <i className={`fas fa-biking ${styles.cycle_icon}`}></i>
-                    <span className={styles.cycle}>1/5</span>
+                    <span ref={cycleIndicatorRef} className={styles.cycle}>{`${currentCycle}/${maxCycle}`}</span>
                 </div>
             </div>
             <div ref={breakIndicatorRef} className={`${styles.indicator} ${styles.breakIndicator}`}>

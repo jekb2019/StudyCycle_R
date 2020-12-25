@@ -8,6 +8,7 @@ class Clock {
     constructor() {
         this.currentTime = 7198 ;
         this.currentCycle = 1;
+        this.maxCycle = 1;
         this.isClockRunning = false;
         this.soundBox = new SoundBox();
         this.constants = new Constants(); 
@@ -29,8 +30,13 @@ class Clock {
                 }
             } else if (this.currentStatus === this.status.BREAK) {
                 if(tempCurrentTime >= this.breakTime) {
-                    this.switchStatus(this.status.FOCUS);
-                    this.currentTime = 0;
+                    if(this.currentCycle === this.maxCycle) {
+                        this.processGoalReached();
+                    } else {
+                        this.switchStatus(this.status.FOCUS);
+                        this.currentTime = 0;
+                        this.currentCycle++;
+                    }
                 }  else {
                     this.currentTime = tempCurrentTime;
                 }
@@ -38,6 +44,11 @@ class Clock {
 
             // console.log(this.getFormettedCurrentTime());
         }, 1000)
+    }
+
+    processGoalReached() {
+        console.log("GOAL!!");
+        this.stopTimer();
     }
 
     switchStatus(status) {
@@ -61,6 +72,7 @@ class Clock {
         this.stopTimer();
         this.currentTime = 0;
         this.switchStatus(this.status.FOCUS);
+        this.currentCycle = 1;
     }
 
     resetCycle() {
@@ -132,19 +144,23 @@ class Clock {
         return this.currentCycle;
     }
 
+    getMaxCycle() {
+        return this.maxCycle;
+    }
+
     // Check whether it is focus or break time
     getCurrentStatus() {
         return this.currentStatus;
     }
 
     // return true only if both current time and current cycle is reset
-    isCurrentTimeResetWithoutCycle() {
-        if(this.currentTime === 0 && this.currentCycle === 1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+    // isCurrentTimeResetWithoutCycle() {
+    //     if(this.currentTime === 0 && this.currentCycle === 1) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
 }
 
 export default Clock;

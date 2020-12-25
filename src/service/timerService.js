@@ -53,6 +53,10 @@ class TimerService {
         return this.clock.getCurrentCycle();
     }
 
+    getMaxCycle() {
+        return this.clock.getMaxCycle();
+    }
+
     // Check whether it is focus or break time
     getCurrentStatus() {
         return this.clock.getCurrentStatus();
@@ -60,7 +64,7 @@ class TimerService {
 
     // used for debugging
     traceStatus() {
-        const currentTime = this.clock.getCurrentTime();
+        const currentTime = this.clock.getFormettedCurrentTime();
         const currentCycle = this.clock.getCurrentCycle();
         const currentStatus = this.clock.getCurrentStatus();
         console.log(`Current Time: ${currentTime}`);
