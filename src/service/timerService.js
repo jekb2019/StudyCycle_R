@@ -62,14 +62,20 @@ class TimerService {
         return this.clock.getCurrentStatus();
     }
 
+    getIsGoalCycleReached() {
+        return this.clock.getIsGoalCycleReached();
+    }
+
     // used for debugging
     traceStatus() {
         const currentTime = this.clock.getFormettedCurrentTime();
         const currentCycle = this.clock.getCurrentCycle();
         const currentStatus = this.clock.getCurrentStatus();
+        const isGoalCycleReached = this.clock.getIsGoalCycleReached();
         console.log(`Current Time: ${currentTime}`);
         console.log(`Current Cycle: ${currentCycle}`);
         console.log(`Current Status: ${currentStatus}`);
+        console.log(`Is Goal Reached: ${isGoalCycleReached}`);
     }
 }
 

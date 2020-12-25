@@ -18,6 +18,7 @@ const Timer = (props) => {
     const [timerStatus, setTimerStatus] = useState();
     const [currentCycle, setCurrentCycle] = useState(props.service.getCurrentCycle());
     const [maxCycle, setMaxCycle] = useState(props.service.getMaxCycle());
+    const [isGoalCycleReached, setIsGoalCycleReached] = useState(props.service.getIsGoalCycleReached());
 
     const switchIsClockRunning = (operationStatus) => {
         if(operationStatus === undefined) {
@@ -44,12 +45,10 @@ const Timer = (props) => {
 
     const switchStatusDisplay = (timerStatus) => {
         if(timerStatus === timerStatusConstant.FOCUS) {
-            console.log("switch to focus display");
             focusIndicatorRef.current.style.opacity = "1";
             breakIndicatorRef.current.style.opacity = "0.3";
 
         } else {
-            console.log("switch to break display");
             focusIndicatorRef.current.style.opacity = "0.3";
             breakIndicatorRef.current.style.opacity = "1";
         }
@@ -94,6 +93,10 @@ const Timer = (props) => {
         if(currentCycle !== tempCurrentCycle) {
             updateCurrentCycle(tempCurrentCycle);
         }
+        const tempGoalCycleReachedStatus = props.service.getIsGoalCycleReached();
+        if(isGoalCycleReached !== tempGoalCycleReachedStatus) {
+            setIsGoalCycleReached(tempGoalCycleReachedStatus);
+        }
         console.log(props.service.traceStatus())
     }, [currentTime]);
 
@@ -126,7 +129,9 @@ const Timer = (props) => {
             isClockRunning={isClockRunning}
             handleTimerRunningStatus={handleTimerRunningStatus}
             handleFastForward={handleFastForward}
-            handleFastBackward={handleFastBackward}/>
+            handleFastBackward={handleFastBackward}
+            isGoalCycleReached={isGoalCycleReached}
+            handleResetButtonClicked={handleResetButtonClicked}/>
     </div>
 )};
 

@@ -6,6 +6,7 @@ class Clock {
     timer = undefined;
 
     constructor() {
+        this.isGoalCycleReached = false;
         this.currentTime = 7198 ;
         this.currentCycle = 1;
         this.maxCycle = 1;
@@ -18,6 +19,7 @@ class Clock {
 
     startTimer() {
         this.isClockRunning = true;
+        this.isGoalCycleReached = false;
         this.timer = setInterval(() => {
             const tempCurrentTime = this.currentTime + 1;
 
@@ -31,7 +33,7 @@ class Clock {
             } else if (this.currentStatus === this.status.BREAK) {
                 if(tempCurrentTime >= this.breakTime) {
                     if(this.currentCycle === this.maxCycle) {
-                        this.processGoalReached();
+                        this.processGoalCycleReached();
                     } else {
                         this.switchStatus(this.status.FOCUS);
                         this.currentTime = 0;
@@ -46,9 +48,10 @@ class Clock {
         }, 1000)
     }
 
-    processGoalReached() {
+    processGoalCycleReached() {
         console.log("GOAL!!");
         this.stopTimer();
+        this.isGoalCycleReached = true;
     }
 
     switchStatus(status) {
@@ -69,6 +72,7 @@ class Clock {
     }
 
     resetTimer() {
+        this.isGoalCycleReached = false;
         this.stopTimer();
         this.currentTime = 0;
         this.switchStatus(this.status.FOCUS);
@@ -153,6 +157,9 @@ class Clock {
         return this.currentStatus;
     }
 
+    getIsGoalCycleReached() {
+        return this.isGoalCycleReached;
+    }
     // return true only if both current time and current cycle is reset
     // isCurrentTimeResetWithoutCycle() {
     //     if(this.currentTime === 0 && this.currentCycle === 1) {

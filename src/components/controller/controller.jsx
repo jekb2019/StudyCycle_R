@@ -3,6 +3,47 @@ import styles from './controller.module.css';
 
 const Controller = (props) => {
 
+    const pauseButton = {
+        name: 'pause',
+        element: <div key="pause">
+                    <i className={`fas fa-pause ${styles.primary_controller} ${styles.controller}`}></i>
+                </div>
+    }
+
+    const playButton = {
+        name: 'play',
+        element: <div key="play">
+                    <i className={`fas fa-play ${styles.primary_controller} ${styles.controller}`}></i>
+                </div>
+    }
+
+    const resetButton = {
+        name: 'reset',
+        element: <div key="reset" onClick={props.handleResetButtonClicked}>
+                    <i className={`fas fa-redo-alt ${styles.primary_controller} ${styles.controller}`}></i>
+                </div>
+    }
+
+    // const pauseButton = (
+    //     <div key="pause">
+    //         <i className={`fas fa-pause ${styles.primary_controller} ${styles.controller}`}></i>
+    //     </div>
+    // )
+
+    // const playButton = (
+    //     <div key="play">
+    //         <i className={`fas fa-play ${styles.primary_controller} ${styles.controller}`}></i>
+    //     </div>
+    // )
+    
+    // const resetButton = (
+    //     <div key="reset">
+    //         <i className={`fas fa-redo-alt ${styles.primary_controller}`}></i>
+    //     </div>
+    // )
+
+    const primaryControllerArray = [pauseButton, playButton, resetButton];
+
     return (
         <div className={styles.controllers}>
             <div className={styles.fast_backward}>
@@ -17,6 +58,20 @@ const Controller = (props) => {
             className={styles.button} 
             onClick={() => {props.handleTimerRunningStatus(); props.handleClickSound();}}>
                 {
+                    primaryControllerArray.map((item) => {
+                        if(props.isGoalCycleReached && item.name === 'reset') {
+                            return item.element;
+                        }
+                        if(!props.isGoalCycleReached && props.isClockRunning && item.name === 'pause') {
+                            return item.element;
+                        } 
+                        if(!props.isGoalCycleReached && !props.isClockRunning && item.name === 'play') {
+                            return item.element;
+                        }
+                    })
+                }
+                
+                {/* {
                 props.isClockRunning ?
                 <div key="pause">
                     <i className={`fas fa-pause ${styles.primary_controller} ${styles.controller}`}></i>
@@ -24,7 +79,9 @@ const Controller = (props) => {
                 <div key="play">
                     <i className={`fas fa-play ${styles.primary_controller} ${styles.controller}`}></i>
                 </div>
-                }
+                } */}
+                
+                
             </div>
             <div className={styles.fast_forward}>
                 <div 
