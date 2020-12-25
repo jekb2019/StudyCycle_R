@@ -62,7 +62,6 @@ const Timer = (props) => {
     }
 
     const handleFastBackward = () => {
-        
         props.service.fastBackward(180);
         setCurrentTime(props.service.getFormettedCurrentTime());
         

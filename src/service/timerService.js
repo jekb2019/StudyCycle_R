@@ -66,6 +66,38 @@ class TimerService {
         return this.clock.getIsGoalCycleReached();
     }
 
+    getFocusTime() {
+        return this.clock.getFocusTime();
+    }
+
+    getFocusTimeHour() {
+        return this.clock.getFocusTimeHour();
+    }
+    
+    getFocusTimeMinute() {
+        return this.clock.getFocusTimeMinute();
+    }
+    
+    getFocusTimeSecond() {
+        return this.clock.getFocusTimeSecond();
+    }
+
+    getBreakTime() {
+        return this.clock.getBreakTime();
+    }
+
+    getBreakTimeHour() {
+        return this.clock.getBreakTimeHour();
+    }
+    
+    getBreakTimeMinute() {
+        return this.clock.getBreakTimeMinute();
+    }
+    
+    getBreakTimeSecond() {
+        return this.clock.getBreakTimeSecond();
+    }
+
     // used for debugging
     traceStatus() {
         const currentTime = this.clock.getFormettedCurrentTime();

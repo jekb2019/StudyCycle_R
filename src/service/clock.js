@@ -125,8 +125,6 @@ class Clock {
         time = time%(60*60);
         const minutes = Math.floor(time/60);
         const seconds = time%60;
-        
-        // console.log(hours, minutes, seconds);
 
         let stringHours, stringMinutes, stringSeconds;
         if(hours < 10) {
@@ -163,6 +161,39 @@ class Clock {
     getIsGoalCycleReached() {
         return this.isGoalCycleReached;
     }
+
+    getFocusTime() {
+        return this.focusTime;
+    }
+
+    getFocusTimeHour() {
+        return Math.floor(this.focusTime/(60*60));
+    }
+    
+    getFocusTimeMinute() {
+        return Math.floor(this.focusTime%(60*60)/60);
+    }
+    
+    getFocusTimeSecond() {
+        return (this.focusTime%(60*60)/60)%60;
+    }
+
+    getBreakTime() {
+        return this.breakTime;
+    }
+
+    getBreakTimeHour() {
+        return Math.floor(this.breakTime/(60*60));
+    }
+    
+    getBreakTimeMinute() {
+        return Math.floor(this.breakTime%(60*60)/60);
+    }
+    
+    getBreakTimeSecond() {
+        return (this.breakTime%(60*60)/60)%60;
+    }
+
     // return true only if both current time and current cycle is reset
     // isCurrentTimeResetWithoutCycle() {
     //     if(this.currentTime === 0 && this.currentCycle === 1) {
