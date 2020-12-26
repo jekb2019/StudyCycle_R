@@ -1,10 +1,12 @@
 @value makerGray from '../../common/colors.css';
 @value makerDarkGray from '../../common/colors.css';
 
+/* Temporarily hide banner */
 .banner {
     cursor: default;
     border: 1px solid makerGray;
-    display: inline-block;
+    /* display: inline-block; */ 
+    display: none;
     text-align: center;
     margin: 20px;
     width: 500px;

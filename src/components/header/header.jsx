@@ -3,7 +3,7 @@ import styles from './header.module.css';
 
 const Header = (props) => (
     <div className={styles.header}>
-        <img className={styles.logo} src="/images/logo.png" alt="Study Cycle Logo"/>
+        <img className={styles.logo} src="/images/logo.png" alt="Study Cycle Logo" onClick={() => {window.location.reload()}}/>
     </div>        
 );
 
