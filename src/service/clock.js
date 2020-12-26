@@ -19,6 +19,10 @@ class Clock {
     }
 
     startTimer() {
+        if(this.currentTime === 0 && this.currentCycle === 1 && this.currentStatus === this.status.FOCUS) {
+            this.soundBox.makeFocusStartSound();
+        }
+
         this.isClockRunning = true;
         this.isGoalCycleReached = false;
         this.timer = setInterval(() => {
@@ -34,7 +38,9 @@ class Clock {
             } else if (this.currentStatus === this.status.BREAK) {
                 if(tempCurrentTime >= this.breakTime) {
                     if(this.currentCycle >= this.maxCycle) {
-                        this.currentTime = tempCurrentTime;
+                        if(this.breakTime !== 0) {
+                            this.currentTime = tempCurrentTime;
+                        }
                         this.processGoalCycleReached();
                     } else {
                         this.switchStatus(this.status.FOCUS);
@@ -50,6 +56,7 @@ class Clock {
 
     processGoalCycleReached() {
         console.log("GOAL!!");
+        this.soundBox.makeGoalReachedSound();
         this.stopTimer();
         this.isGoalCycleReached = true;
     }
@@ -198,6 +205,10 @@ class Clock {
 
     setFocusTime(hour, minute) {
         const totalTime = hour*60*60 + minute*60;
+        if(totalTime < 1 * 60) {
+            window.alert("Focus Time must be more than 1 minute!");
+            return;
+        }
         this.focusTime = totalTime;
     }
 
