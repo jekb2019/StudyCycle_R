@@ -1,16 +1,17 @@
 import SoundBox from './soundBox';
 import Constants from '../common/constants';
-class Clock {
-    focusTime = 2 * 60 * 60; 
-    breakTime = 10 * 60;
-    timer = undefined;
 
+// Class that represents a clock instance which stores the current timer information
+class Clock {
     constructor() {
+        this.focusTime = 1 * 60 * 60; 
+        this.breakTime = 10 * 60;
+        this.timer = undefined; // stores setInterval instance for running the timere every second
         this.isGoalCycleReached = false;
-        this.currentTime = 7198 ;
-        this.currentCycle = 1;
-        this.maxCycle = 1;
         this.isClockRunning = false;
+        this.currentTime = 0;
+        this.currentCycle = 1;
+        this.maxCycle = 8;
         this.soundBox = new SoundBox();
         this.constants = new Constants(); 
         this.status = this.constants.getStatusConstants();
@@ -33,6 +34,7 @@ class Clock {
             } else if (this.currentStatus === this.status.BREAK) {
                 if(tempCurrentTime >= this.breakTime) {
                     if(this.currentCycle >= this.maxCycle) {
+                        this.currentTime = tempCurrentTime;
                         this.processGoalCycleReached();
                     } else {
                         this.switchStatus(this.status.FOCUS);
@@ -83,30 +85,32 @@ class Clock {
     }
 
     fastForward(sec) {
-        const tempCurrentTime = this.currentTime + sec;
-        if(this.currentStatus === this.status.FOCUS && tempCurrentTime > this.focusTime) {
-            this.currentTime = this.focusTime;
-        } else if(this.currentStatus === this.status.FOCUS){
-            this.currentTime = tempCurrentTime;
-        }
-
-        if(this.currentStatus === this.status.BREAK && tempCurrentTime > this.breakTime) {
-            this.currentTime = this.breakTime;
-            if(this.currentCycle === this.maxCycle) {
-                this.processGoalCycleReached();
+        if(!this.isGoalCycleReached) {
+            const tempCurrentTime = this.currentTime + sec;
+            if(this.currentStatus === this.status.FOCUS && tempCurrentTime > this.focusTime) {
+                this.currentTime = this.focusTime;
+            } else if(this.currentStatus === this.status.FOCUS){
+                this.currentTime = tempCurrentTime;
             }
-        } else if(this.currentStatus === this.status.BREAK) {
-            this.currentTime = tempCurrentTime;
+    
+            if(this.currentStatus === this.status.BREAK && tempCurrentTime > this.breakTime) {
+                this.currentTime = this.breakTime;
+                if(this.currentCycle >= this.maxCycle) {
+                    this.processGoalCycleReached();
+                }
+            } else if(this.currentStatus === this.status.BREAK) {
+                this.currentTime = tempCurrentTime;
+            }
         }
-
-
     }
 
     fastBackward(sec) {
-        if(this.currentTime - sec < 0) {
-            this.currentTime = 0;
-        } else {
-            this.currentTime = this.currentTime - sec;
+        if(!this.isGoalCycleReached) {
+            if(this.currentTime - sec < 0) {
+                this.currentTime = 0;
+            } else {
+                this.currentTime = this.currentTime - sec;
+            }
         }
     }
 
@@ -204,7 +208,7 @@ class Clock {
 
     setGoalCycle(cycle) {
         if(cycle < this.currentCycle) {
-            window.alert("Current cycle exceeds the goal cycle!");
+            window.alert("Current cycle exceeds the goal cycle! Please reset the timer and try again.");
             return;
         }
         this.maxCycle = cycle;

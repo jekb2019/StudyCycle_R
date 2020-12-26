@@ -14,16 +14,14 @@ class TimerService {
         this.clock.stopTimer();
     }
 
-    // To-be tested
-    reset() {
-        if(this.clock.getCurrentTime() === 0) {
-            this.clock.resetCycle();
-            console.log("Cycle reset");
-        } else {
-            this.clock.resetTimer();
-            console.log("Timer reset");
-        }
-    }
+    // // To-be tested
+    // reset() {
+    //     if(this.clock.getCurrentTime() === 0) {
+    //         this.clock.resetCycle();
+    //     } else {
+    //         this.clock.resetTimer();
+    //     }
+    // }
 
     resetTimer() {
         this.clock.resetTimer();

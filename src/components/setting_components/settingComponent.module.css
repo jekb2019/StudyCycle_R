@@ -16,7 +16,10 @@
     display: flex;
     justify-content: space-between;
 }
+
+/* Temporarily Invisible (to be updated in the further) */
 .toggle_button {
+    display: none; 
     text-align: center;
     margin-right: 10px;
     height: 20px;

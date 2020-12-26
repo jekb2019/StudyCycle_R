@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styles from './settingComponent.module.css';
 const SettingComponent = ({title, inputs, toggle, handleClickSound, handleSettingInputOnChange}) => {
     
     
     const handleOnChange = (event, key) => {
         handleSettingInputOnChange(event, key);
-        console.log(event.target.value, key)
-        
     }
 
     return(
