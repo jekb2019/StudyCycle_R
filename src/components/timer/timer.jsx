@@ -90,6 +90,7 @@ const Timer = (props) => {
     }, [isClockRunning]);
 
     useEffect(() => {
+        document.title = `Study Cycle \u205f\u205f ${props.service.getFormettedCurrentTime()}`; // change tab title to match the current time
         if(timerStatus !== props.service.getCurrentStatus()) {
             setTimerStatus(props.service.getCurrentStatus());
             switchStatusDisplay(props.service.getCurrentStatus());
