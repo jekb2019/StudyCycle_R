@@ -30,7 +30,7 @@ class Clock {
 
             if(this.currentStatus === this.status.FOCUS) {
                 if(tempCurrentTime >= this.focusTime) {
-                    this.switchStatus(this.status.BREAK);
+                    this.switchStatus(this.status.BREAK, true);
                     this.currentTime = 0;
                 }  else {
                     this.currentTime = tempCurrentTime;
@@ -43,7 +43,7 @@ class Clock {
                         }
                         this.processGoalCycleReached();
                     } else {
-                        this.switchStatus(this.status.FOCUS);
+                        this.switchStatus(this.status.FOCUS, true);
                         this.currentTime = 0;
                         this.currentCycle++;
                     }
@@ -61,13 +61,17 @@ class Clock {
         this.isGoalCycleReached = true;
     }
 
-    switchStatus(status) {
+    switchStatus(status, playSound) {
         if(status === this.status.FOCUS) {
             this.currentStatus = this.status.FOCUS;
-            this.soundBox.makeFocusStartSound();
+            if(playSound) {
+                this.soundBox.makeFocusStartSound();
+            }
         } else if (status === this.status.BREAK) {
             this.currentStatus = this.status.BREAK;
-            this.soundBox.makeBreakStartSound();
+            if(playSound) {
+                this.soundBox.makeBreakStartSound();
+            }
         } else {
             console.log("ERROR: incorrect status");
         }
@@ -82,14 +86,14 @@ class Clock {
         this.isGoalCycleReached = false;
         this.stopTimer();
         this.currentTime = 0;
-        this.switchStatus(this.status.FOCUS);
+        this.switchStatus(this.status.FOCUS, false);
         this.currentCycle = 1;
     }
 
-    resetCycle() {
-        this.stopTimer();
-        this.currentCycle = 1;
-    }
+    // resetCycle() {
+    //     this.stopTimer();
+    //     this.currentCycle = 1;
+    // }
 
     fastForward(sec) {
         if(!this.isGoalCycleReached) {
