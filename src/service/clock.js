@@ -32,7 +32,7 @@ class Clock {
                 }
             } else if (this.currentStatus === this.status.BREAK) {
                 if(tempCurrentTime >= this.breakTime) {
-                    if(this.currentCycle === this.maxCycle) {
+                    if(this.currentCycle >= this.maxCycle) {
                         this.processGoalCycleReached();
                     } else {
                         this.switchStatus(this.status.FOCUS);
@@ -190,6 +190,24 @@ class Clock {
     
     getBreakTimeSecond() {
         return (this.breakTime%(60*60)/60)%60;
+    }
+
+    setFocusTime(hour, minute) {
+        const totalTime = hour*60*60 + minute*60;
+        this.focusTime = totalTime;
+    }
+
+    setBreakTime(hour, minute) {
+        const totalTime = hour*60*60 + minute*60;
+        this.breakTime = totalTime;
+    }
+
+    setGoalCycle(cycle) {
+        if(cycle < this.currentCycle) {
+            window.alert("Current cycle exceeds the goal cycle!");
+            return;
+        }
+        this.maxCycle = cycle;
     }
 
     // return true only if both current time and current cycle is reset

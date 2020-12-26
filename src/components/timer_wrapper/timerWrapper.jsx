@@ -44,7 +44,10 @@ const TimerWrapper = (props) => {
         </div>
         <Timer 
             handleClickSound={props.handleClickSound}
-            service={props.service}/>
+            service={props.service}
+            maxCycleSetting={props.maxCycleSetting}
+            isGoalCycleReached={props.isGoalCycleReached}
+            />
     </div>
     );     
 };

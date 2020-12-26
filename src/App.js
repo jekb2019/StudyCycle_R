@@ -9,6 +9,7 @@ import clickSoundDir from "./sounds/click.wav";
 const App = (props) => {
   const [screenWidth, setScreenWidth] = useState(window.screen.width);
   const [settingWindowOpen, setSettingWindowOpen] = useState(false);
+  const [maxCycleSetting, setMaxCycleSetting] = useState(props.service.getMaxCycle());
 
   const handleResize = () => {
     setScreenWidth(window.screen.width);
@@ -25,10 +26,9 @@ const App = (props) => {
 
   // Handler when OK button in the setting window is clicked
   const handleSettingWindowOK = () => {
-    setSettingWindowOpen(false);   
+    setSettingWindowOpen(false);
+    setMaxCycleSetting(props.service.getMaxCycle());
   }
-
-
 
   // Make click sound when suitable button is clicked
   const clickSound = new Audio(clickSoundDir);
@@ -47,11 +47,14 @@ const App = (props) => {
       <TimerWrapper 
         handleSettingClick={handleSettingClick} 
         handleClickSound={makeClickSound}
-        service={props.service}/>
+        service={props.service}
+        maxCycleSetting={maxCycleSetting}
+        isGoalCycleReached={props.service.getIsGoalCycleReached()}/>
         {screenWidth < 800 && <Banner/>}
       <p className={styles.copyright}>Copyright @ 2020 by Jekb2020</p>
       {settingWindowOpen && 
       <SettingWindow
+       service={props.service}
        handleClickSound={makeClickSound}
        handleSettingWindowClose={handleSettingWindowClose}
        handleSettingWindowOK={handleSettingWindowOK}/>}

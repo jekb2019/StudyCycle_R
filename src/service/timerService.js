@@ -98,6 +98,18 @@ class TimerService {
         return this.clock.getBreakTimeSecond();
     }
 
+    setFocusTime(hour, minute) {
+        this.clock.setFocusTime(hour, minute);
+    }
+
+    setBreakTime(hour, minute) {
+        this.clock.setBreakTime(hour, minute);
+    }
+
+    setGoalCycle(cycle) {
+        this.clock.setGoalCycle(cycle);
+    }
+
     // used for debugging
     traceStatus() {
         const currentTime = this.clock.getFormettedCurrentTime();

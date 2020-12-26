@@ -18,7 +18,7 @@ const Timer = (props) => {
     const [timerStatus, setTimerStatus] = useState();
     const [currentCycle, setCurrentCycle] = useState(props.service.getCurrentCycle());
     const [maxCycle, setMaxCycle] = useState(props.service.getMaxCycle());
-    const [isGoalCycleReached, setIsGoalCycleReached] = useState(props.service.getIsGoalCycleReached());
+    const [isGoalCycleReached, setIsGoalCycleReached] = useState(props.isGoalCycleReached);
 
     const switchIsClockRunning = (operationStatus) => {
         if(operationStatus === undefined) {
@@ -69,8 +69,12 @@ const Timer = (props) => {
 
     const updateCurrentCycle = (cycleNum) => {
         setCurrentCycle(cycleNum);
-        cycleIndicatorRef.current.innerHTML = `${cycleNum}/${maxCycle}`;
+        cycleIndicatorRef.current.innerHTML = `${cycleNum}/${props.maxCycleSetting}`;
     }
+
+    useEffect(() => {
+        setIsGoalCycleReached(props.isGoalCycleReached);
+    },[props.isGoalCycleReached])
 
     useEffect(() => {
         // Retrieve current time from the service
@@ -99,7 +103,8 @@ const Timer = (props) => {
             setIsGoalCycleReached(tempGoalCycleReachedStatus);
         }
         console.log(props.service.traceStatus())
-    }, [currentTime]);
+        setMaxCycle(props.maxCycleSetting);
+    }, [currentTime, maxCycle]);
 
     return(
     <div className={styles.timer}>
@@ -110,7 +115,7 @@ const Timer = (props) => {
             <div className={styles.status}>
                 <div>
                     <i className={`fas fa-biking ${styles.cycle_icon}`}></i>
-                    <span ref={cycleIndicatorRef} className={styles.cycle}>{`${currentCycle}/${maxCycle}`}</span>
+                    <span ref={cycleIndicatorRef} className={styles.cycle}>{`${currentCycle}/${props.maxCycleSetting}`}</span>
                 </div>
             </div>
             <div ref={breakIndicatorRef} className={`${styles.indicator} ${styles.breakIndicator}`}>
