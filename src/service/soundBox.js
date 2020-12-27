@@ -8,17 +8,14 @@ class SoundBox {
     goalReachedSound = new Audio(goalReachedSound);
     makeFocusStartSound() {
         this.focusStartSound.play();  
-        console.log("MAKE FOCUS SOUND")  
     }
 
     makeBreakStartSound() {
         this.breakStartSound.play();
-        console.log("MAKE BREAK SOUND")  
     }
 
     makeGoalReachedSound() {
         this.goalReachedSound.play();
-        console.log("MAKE GOAL SOUND")  
     }
 }
 

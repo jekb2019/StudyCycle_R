@@ -55,7 +55,6 @@ class Clock {
     }
 
     processGoalCycleReached() {
-        console.log("GOAL!!");
         this.soundBox.makeGoalReachedSound();
         this.stopTimer();
         this.isGoalCycleReached = true;
