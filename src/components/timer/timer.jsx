@@ -72,6 +72,16 @@ const Timer = (props) => {
         cycleIndicatorRef.current.innerHTML = `${cycleNum}/${props.maxCycleSetting}`;
     }
 
+    const getCurrentStatus = () => {
+        const tempStatus = props.service.getCurrentStatus();
+        if(tempStatus === 'focus') {
+            return 'Focus';
+        } else if (tempStatus === 'break') {
+            return 'Break';
+        }
+    }
+
+
     useEffect(() => {
         setIsGoalCycleReached(props.isGoalCycleReached);
     },[props.isGoalCycleReached])
@@ -90,7 +100,7 @@ const Timer = (props) => {
     }, [isClockRunning]);
 
     useEffect(() => {
-        document.title = `Study Cycle \u205f\u205f ${props.service.getFormettedCurrentTime()}`; // change tab title to match the current time
+        document.title = `${props.service.getFormettedCurrentTime()} ${getCurrentStatus()} - Study Cycle `; // change tab title to match the current time
         if(timerStatus !== props.service.getCurrentStatus()) {
             setTimerStatus(props.service.getCurrentStatus());
             switchStatusDisplay(props.service.getCurrentStatus());
