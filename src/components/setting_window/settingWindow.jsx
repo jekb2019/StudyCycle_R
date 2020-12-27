@@ -58,7 +58,7 @@ const SettingWindow = (props) => {
 
     return (<div className={styles.window}>
         <div className={styles.header}>
-            <img className={styles.logo} src="/images/small-logo.png" alt="small logo"/>
+            <img className={styles.logo} src="/images/small-logo.png" alt="Study Cycle small logo"/>
             <h1 className={styles.subject}>Settings</h1>
             <div className={styles.close_button} 
             onClick={() => {handleSettingWindowClose(); props.handleClickSound()}}>

@@ -1,3 +1,9 @@
 .logo {
     width: 300px;
 }
+
+.logo_wrapper {
+    margin: 0;
+    padding: 0;
+    height: 120px;
+}
