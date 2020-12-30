@@ -49,6 +49,12 @@ const SettingWindow = (props) => {
         // console.log(input);
     }
 
+    const handleOnKeyPressEnter = (event) => {
+        if(event.key === 'Enter') {
+            handleSettingWindowOK();
+        }
+    }
+
     const handleSettingInputOnChange = (event, key) => {
         let tempInput = {...input};
         tempInput[key] = event.target.value;
@@ -56,7 +62,7 @@ const SettingWindow = (props) => {
     }
 
 
-    return (<div className={styles.window}>
+    return (<div className={styles.window} onKeyPress={handleOnKeyPressEnter}>
         <div className={styles.header}>
             <img className={styles.logo} src="/images/small-logo.png" alt="Study Cycle small logo"/>
             <h1 className={styles.subject}>Settings</h1>
@@ -85,7 +91,7 @@ const SettingWindow = (props) => {
             toggle={true}
             handleSettingInputOnChange={handleSettingInputOnChange}/>
         </div>
-        <button className={styles.ok_button} 
+        <button className={styles.ok_button}
         onClick={()=>{handleSettingWindowOK(); props.handleClickSound()}}>OK</button>
     </div>)
 };
