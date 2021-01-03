@@ -1,11 +1,22 @@
-![logo image](/public/images/logo.png)
+
 <!-- <img src="/public/images/logo.png" width="400"> -->
+
+<p align="center">
+  <img src="public/images/logo.png" width="500" title="logo">
+</p>
+
 # Study Cycle - Online Study Timer
 
 Study Cycle is a web based online timer which supports customised focus-break time cycles. Boost your productivity with Study Cycle!
 
+<p align="center">
+  <img src="public/images/full-UI.jpg" width="500" title="logo">
+</p>
+
 # Getting Started
-Simply [clck here](studycycle.netlify.app) to open up Study Cycle on your web browser.  
+Simply [clck here](studycycle.netlify.app) to open up Study Cycle on your web browser.
+
+**URL: studycycle.netlify.app**
 
 # How To Use
 The user interface of Study Cycle focuses on intuitiveness so that no user manual is necessary for the new users. However, here are some basic user manual to be even more clearer!
@@ -13,16 +24,20 @@ The user interface of Study Cycle focuses on intuitiveness so that no user manua
 ## Basic Controll
 Just like all timers, Study Cycle provides stop and start buttons. Additionally, Study Cycle also provides fast forward, fast backward, and reset button to flexibly controll the timer. 
 
-<!-- Pictures -->
+<p align="center">
+  <img src="public/images/full-UI-annotated.png" width="500" title="logo">
+</p>
 
 One cycle represents a focus-break time pair. When a cycle is reached, current cycle status will increment. Below numbers next to the cyclist icon represents your current cycle and goal cycles.
 
 <!-- Pictures -->
 
 ## Customization
-You can customize your Study Cycle by clicking the ~~**settings**~~ icon at the top right of the timer box.
+You can customize your Study Cycle by clicking the <img src="public/images/cog-solid.svg" width="15" title="logo"> icon above the timer box.
 
-<!-- Pictures -->
+<p align="center">
+  <img src="public/images/settings-window.jpg" width="500" title="logo">
+</p>
 
 Customize your focus time, break time, and goal cycles in the settings window and simply click **OK** or hit enter.
 
@@ -34,8 +49,6 @@ Customize your focus time, break time, and goal cycles in the settings window an
 
 # Author
 * Jason Ko - the owner of this repository
-
-# License
 
 # Acknowledgement
 * Inspiration from me and my loved freinds who always try to boost our productivity to get our work done
