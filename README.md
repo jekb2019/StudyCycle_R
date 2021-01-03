@@ -41,7 +41,18 @@ You can customize your Study Cycle by clicking the <img src="public/images/cog-s
 
 Customize your focus time, break time, and goal cycles in the settings window and simply click **OK** or hit enter.
 
-<!-- Pictures -->
+# Responsive UI
+Study Cycle is friendly for desktops, laptops, tablets, and mobiles.
+
+## Desktop
+<p align="center">
+  <img src="public/images/laptop.png" width="500" title="desktop responsiveness">
+</p>
+
+## Mobile
+<p align="center">
+  <img src="public/images/mobile.png" width="200" title="mobile responsiveness">
+</p>
 
 # Built With...
 * React.js - The JavaScript framework used
