@@ -10,7 +10,7 @@
 Study Cycle is a web based online timer which supports customised focus-break time cycles. Boost your productivity with Study Cycle!
 
 <p align="center">
-  <img src="public/images/full-UI.jpg" width="500" title="logo">
+  <img src="public/images/full-UI.png" width="500" title="logo">
 </p>
 
 # Getting Started
@@ -25,7 +25,7 @@ The user interface of Study Cycle focuses on intuitiveness so that no user manua
 Just like all timers, Study Cycle provides stop and start buttons. Additionally, Study Cycle also provides fast forward, fast backward, and reset button to flexibly controll the timer. 
 
 <p align="center">
-  <img src="public/images/full-UI-annotated.png" width="500" title="logo">
+  <img src="public/images/full-UI-annotated.png" width="500" title="manual image">
 </p>
 
 One cycle represents a focus-break time pair. When a cycle is reached, current cycle status will increment. Below numbers next to the cyclist icon represents your current cycle and goal cycles.
@@ -33,10 +33,10 @@ One cycle represents a focus-break time pair. When a cycle is reached, current c
 <!-- Pictures -->
 
 ## Customization
-You can customize your Study Cycle by clicking the <img src="public/images/cog-solid.svg" width="15" title="logo"> icon above the timer box.
+You can customize your Study Cycle by clicking the <img src="public/images/cog-solid.svg" width="15" title="annotated manual image"> icon above the timer box.
 
 <p align="center">
-  <img src="public/images/settings-window.jpg" width="500" title="logo">
+  <img src="public/images/settings-window.png" width="500" title="settings window">
 </p>
 
 Customize your focus time, break time, and goal cycles in the settings window and simply click **OK** or hit enter.
