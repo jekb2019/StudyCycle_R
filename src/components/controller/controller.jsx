@@ -2,53 +2,48 @@ import {useState, forwardRef, useImperativeHandle} from 'react';
 import styles from './controller.module.css';
 
 const Controller = (props) => {
-    const pauseButton = {
-        name: 'pause',
-        element: <div key="pause">
-                    <i className={`fas fa-pause ${styles.primary_controller} ${styles.controller}`}></i>
-                </div>
-    }
-
-    const playButton = {
-        name: 'play',
-        element: <div key="play">
-                    <i className={`fas fa-play ${styles.primary_controller} ${styles.controller}`}></i>
-                </div>
-    }
-
-    const resetButton = {
-        name: 'reset',
-        element: <div key="reset">
-                    <i className={`fas fa-redo-alt ${styles.primary_controller} ${styles.controller}`}></i>
-                </div>
-    }
-
-    const primaryControllerArray = [pauseButton, playButton, resetButton];
+    const primaryControllers = [
+        {
+            name: 'pause',
+            element: <div key="pause">
+                        <i className={`fas fa-pause ${styles.primary_controller} ${styles.controller}`}></i>
+                    </div>
+        },
+        {
+            name: 'play',
+            element: <div key="play">
+                        <i className={`fas fa-play ${styles.primary_controller} ${styles.controller}`}></i>
+                    </div>
+        },
+        {
+            name: 'reset',
+            element: <div key="reset">
+                        <i className={`fas fa-redo-alt ${styles.primary_controller} ${styles.controller}`}></i>
+                    </div>
+        }
+    ];
 
     return (
         <div className={styles.controllers}>
-            <div className={styles.fast_backward}>
-                <div 
-                className={`${styles.button} ${styles.sub_controller_wrapper}`}>
+            <div className={`${styles.fast_backward} ${styles.controller_wrapper}`}>
+                <div className={`${styles.button} ${styles.sub_controller_wrapper}`}>
                     <i className={`fas fa-backward ${styles.sub_controller} ${styles.controller}`}></i>
                 </div>
-                <span>- 3 min</span>
+                <span className={styles.fastWindingDescription}>- 3 min</span>
             </div>
-            <div 
-            className={styles.button}>
+            <div className={`${styles.button} ${styles.controller_wrapper}`}>
                 {
-                    primaryControllerArray.map((item) => {
+                    primaryControllers.map((item) => {
                         // return item.element;
                     })
                 }
-                {pauseButton.element}
+                {primaryControllers[0].element}
             </div>
-            <div className={styles.fast_forward}>
-                <div 
-                className={`${styles.button} ${styles.sub_controller_wrapper}`}>
+            <div className={`${styles.fast_forward} ${styles.controller_wrapper}`}>
+                <div className={`${styles.button} ${styles.sub_controller_wrapper}`}>
                     <i className={`fas fa-forward ${styles.sub_controller} ${styles.controller}`}></i>
                 </div>
-                <span>+ 3 min</span>
+                <span className={styles.fastWindingDescription}>+ 3 min</span>
             </div>
         </div>
     )};

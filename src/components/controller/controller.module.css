@@ -12,12 +12,12 @@
     align-items: center;
     margin-top: 30px;
 }
-.controllers div {
+.controller_wrapper {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-.controllers span {
+.fastWindingDescription {
     color: makerGray;
     user-select: none;
     font-size: small;
@@ -58,7 +58,7 @@
     .sub_controller {
         font-size: iconSmall;
     }
-    .controllers span {
+    .fastWindingDescription {
         font-size: verySmall;
     }
 }
