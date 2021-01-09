@@ -16,31 +16,6 @@
     display: flex;
     justify-content: space-between;
 }
-
-/* Temporarily Invisible (to be updated in the further) */
-.toggle_button {
-    display: none; 
-    text-align: center;
-    margin-right: 10px;
-    height: 20px;
-    width: 80px;
-    margin-top: 5px;
-    font-size: small;
-    line-height: 1.4;
-    border-radius: 10px;
-    background-color: makerSlightlierLightGray;
-    color: makerGray;
-    user-select: none;
-}
-.toggle_button:hover {
-    transition: 100ms;
-    background-color: makerGray;
-    color: white;
-}
-.toggle_button:active {
-    background-color: black;
-    color: white;
-}
 .component_header span {
     font-size: mediumMedium;
     color: makerGray;

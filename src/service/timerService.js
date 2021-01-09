@@ -56,8 +56,8 @@ class TimerService {
     }
 
     // Check whether it is focus or break time
-    getCurrentStatus() {
-        return this.clock.getCurrentStatus();
+    getCurrentTimerStatus() {
+        return this.clock.getCurrentTimerStatus();
     }
 
     getIsGoalCycleReached() {
@@ -112,11 +112,11 @@ class TimerService {
     traceStatus() {
         const currentTime = this.clock.getFormettedCurrentTime();
         const currentCycle = this.clock.getCurrentCycle();
-        const currentStatus = this.clock.getCurrentStatus();
+        const currentTimerStatus = this.clock.getCurrentTimerStatus();
         const isGoalCycleReached = this.clock.getIsGoalCycleReached();
         console.log(`Current Time: ${currentTime}`);
         console.log(`Current Cycle: ${currentCycle}`);
-        console.log(`Current Status: ${currentStatus}`);
+        console.log(`Current Status: ${currentTimerStatus}`);
         console.log(`Is Goal Reached: ${isGoalCycleReached}`);
     }
 }

@@ -1,14 +1,16 @@
-class Constants {
-    constructor() {
-        this.status = {
-            FOCUS: 'focus',
-            BREAK: 'break'
-        }
-    }
+// // Should be removed
 
-    getStatusConstants() {
-        return this.status;
-    }
-}
+// class Constants {
+//     constructor() {
+//         this.status = {
+//             FOCUS: 'focus',
+//             BREAK: 'break'
+//         }
+//     }
 
-export default Constants;
+//     getStatusConstants() {
+//         return this.status;
+//     }
+// }
+
+// export default Constants;

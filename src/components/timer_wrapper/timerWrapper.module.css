@@ -18,8 +18,6 @@
     font-size: medium;
     color: makerGray;
     margin-bottom: 3px;
-}
-.settings span {
     user-select: none;
 }
 .small_description {

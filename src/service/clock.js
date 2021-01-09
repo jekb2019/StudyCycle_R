@@ -1,25 +1,26 @@
 import SoundBox from './soundBox';
-import Constants from '../common/constants';
+import Constants from './constants';
 
 // Class that represents a clock instance which stores the current timer information
 class Clock {
-    constructor() {
-        this.focusTime = 1 * 60 * 60; 
-        this.breakTime = 10 * 60;
-        this.timer = undefined; // stores setInterval instance for running the timere every second
+    constructor(focusTime, breakTime, goalCycle) {
+        this.focusTime = focusTime; 
+        this.breakTime = breakTime;
+        this.goalCycle = goalCycle;
+        this.timer = null; // stores setInterval instance for running the timere every second
         this.isGoalCycleReached = false;
         this.isClockRunning = false;
         this.currentTime = 0;
         this.currentCycle = 1;
-        this.maxCycle = 8;
         this.soundBox = new SoundBox();
         this.constants = new Constants(); 
-        this.status = this.constants.getStatusConstants();
-        this.currentStatus = this.status.FOCUS;
+        this.timerStatusTypes = this.constants.getTimerStatusTypes();
+        this.currentTimerStatus = this.timerStatusTypes.FOCUS;
     }
 
     startTimer() {
-        if(this.currentTime === 0 && this.currentCycle === 1 && this.currentStatus === this.status.FOCUS) {
+        // Make focus sound when timer is first time initiated
+        if(this.currentTime === 0 && this.currentCycle === 1 && this.currentTimerStatus === this.timerStatusTypes.FOCUS) {
             this.soundBox.makeFocusStartSound();
         }
 
@@ -28,22 +29,22 @@ class Clock {
         this.timer = setInterval(() => {
             const tempCurrentTime = this.currentTime + 1;
 
-            if(this.currentStatus === this.status.FOCUS) {
+            if(this.currentTimerStatus === this.timerStatusTypes.FOCUS) {
                 if(tempCurrentTime >= this.focusTime) {
-                    this.switchStatus(this.status.BREAK, true);
+                    this.switchStatus(this.timerStatusTypes.BREAK, true);
                     this.currentTime = 0;
                 }  else {
                     this.currentTime = tempCurrentTime;
                 }
-            } else if (this.currentStatus === this.status.BREAK) {
+            } else if (this.currentTimerStatus === this.timerStatusTypes.BREAK) {
                 if(tempCurrentTime >= this.breakTime) {
-                    if(this.currentCycle >= this.maxCycle) {
+                    if(this.currentCycle >= this.goalCycle) {
                         if(this.breakTime !== 0) {
                             this.currentTime = tempCurrentTime;
                         }
                         this.processGoalCycleReached();
                     } else {
-                        this.switchStatus(this.status.FOCUS, true);
+                        this.switchStatus(this.timerStatusTypes.FOCUS, true);
                         this.currentTime = 0;
                         this.currentCycle++;
                     }
@@ -61,13 +62,13 @@ class Clock {
     }
 
     switchStatus(status, playSound) {
-        if(status === this.status.FOCUS) {
-            this.currentStatus = this.status.FOCUS;
+        if(status === this.timerStatusTypes.FOCUS) {
+            this.currentTimerStatus = this.timerStatusTypes.FOCUS;
             if(playSound) {
                 this.soundBox.makeFocusStartSound();
             }
-        } else if (status === this.status.BREAK) {
-            this.currentStatus = this.status.BREAK;
+        } else if (status === this.timerStatusTypes.BREAK) {
+            this.currentTimerStatus = this.timerStatusTypes.BREAK;
             if(playSound) {
                 this.soundBox.makeBreakStartSound();
             }
@@ -85,7 +86,7 @@ class Clock {
         this.isGoalCycleReached = false;
         this.stopTimer();
         this.currentTime = 0;
-        this.switchStatus(this.status.FOCUS, false);
+        this.switchStatus(this.timerStatusTypes.FOCUS, false);
         this.currentCycle = 1;
     }
 
@@ -97,18 +98,18 @@ class Clock {
     fastForward(sec) {
         if(!this.isGoalCycleReached) {
             const tempCurrentTime = this.currentTime + sec;
-            if(this.currentStatus === this.status.FOCUS && tempCurrentTime > this.focusTime) {
+            if(this.currentTimerStatus === this.timerStatusTypes.FOCUS && tempCurrentTime > this.focusTime) {
                 this.currentTime = this.focusTime;
-            } else if(this.currentStatus === this.status.FOCUS){
+            } else if(this.currentTimerStatus === this.timerStatusTypes.FOCUS){
                 this.currentTime = tempCurrentTime;
             }
     
-            if(this.currentStatus === this.status.BREAK && tempCurrentTime > this.breakTime) {
+            if(this.currentTimerStatus === this.timerStatusTypes.BREAK && tempCurrentTime > this.breakTime) {
                 this.currentTime = this.breakTime;
-                if(this.currentCycle >= this.maxCycle) {
+                if(this.currentCycle >= this.goalCycle) {
                     this.processGoalCycleReached();
                 }
-            } else if(this.currentStatus === this.status.BREAK) {
+            } else if(this.currentTimerStatus === this.timerStatusTypes.BREAK) {
                 this.currentTime = tempCurrentTime;
             }
         }
@@ -162,12 +163,12 @@ class Clock {
     }
 
     getMaxCycle() {
-        return this.maxCycle;
+        return this.goalCycle;
     }
 
     // Check whether it is focus or break time
-    getCurrentStatus() {
-        return this.currentStatus;
+    getCurrentTimerStatus() {
+        return this.currentTimerStatus;
     }
 
     getIsGoalCycleReached() {
@@ -225,7 +226,7 @@ class Clock {
             window.alert("Current cycle exceeds the goal cycle! Please reset the timer and try again.");
             return;
         }
-        this.maxCycle = cycle;
+        this.goalCycle = cycle;
     }
 
     // return true only if both current time and current cycle is reset

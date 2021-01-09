@@ -18,7 +18,7 @@ const Controller = (props) => {
 
     const resetButton = {
         name: 'reset',
-        element: <div key="reset" onClick={props.handleResetButtonClicked}>
+        element: <div key="reset">
                     <i className={`fas fa-redo-alt ${styles.primary_controller} ${styles.controller}`}></i>
                 </div>
     }
@@ -29,33 +29,23 @@ const Controller = (props) => {
         <div className={styles.controllers}>
             <div className={styles.fast_backward}>
                 <div 
-                className={`${styles.button} ${styles.sub_controller_wrapper}`} 
-                onClick={() => {props.handleClickSound(); props.handleFastBackward();}}>
+                className={`${styles.button} ${styles.sub_controller_wrapper}`}>
                     <i className={`fas fa-backward ${styles.sub_controller} ${styles.controller}`}></i>
                 </div>
                 <span>- 3 min</span>
             </div>
             <div 
-            className={styles.button} 
-            onClick={() => {props.handleTimerRunningStatus(); props.handleClickSound();}}>
+            className={styles.button}>
                 {
                     primaryControllerArray.map((item) => {
-                        if(props.isGoalCycleReached && item.name === 'reset') {
-                            return item.element;
-                        }
-                        if(!props.isGoalCycleReached && props.isClockRunning && item.name === 'pause') {
-                            return item.element;
-                        } 
-                        if(!props.isGoalCycleReached && !props.isClockRunning && item.name === 'play') {
-                            return item.element;
-                        }
+                        // return item.element;
                     })
                 }
+                {pauseButton.element}
             </div>
             <div className={styles.fast_forward}>
                 <div 
-                className={`${styles.button} ${styles.sub_controller_wrapper}`}
-                onClick={() => {props.handleClickSound(); props.handleFastForward();}}>
+                className={`${styles.button} ${styles.sub_controller_wrapper}`}>
                     <i className={`fas fa-forward ${styles.sub_controller} ${styles.controller}`}></i>
                 </div>
                 <span>+ 3 min</span>

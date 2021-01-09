@@ -3,25 +3,35 @@ import SettingComponent from '../setting_components/settingComponent';
 import styles from './settingWindow.module.css';
 
 const SettingWindow = (props) => {
-    const [focusHour, setFocusHour] = useState(props.service.getFocusTimeHour());
-    const [focusMin, setFocusMin] = useState(props.service.getFocusTimeMinute());
-    const [breakHour, setBreakHour] = useState(props.service.getBreakTimeHour());
-    const [breakMin, setBreakMin] = useState(props.service.getBreakTimeMinute());
-    const [maxCycle, setMaxCycle] = useState(props.service.getMaxCycle());
+    // const [focusHour, setFocusHour] = useState(props.service.getFocusTimeHour());
+    // const [focusMin, setFocusMin] = useState(props.service.getFocusTimeMinute());
+    // const [breakHour, setBreakHour] = useState(props.service.getBreakTimeHour());
+    // const [breakMin, setBreakMin] = useState(props.service.getBreakTimeMinute());
+    // const [maxCycle, setMaxCycle] = useState(props.service.getMaxCycle());
     
-    const focusInitial = {
-        hour: {key: `fHour`, subjectName: `Hours`, initial: focusHour, min: 0, max: 24},
-        minute: {key: `fMinute`, subjectName: `Minutes`, initial: focusMin, min: 0, max: 59}
-    }
+    const settingInputs = [
+        {
+            key: 'Focus Time',
+            inputInfo: {
+                hour: {subject: `Hours`, initial: focusHour, min: 0, max: 24},
+                minute: {key: `fMinute`, subjectName: `Minutes`, initial: focusMin, min: 0, max: 59}
+            }
+        },
+        {
+            key: 'Break Time',
+            inputInfo: {
+                hour: {subject: `Hours`, initial: breakHour, min: 0, max: 24},
+                minute: {key: `bMinute`, subjectName: `Minutes`, initial: breakMin, min: 0, max: 59}
+            }
+        },
+        {
+            key: 'Goal Cycles',
+            inputInfo: {
+                cycle: {subject: `Cycles`, initial: maxCycle, min: 0, max: 99}
+            }
+        }
 
-    const breakInitial = {
-        hour: {key: `bHour`, subjectName: `Hours`, initial: breakHour, min: 0, max: 24},
-        minute: {key: `bMinute`, subjectName: `Minutes`, initial: breakMin, min: 0, max: 59}
-    }
-
-    const maxCycleInitial = {
-        cycle: {key: `mCycle`, subjectName: `Cycles`, initial: maxCycle, min: 0, max: 99}
-    }
+    ]
 
     const [input, setInput] = useState({
             fHour: focusHour,
@@ -46,7 +56,6 @@ const SettingWindow = (props) => {
         props.service.setBreakTime(input.bHour, input.bMinute);
         props.service.setGoalCycle(input.mCycle);
         props.handleSettingWindowOK();
-        // console.log(input);
     }
 
     const handleOnKeyPressEnter = (event) => {
@@ -55,14 +64,15 @@ const SettingWindow = (props) => {
         }
     }
 
-    const handleSettingInputOnChange = (event, key) => {
+    const handleSettingInputChange = (event, key) => {
         let tempInput = {...input};
         tempInput[key] = event.target.value;
         setInput(tempInput);
     }
 
 
-    return (<div className={styles.window} onKeyPress={handleOnKeyPressEnter}>
+    return (
+    <div className={styles.window} onKeyPress={handleOnKeyPressEnter}>
         <div className={styles.header}>
             <img className={styles.logo} src="/images/small-logo.png" alt="Study Cycle small logo"/>
             <h1 className={styles.subject}>Settings</h1>
@@ -72,24 +82,16 @@ const SettingWindow = (props) => {
             </div>
         </div>
         <div className={styles.components}>
-            <SettingComponent 
-            title={`Focus Time`} 
-            inputs={[focusInitial.hour, focusInitial.minute]}
-            toggle={false}
-            handleSettingInputOnChange={handleSettingInputOnChange}/>
-
-            <SettingComponent 
-            title={`Break Time`} 
-            inputs={[breakInitial.hour, breakInitial.minute]}
-            toggle={false}
-            handleSettingInputOnChange={handleSettingInputOnChange}/>
-            
-            <SettingComponent 
-            handleClickSound={props.handleClickSound}
-            title={`Goal Cycles`} 
-            inputs={[maxCycleInitial.cycle]}
-            toggle={true}
-            handleSettingInputOnChange={handleSettingInputOnChange}/>
+            {
+                settingInputs.map(item => (
+                    <SettingComponent
+                        key={item.key}
+                        title={item.key}
+                        inputInfo={item.inputs}
+                        handleSettingInputChange={handleSettingInputChange}
+                    />
+                ))
+            }
         </div>
         <button className={styles.ok_button}
         onClick={()=>{handleSettingWindowOK(); props.handleClickSound()}}>OK</button>

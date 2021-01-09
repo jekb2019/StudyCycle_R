@@ -5,12 +5,12 @@ import App from './app';
 import reportWebVitals from './reportWebVitals';
 import '@fortawesome/fontawesome-free/js/all.js';
 import TimerService from './service/timerService';
+import SoundBox from './service/soundBox';
 
-const timerService = new TimerService();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App service={timerService}/>
+    <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );

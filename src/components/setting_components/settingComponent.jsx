@@ -1,26 +1,25 @@
 import React from 'react';
 import styles from './settingComponent.module.css';
-const SettingComponent = ({title, inputs, toggle, handleClickSound, handleSettingInputOnChange}) => {
+const SettingComponent = (props) => {
     
     
     const handleOnChange = (event, key) => {
-        handleSettingInputOnChange(event, key);
+        props.handleSettingInputChange(event, key);
     }
 
     return(
     <div className={styles.component}>
         <div className={styles.component_header}>
-            <span>{title}</span>
-            {toggle && <div className={styles.toggle_button} onClick={handleClickSound}>Disable</div>}
+            <span>{props.title}</span>
         </div>
         <div className={styles.inputs_wrapper}>
             {
-                inputs.map(item => 
+                props.inputs.map(item => 
                     <label key={item.key}>
                         <input className={styles.input_box} 
                         type="number" min={item.min} max={item.max} defaultValue={item.initial}
                         onChange={(event) => {handleOnChange(event, item.key)}}/>
-                        <span>{item.subjectName}</span>
+                        <span>{item.subject}</span>
                     </label>
                 )
             }

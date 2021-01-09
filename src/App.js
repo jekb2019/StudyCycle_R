@@ -1,42 +1,16 @@
 import {useState } from 'react';
 import styles from './app.module.css';
-import Banner from "./components/banner/banner";
-import Header from "./components/header/header";
-import SettingWindow from './components/setting_window/settingWindow';
-import TimerWrapper from "./components/timer_wrapper/timerWrapper";
-import clickSoundDir from "./sounds/click.wav";
+import Banner from './components/banner/banner';
+import Header from './components/header/header';
+import ContentWrapper from'./components/content_wrapper/contentWrapper';
 
 const App = (props) => {
   const [screenWidth, setScreenWidth] = useState(window.screen.width);
-  const [settingWindowOpen, setSettingWindowOpen] = useState(false);
-  const [maxCycleSetting, setMaxCycleSetting] = useState(props.service.getMaxCycle());
-
   const handleResize = () => {
     setScreenWidth(window.screen.width);
   }
-
-  const handleSettingClick = () => {
-    settingWindowOpen ? setSettingWindowOpen(false) : setSettingWindowOpen(true);
-  }
-  
-  // Handler when x button in the setting window is clicked
-  const handleSettingWindowClose = () => {
-    setSettingWindowOpen(false);
-  }
-
-  // Handler when OK button in the setting window is clicked
-  const handleSettingWindowOK = () => {
-    setSettingWindowOpen(false);
-    setMaxCycleSetting(props.service.getMaxCycle());
-  }
-
-  // Make click sound when suitable button is clicked
-  const clickSound = new Audio(clickSoundDir);
-  const makeClickSound = () => {
-    clickSound.play();
-  }
-
   window.addEventListener('resize', handleResize);
+
 
   return(
     <div className={styles.app}>
@@ -44,20 +18,9 @@ const App = (props) => {
         <Header/>
         {screenWidth >= 800 && <Banner/>}
       </div>
-      <TimerWrapper 
-        handleSettingClick={handleSettingClick} 
-        handleClickSound={makeClickSound}
-        service={props.service}
-        maxCycleSetting={maxCycleSetting}
-        isGoalCycleReached={props.service.getIsGoalCycleReached()}/>
-        {screenWidth < 800 && <Banner/>}
+      <ContentWrapper/>
+      {screenWidth < 800 && <Banner/>}
       <p className={styles.copyright}>Copyright @ 2020 by Jekb2020</p>
-      {settingWindowOpen && 
-      <SettingWindow
-       service={props.service}
-       handleClickSound={makeClickSound}
-       handleSettingWindowClose={handleSettingWindowClose}
-       handleSettingWindowOK={handleSettingWindowOK}/>}
     </div>);
 };
 

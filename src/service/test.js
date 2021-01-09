@@ -1,0 +1,1 @@
+let clock = new Clock();

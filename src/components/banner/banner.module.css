@@ -5,8 +5,8 @@
 .banner {
     cursor: default;
     border: 1px solid makerGray;
-    /* display: inline-block; */ 
-    display: none;
+    display: inline-block; 
+    /* display: none; */
     text-align: center;
     margin: 20px;
     width: 500px;
