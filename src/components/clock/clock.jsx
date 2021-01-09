@@ -3,9 +3,9 @@ import styles from './clock.module.css';
 
 const Clock = (props) => {
     return (
-        <div className={styles.clock}>
-            <span>00:00:00</span>    
-        </div>
+        <>
+            <span className={styles.currentTimeIndicator}>00:00:00</span>    
+        </>
     )};
 
 export default Clock;
