@@ -80,7 +80,7 @@
     font-size: iconSmall;
     color: makerGray;
 }
-
+/* Tablet */
 /* Mobile */
 @media only screen and (max-width: 609px) {
  .timer {
