@@ -10,7 +10,13 @@ const TimerWrapper = (props) => {
             <span>
                 <div className={styles.small_description}>
                     <span>Focus</span>
-                    </div> hr  min <div className={styles.small_description}><span>Break</span></div> hr  min <div className={styles.small_description}>
+                </div> 
+                <span className={styles.settedTime_indicator}> 1 hr 10 min</span> 
+                <div className={styles.small_description}>
+                    <span>Break</span>
+                </div>
+                <span className={styles.settedTime_indicator}> 0 hr 10 min</span> 
+                <div className={styles.small_description}>
                     <span>Cycles</span>
                 </div>
 
