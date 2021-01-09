@@ -6,6 +6,7 @@ const ContentWrapper = (props) => {
     return (
         <div>
             <TimerWrapper/>
+            <SettingWindow/>
             {/* {settingWindowOpen && 
                 <SettingWindow
                     service={props.service}

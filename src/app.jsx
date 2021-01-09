@@ -20,7 +20,7 @@ const App = (props) => {
       </div>
       <ContentWrapper/>
       {screenWidth < 800 && <Banner/>}
-      <p className={styles.copyright}>Copyright @ 2020 by Jekb2020</p>
+      <p className={styles.copyright}>&#169;2020 Study Cycle. All Rights Reserved</p>
     </div>);
 };
 

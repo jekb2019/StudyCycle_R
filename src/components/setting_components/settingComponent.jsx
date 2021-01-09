@@ -1,26 +1,24 @@
 import React from 'react';
 import styles from './settingComponent.module.css';
 const SettingComponent = (props) => {
-    
-    
-    const handleOnChange = (event, key) => {
-        props.handleSettingInputChange(event, key);
-    }
+    const title = props.component.title;
+    const inputInfo = props.component.inputInfo;
+
 
     return(
     <div className={styles.component}>
         <div className={styles.component_header}>
-            <span>{props.title}</span>
+            <span>{title}</span>
         </div>
         <div className={styles.inputs_wrapper}>
             {
-                props.inputs.map(item => 
-                    <label key={item.key}>
+                inputInfo.map(item => (
+                    <label key={item.subject}>
                         <input className={styles.input_box} 
-                        type="number" min={item.min} max={item.max} defaultValue={item.initial}
-                        onChange={(event) => {handleOnChange(event, item.key)}}/>
+                        type="number" min={item.min} max={item.max} defaultValue={item.default}/>
                         <span>{item.subject}</span>
                     </label>
+                    )
                 )
             }
         </div>
