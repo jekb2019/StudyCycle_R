@@ -11,14 +11,13 @@ const App = (props) => {
   }
   window.addEventListener('resize', handleResize);
 
-
   return(
     <div className={styles.app}>
       <div className={styles.header}>
         <Header/>
         {screenWidth >= 800 && <Banner/>}
       </div>
-      <ContentWrapper/>
+      <ContentWrapper soundBox={props.soundBox}/>
       {screenWidth < 800 && <Banner/>}
       <p className={styles.copyright}>&#169;2020 Study Cycle. All Rights Reserved</p>
     </div>);

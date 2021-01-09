@@ -46,6 +46,7 @@ const Controller = (props) => {
                 <span className={styles.fastWindingDescription}>+ 3 min</span>
             </div>
         </div>
-    )};
+    )
+};
 
 export default Controller;

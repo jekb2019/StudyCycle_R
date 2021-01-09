@@ -6,6 +6,7 @@ const Clock = (props) => {
         <>
             <span className={styles.currentTimeIndicator}>00:00:00</span>    
         </>
-    )};
+    )
+};
 
 export default Clock;

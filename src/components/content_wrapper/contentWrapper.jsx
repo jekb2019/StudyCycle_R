@@ -4,17 +4,28 @@ import SettingWindow from '../setting_window/settingWindow';
 import styles from './contentWrapper.module.css';
 
 const ContentWrapper = (props) => {
+    const [settingWindowOpen, setSettingWindowOpen] = useState(false);
+
+    const handleSettingWindowToggle = () => {
+        props.soundBox.makeClickSound();
+        settingWindowOpen ? setSettingWindowOpen(false) : setSettingWindowOpen(true);
+    }
+
+    const handleTimerSetting = () => {
+        props.soundBox.makeClickSound();
+        // To be implemented for OK click in the setting window
+
+        handleSettingWindowToggle();
+    }
+
     return (
         <div className={styles.content_wrapper}>
-            <TimerWrapper/>
-            <SettingWindow/>
-            {/* {settingWindowOpen && 
-                <SettingWindow
-                    service={props.service}
-                    handleClickSound={props.soundBox.makeClickSound}
-                    handleSettingWindowClose={handleSettingWindowClose}
-                    handleSettingWindowOK={handleSettingWindowOK}/>
-            } */}
+            <TimerWrapper handleSettingWindowToggle={handleSettingWindowToggle}/>
+            {settingWindowOpen && 
+                <SettingWindow 
+                    handleSettingWindowToggle={handleSettingWindowToggle}
+                    handleTimerSetting={handleTimerSetting}/>
+            }
         </div>
     );
 };

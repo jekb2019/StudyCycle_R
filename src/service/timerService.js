@@ -1,8 +1,8 @@
 import Clock from './clock';
 
 class TimerService {
-    constructor() {
-        this.clock = new Clock();
+    constructor(focusTime, breakTime, goalCycle) {
+        this.clock = new Clock(focusTime, breakTime, goalCycle);
     }
 
     // called when the timer is first started
