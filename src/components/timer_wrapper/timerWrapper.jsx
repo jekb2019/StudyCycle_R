@@ -4,6 +4,11 @@ import styles from './timerWrapper.module.css';
 
 
 const TimerWrapper = (props) => {
+
+    const handleStartTimer = () => {
+        props.handleStartTimer();
+    }
+
     return(
         <div className={styles.wrapper}>
             <div className={styles.settings}>
@@ -25,7 +30,7 @@ const TimerWrapper = (props) => {
                     <i className={`fas fa-cog ${styles.icon}`} id="setting-icon"></i>
                 </div>
             </div>
-            <Timer/>
+            <Timer timerService={props.timerService} handleStartTimer={handleStartTimer}/>
         </div>
     );     
 };

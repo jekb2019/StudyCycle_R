@@ -5,6 +5,7 @@ import styles from './contentWrapper.module.css';
 
 const ContentWrapper = (props) => {
     const [settingWindowOpen, setSettingWindowOpen] = useState(false);
+    const [timerInitiated, setTimerInitiated] = useState(false);
 
     const handleSettingWindowToggle = () => {
         props.soundBox.makeClickSound();
@@ -18,9 +19,22 @@ const ContentWrapper = (props) => {
         handleSettingWindowToggle();
     }
 
+    const handleStartTimer = () => {
+        if(!timerInitiated) {
+            props.timerService.initiateTimer();
+            setTimerInitiated(true);
+        } else {
+            // To DO: Implement
+            console.log("Timer already running")
+        }
+    }
+
     return (
         <div className={styles.content_wrapper}>
-            <TimerWrapper handleSettingWindowToggle={handleSettingWindowToggle}/>
+            <TimerWrapper
+                handleSettingWindowToggle={handleSettingWindowToggle}
+                timerService={props.timerService}
+                handleStartTimer={handleStartTimer}/>
             {settingWindowOpen && 
                 <SettingWindow 
                     handleSettingWindowToggle={handleSettingWindowToggle}

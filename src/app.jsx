@@ -17,7 +17,7 @@ const App = (props) => {
         <Header/>
         {screenWidth >= 800 && <Banner/>}
       </div>
-      <ContentWrapper soundBox={props.soundBox}/>
+      <ContentWrapper timerService={props.timerService} soundBox={props.soundBox}/>
       {screenWidth < 800 && <Banner/>}
       <p className={styles.copyright}>&#169;2020 Study Cycle. All Rights Reserved</p>
     </div>);

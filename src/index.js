@@ -11,12 +11,12 @@ const focusTime = 2 * 60 * 60;
 const breakTime = 20 * 60;
 const goalCycle = 5;
 
-// const timerService = new TimerService(focusTime, breakTime, goalCycle);
+const timerService = new TimerService(focusTime, breakTime, goalCycle);
 const soundBox = new SoundBox();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App  soundBox={soundBox}/>
+    <App timerService={timerService} soundBox={soundBox}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

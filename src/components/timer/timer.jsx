@@ -4,6 +4,11 @@ import Controller from '../controller/controller';
 import styles from './timer.module.css';
 
 const Timer = (props) => {
+
+    const handleStartTimer = () => {
+        props.handleStartTimer();
+    }
+
     return(
         <div className={styles.timer}>
             <div className={styles.indicators}>
@@ -27,7 +32,7 @@ const Timer = (props) => {
                 </div>
             </div>
 
-            <Controller/>
+            <Controller handleStartTimer={handleStartTimer}/>
         </div>
     )
 };
