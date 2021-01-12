@@ -1,4 +1,5 @@
 @value makerGray from './common/colors.css';
+@value slightlierSmall: 11px;
 
 .app {
     border-radius: 30px;
@@ -16,6 +17,7 @@
     justify-content: space-between;
 }
 .copyright{
+    font-size: slightlierSmall;
     position: absolute;
     bottom: 10px;
     color: makerGray;

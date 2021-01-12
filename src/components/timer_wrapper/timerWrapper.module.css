@@ -45,6 +45,7 @@
     top: 1px;
     margin-left: 12px;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 .icon {
     color: #cccccc;

@@ -13,6 +13,7 @@
     margin-top: 30px;
 }
 .controller_wrapper {
+    -webkit-tap-highlight-color: transparent;
     display: flex;
     flex-direction: column;
     align-items: center;
