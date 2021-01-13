@@ -24,6 +24,8 @@ const ContentWrapper = (props) => {
         } else {
             // To DO: Implement
             console.log("Timer already running")
+
+            props.timerService.startTimer();
         }
     }
 

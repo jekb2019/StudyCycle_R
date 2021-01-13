@@ -13,6 +13,7 @@ class Clock {
         this.currentTime = 0;
         this.currentCycle = 1;
         this.currentTimerStatus = TimerStatusType.NONE;
+        this.timerObject = null;
     }
 
     debug() {
@@ -42,7 +43,34 @@ class Clock {
         this.debug();
     }
 
+
     startTimer() {
+        const interval = 1000;
+        let expectedTime = Date.now() + interval;
+        const start = () => {
+            this.timerObject = setTimeout(round, interval);
+        }
+
+        const round = () => {
+            // Calculate drift time
+            let drift = Date.now() - expectedTime;
+            work();
+            expectedTime += interval;
+            console.log(`Drift: ${drift}`);
+          
+            // Run another round
+            this.timerObject = setTimeout(round, interval - drift);
+        }
+
+        const work = () => {
+            console.log("Running" + Date.now());
+        }
+
+        start();
+
+    }
+
+    stopTimer() {
 
     }
 

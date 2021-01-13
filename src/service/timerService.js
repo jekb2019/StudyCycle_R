@@ -9,6 +9,10 @@ class TimerService {
         this.clock.initiateTimer();
     }
 
+    startTimer() {
+        this.clock.startTimer();
+    }
+
     // // called when the timer is first started
     // startTimer() {
     //     this.clock.startTimer();
