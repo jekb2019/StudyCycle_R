@@ -41,7 +41,9 @@ const Timer = (props) => {
             <Controller
                 soundBox={props.soundBox}
                 handleStartTimer={handleStartTimer}
-                handlePauseTimer={handlePauseTimer}/>
+                handlePauseTimer={handlePauseTimer}
+                isTimerRunning={props.isTimerRunning}
+                isGoalCycleFinished={props.isGoalCycleFinished}/>
         </div>
     )
 };

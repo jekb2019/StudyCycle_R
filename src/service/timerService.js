@@ -13,6 +13,10 @@ class TimerService {
         this.clock.startTimer();
     }
 
+    pauseTimer() {
+        this.clock.pauseTimer();
+    }
+
     // // called when the timer is first started
     // startTimer() {
     //     this.clock.startTimer();

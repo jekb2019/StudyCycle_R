@@ -66,11 +66,16 @@ const Controller = (props) => {
             <div ref={primaryControllerRef} className={`${styles.button} ${styles.controller_wrapper}`} onClick={handlePrimaryControllerAction}>
                 {
                     // TO DO: Implement
-                    primaryControllers.map((item) => {
-                        // return item.element;
+                    primaryControllers.map((primaryController) => {
+                        if(props.isTimerRunning && primaryController.name === 'pause' && !props.isGoalCycleFinished) {
+                            return primaryController.element;
+                        } else if(!props.isTimerRunning && primaryController.name === 'play' && !props.isGoalCycleFinished) {
+                            return primaryController.element;
+                        } else if(props.isGoalCycleFinished) {
+                            return primaryController.element;
+                        }
                     })
                 }
-                {primaryControllers[1].element}
             </div>
             <div className={`${styles.fast_forward} ${styles.controller_wrapper}`}>
                 <div className={`${styles.button} ${styles.sub_controller_wrapper}`} onClick={handleFastForward}>

@@ -43,7 +43,9 @@ const TimerWrapper = (props) => {
                 soundBox={props.soundBox} 
                 timerService={props.timerService}
                 handleStartTimer={handleStartTimer}
-                handlePauseTimer={handlePauseTimer}/>
+                handlePauseTimer={handlePauseTimer}
+                isTimerRunning={props.isTimerRunning}
+                isGoalCycleFinished={props.isGoalCycleFinished}/>
         </div>
     );     
 };

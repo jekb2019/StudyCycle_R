@@ -6,6 +6,8 @@ import styles from './contentWrapper.module.css';
 const ContentWrapper = (props) => {
     const [settingWindowOpen, setSettingWindowOpen] = useState(false);
     const [timerInitiated, setTimerInitiated] = useState(false);
+    const [isTimerRunning, setIsTimerRunning] = useState(false);
+    const [isGoalCycleFinished, setIsGoalCycleFinished] = useState(false);
 
     const handleSettingWindowToggle = () => {
         settingWindowOpen ? setSettingWindowOpen(false) : setSettingWindowOpen(true);
@@ -18,6 +20,7 @@ const ContentWrapper = (props) => {
     }
 
     const handleStartTimer = () => {
+        setIsTimerRunning(true);
         if(!timerInitiated) {
             props.timerService.initiateTimer();
             setTimerInitiated(true);
@@ -31,6 +34,8 @@ const ContentWrapper = (props) => {
 
     const handlePauseTimer = () => {
         // TO DO: implement
+        setIsTimerRunning(false);
+        props.timerService.pauseTimer();
     }
 
     return (
@@ -40,7 +45,9 @@ const ContentWrapper = (props) => {
                 handleSettingWindowToggle={handleSettingWindowToggle}
                 timerService={props.timerService}
                 handleStartTimer={handleStartTimer}
-                handlePauseTimer={handlePauseTimer}/>
+                handlePauseTimer={handlePauseTimer}
+                isTimerRunning={isTimerRunning}
+                isGoalCycleFinished={isGoalCycleFinished}/>
             {settingWindowOpen && 
                 <SettingWindow 
                     soundBox={props.soundBox}

@@ -70,9 +70,13 @@ class Clock {
 
     }
 
-    stopTimer() {
-
+    pauseTimer() {
+        console.log("CLEAR@")
+        clearTimeout(this.timerObject);
     }
+
+// GoalCycleReached -> Goal Cycle Finished
+
 
     // startTimer() {
     //     this.isClockRunning = true;
