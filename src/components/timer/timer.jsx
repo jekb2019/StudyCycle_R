@@ -13,6 +13,7 @@ const Timer = (props) => {
     }
     const handleResetTimer = () => {
         props.soundBox.makeClickSound();
+        props.handleResetTimer();
     }
 
     return(
@@ -43,7 +44,8 @@ const Timer = (props) => {
                 handleStartTimer={handleStartTimer}
                 handlePauseTimer={handlePauseTimer}
                 isTimerRunning={props.isTimerRunning}
-                isGoalCycleFinished={props.isGoalCycleFinished}/>
+                isGoalCycleFinished={props.isGoalCycleFinished}
+                handleResetTimer={props.handleResetTimer}/>
         </div>
     )
 };

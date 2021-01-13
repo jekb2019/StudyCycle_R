@@ -34,11 +34,10 @@ const Controller = (props) => {
                 props.handleStartTimer();
                 break;
             case 'pause':
-                // TO DO: implement
                 props.handlePauseTimer();
                 break;
             case 'reset':
-                // TO DO: implement
+                props.handleResetTimer();
                 break;
             default:
                 console.log("Error loading Primary Controller");
@@ -65,7 +64,6 @@ const Controller = (props) => {
             </div>
             <div ref={primaryControllerRef} className={`${styles.button} ${styles.controller_wrapper}`} onClick={handlePrimaryControllerAction}>
                 {
-                    // TO DO: Implement
                     primaryControllers.map((primaryController) => {
                         if(props.isTimerRunning && primaryController.name === 'pause' && !props.isGoalCycleFinished) {
                             return primaryController.element;

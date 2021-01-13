@@ -4,13 +4,13 @@ import SettingWindow from '../setting_window/settingWindow';
 import styles from './contentWrapper.module.css';
 
 const ContentWrapper = (props) => {
-    const [settingWindowOpen, setSettingWindowOpen] = useState(false);
-    const [timerInitiated, setTimerInitiated] = useState(false);
+    const [isSettingWindowOpen, setIsSettingWindowOpen] = useState(false);
+    const [isTimerInitiated, setIsTimerInitiated] = useState(false);
     const [isTimerRunning, setIsTimerRunning] = useState(false);
     const [isGoalCycleFinished, setIsGoalCycleFinished] = useState(false);
 
     const handleSettingWindowToggle = () => {
-        settingWindowOpen ? setSettingWindowOpen(false) : setSettingWindowOpen(true);
+        isSettingWindowOpen ? setIsSettingWindowOpen(false) : setIsSettingWindowOpen(true);
     }
 
     const handleTimerSetting = () => {
@@ -21,9 +21,9 @@ const ContentWrapper = (props) => {
 
     const handleStartTimer = () => {
         setIsTimerRunning(true);
-        if(!timerInitiated) {
+        if(!isTimerInitiated) {
             props.timerService.initiateTimer();
-            setTimerInitiated(true);
+            setIsTimerInitiated(true);
         } else {
             // To DO: Implement
             console.log("Timer already running")
@@ -38,6 +38,10 @@ const ContentWrapper = (props) => {
         props.timerService.pauseTimer();
     }
 
+    const handleResetTimer = () => {
+        setIsTimerInitiated(false);
+    }
+
     return (
         <div className={styles.content_wrapper}>
             <TimerWrapper
@@ -47,8 +51,9 @@ const ContentWrapper = (props) => {
                 handleStartTimer={handleStartTimer}
                 handlePauseTimer={handlePauseTimer}
                 isTimerRunning={isTimerRunning}
-                isGoalCycleFinished={isGoalCycleFinished}/>
-            {settingWindowOpen && 
+                isGoalCycleFinished={isGoalCycleFinished}
+                handleResetTimer={handleResetTimer}/>
+            {isSettingWindowOpen && 
                 <SettingWindow 
                     soundBox={props.soundBox}
                     handleSettingWindowToggle={handleSettingWindowToggle}
