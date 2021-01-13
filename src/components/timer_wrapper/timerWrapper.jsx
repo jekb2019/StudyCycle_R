@@ -9,6 +9,15 @@ const TimerWrapper = (props) => {
         props.handleStartTimer();
     }
 
+    const handlePauseTimer = () => {
+        props.handlePauseTimer();
+    }
+
+    const handleSettingWindowToggle = () => {
+        props.soundBox.makeClickSound();
+        props.handleSettingWindowToggle();
+    }
+
     return(
         <div className={styles.wrapper}>
             <div className={styles.settings}>
@@ -26,11 +35,15 @@ const TimerWrapper = (props) => {
                     </div>
 
                 </span>
-                <div className={styles.button} onClick={props.handleSettingWindowToggle}>
+                <div className={styles.button} onClick={handleSettingWindowToggle}>
                     <i className={`fas fa-cog ${styles.icon}`} id="setting-icon"></i>
                 </div>
             </div>
-            <Timer timerService={props.timerService} handleStartTimer={handleStartTimer}/>
+            <Timer
+                soundBox={props.soundBox} 
+                timerService={props.timerService}
+                handleStartTimer={handleStartTimer}
+                handlePauseTimer={handlePauseTimer}/>
         </div>
     );     
 };

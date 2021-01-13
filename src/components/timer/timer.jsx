@@ -8,6 +8,12 @@ const Timer = (props) => {
     const handleStartTimer = () => {
         props.handleStartTimer();
     }
+    const handlePauseTimer = () => {
+        props.handlePauseTimer();
+    }
+    const handleResetTimer = () => {
+        props.soundBox.makeClickSound();
+    }
 
     return(
         <div className={styles.timer}>
@@ -27,12 +33,15 @@ const Timer = (props) => {
             </div>
             <div className={styles.clock_display}>
                 <Clock className={styles.clock}/>
-                <div className={styles.button}>
+                <div className={styles.button} onClick={handleResetTimer}>
                     <i className={`fas fa-redo-alt ${styles.reset_icon}`}></i>
                 </div>
             </div>
 
-            <Controller handleStartTimer={handleStartTimer}/>
+            <Controller
+                soundBox={props.soundBox}
+                handleStartTimer={handleStartTimer}
+                handlePauseTimer={handlePauseTimer}/>
         </div>
     )
 };

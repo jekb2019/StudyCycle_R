@@ -8,12 +8,10 @@ const ContentWrapper = (props) => {
     const [timerInitiated, setTimerInitiated] = useState(false);
 
     const handleSettingWindowToggle = () => {
-        props.soundBox.makeClickSound();
         settingWindowOpen ? setSettingWindowOpen(false) : setSettingWindowOpen(true);
     }
 
     const handleTimerSetting = () => {
-        props.soundBox.makeClickSound();
         // To be implemented for OK click in the setting window
 
         handleSettingWindowToggle();
@@ -29,14 +27,21 @@ const ContentWrapper = (props) => {
         }
     }
 
+    const handlePauseTimer = () => {
+        // TO DO: implement
+    }
+
     return (
         <div className={styles.content_wrapper}>
             <TimerWrapper
+                soundBox={props.soundBox}
                 handleSettingWindowToggle={handleSettingWindowToggle}
                 timerService={props.timerService}
-                handleStartTimer={handleStartTimer}/>
+                handleStartTimer={handleStartTimer}
+                handlePauseTimer={handlePauseTimer}/>
             {settingWindowOpen && 
                 <SettingWindow 
+                    soundBox={props.soundBox}
                     handleSettingWindowToggle={handleSettingWindowToggle}
                     handleTimerSetting={handleTimerSetting}/>
             }

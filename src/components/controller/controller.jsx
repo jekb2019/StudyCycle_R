@@ -26,15 +26,16 @@ const Controller = (props) => {
         }
     ];
 
-    const handlePrimaryControllerAction = (event) => {
+    const handlePrimaryControllerAction = () => {
+        props.soundBox.makeClickSound();
         const childId = primaryControllerRef.current.children[0].id;
-
         switch(childId) {
             case 'play':
                 props.handleStartTimer();
                 break;
             case 'pause':
                 // TO DO: implement
+                props.handlePauseTimer();
                 break;
             case 'reset':
                 // TO DO: implement
@@ -44,11 +45,20 @@ const Controller = (props) => {
         }
     }
 
+    const handleFastForward = () => {
+        props.soundBox.makeClickSound();
+        // TO DO: implelement
+    }
+
+    const handleFastBackward = () => {
+        props.soundBox.makeClickSound();
+        // TO DO: implelement
+    }
 
     return (
         <div className={styles.controllers}>
             <div className={`${styles.fast_backward} ${styles.controller_wrapper}`}>
-                <div className={`${styles.button} ${styles.sub_controller_wrapper}`}>
+                <div className={`${styles.button} ${styles.sub_controller_wrapper}`} onClick={handleFastBackward}>
                     <i className={`fas fa-backward ${styles.sub_controller} ${styles.controller}`}></i>
                 </div>
                 <span className={styles.fastWindingDescription}>- 3 min</span>
@@ -63,7 +73,7 @@ const Controller = (props) => {
                 {primaryControllers[1].element}
             </div>
             <div className={`${styles.fast_forward} ${styles.controller_wrapper}`}>
-                <div className={`${styles.button} ${styles.sub_controller_wrapper}`}>
+                <div className={`${styles.button} ${styles.sub_controller_wrapper}`} onClick={handleFastForward}>
                     <i className={`fas fa-forward ${styles.sub_controller} ${styles.controller}`}></i>
                 </div>
                 <span className={styles.fastWindingDescription}>+ 3 min</span>

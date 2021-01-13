@@ -52,12 +52,22 @@ const SettingWindow = (props) => {
 
     ]
 
+    const handleSettingWindowToggle = () => {
+        props.soundBox.makeClickSound();
+        props.handleSettingWindowToggle()
+    }
+
+    const handleTimerSetting = () => {
+        props.soundBox.makeClickSound();
+        props.handleTimerSetting()
+    }
+
     return (
     <div className={styles.window}>
         <div className={styles.header}>
             <img className={styles.logo} src="/images/small-logo.png" alt="Study Cycle small logo"/>
             <h1 className={styles.subject}>Settings</h1>
-            <div className={styles.close_button} onClick={props.handleSettingWindowToggle}>
+            <div className={styles.close_button} onClick={handleSettingWindowToggle}>
                 <i className={`fas fa-times ${styles.close_icon}`}></i>
             </div>
         </div>
@@ -71,7 +81,7 @@ const SettingWindow = (props) => {
                 ))
             }
         </div>
-        <button className={styles.ok_button} onClick={props.handleTimerSetting}>OK</button>
+        <button className={styles.ok_button} onClick={handleTimerSetting}>OK</button>
     </div>)
 };
 
