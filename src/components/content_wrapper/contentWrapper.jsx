@@ -40,6 +40,18 @@ const ContentWrapper = (props) => {
 
     const handleResetTimer = () => {
         setIsTimerInitiated(false);
+        props.timerService.resetTimer();
+        setIsTimerRunning(false);
+    }
+
+    const handleFastForward = () => {
+        // set to 3 minutes
+        props.timerService.fastForward(3 * 60);
+    }
+
+    const handleFastBackward = () => {
+        // set to 3 minutes
+        props.timerService.fastBackward(3 * 60);
     }
 
     return (
@@ -52,7 +64,9 @@ const ContentWrapper = (props) => {
                 handlePauseTimer={handlePauseTimer}
                 isTimerRunning={isTimerRunning}
                 isGoalCycleFinished={isGoalCycleFinished}
-                handleResetTimer={handleResetTimer}/>
+                handleResetTimer={handleResetTimer}
+                handleFastForward={handleFastForward}
+                handleFastBackward={handleFastBackward}/>
             {isSettingWindowOpen && 
                 <SettingWindow 
                     soundBox={props.soundBox}

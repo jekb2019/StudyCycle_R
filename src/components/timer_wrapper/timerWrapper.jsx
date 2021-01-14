@@ -46,7 +46,9 @@ const TimerWrapper = (props) => {
                 handlePauseTimer={handlePauseTimer}
                 isTimerRunning={props.isTimerRunning}
                 isGoalCycleFinished={props.isGoalCycleFinished}
-                handleResetTimer={props.handleResetTimer}/>
+                handleResetTimer={props.handleResetTimer}
+                handleFastForward={props.handleFastForward}
+                handleFastBackward={props.handleFastBackward}/>
         </div>
     );     
 };

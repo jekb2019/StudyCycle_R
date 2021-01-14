@@ -16,9 +16,22 @@ class Clock {
         this.timerObject = null;
     }
 
+    resetTimer() {
+        this.pauseTimer();
+        this.currentCycle = 1;
+        this.currentTime = 0;
+        this.currentTimerStatus = TimerStatusType.NONE;
+        this.isTimerInitiated = false;
+    }
+
     debug() {
+        console.log(`### DEBUG ###`);
         console.log(`Timer Status: ${this.currentTimerStatus}`);
         console.log(`Timer Initiated: ${this.isTimerInitiated}`);
+        console.log(`Is Clock Running: ${this.isClockRunning}`);
+        console.log(`Current Time: ${this.currentTime}`);
+        console.log(`Current Cycle: ${this.currentCycle}`);
+        console.log(`\n`);
     }
 
     changeTimerStatus(timerStatus) {
@@ -29,9 +42,14 @@ class Clock {
             case TimerStatusType.FOCUS:
                 this.currentTimerStatus = TimerStatusType.FOCUS;
                 break;
-            case timerStatus === TimerStatusType.BREAK:
+            case TimerStatusType.BREAK:
                 this.currentTimerStatus = TimerStatusType.BREAK;
                 break;
+            case TimerStatusType.GOAL:
+                this.currentTimerStatus = TimerStatusType.GOAL;
+                break;
+            default:
+                console.log(`Invalid Timer Status`);
         }
     }
 
@@ -40,11 +58,11 @@ class Clock {
         this.isTimerInitiated = true;
         this.changeTimerStatus(TimerStatusType.FOCUS);
         this.startTimer();
-        this.debug();
     }
 
 
     startTimer() {
+        this.isClockRunning = true;
         const interval = 1000;
         let expectedTime = Date.now() + interval;
         const start = () => {
@@ -56,14 +74,29 @@ class Clock {
             let drift = Date.now() - expectedTime;
             work();
             expectedTime += interval;
-            console.log(`Drift: ${drift}`);
           
-            // Run another round
-            this.timerObject = setTimeout(round, interval - drift);
+            // Run another round only if goal is not met
+            if(this.currentTimerStatus !== TimerStatusType.GOAL) {
+                this.timerObject = setTimeout(round, interval - drift);
+            }
         }
 
         const work = () => {
-            console.log("Running" + Date.now());
+            if(this.currentTimerStatus === TimerStatusType.FOCUS && this.currentTime >= this.focusTime) {
+                this.currentTime = 0;
+                this.changeTimerStatus(TimerStatusType.BREAK);
+
+            } else if (this.currentTimerStatus === TimerStatusType.BREAK && this.currentTime >= this.breakTime) {
+                this.currentTime = 0;
+                this.changeTimerStatus(TimerStatusType.FOCUS);
+                this.currentCycle++;
+                if(this.currentCycle > this.goalCycle) {
+                    this.processGoalReached();
+                    return;
+                }
+            }
+            this.currentTime++;
+            console.log(`Current Time: ${this.getFormettedCurrentTime()}`);
         }
 
         start();
@@ -71,8 +104,51 @@ class Clock {
     }
 
     pauseTimer() {
-        console.log("CLEAR@")
+        this.isClockRunning = false;
         clearTimeout(this.timerObject);
+    }
+
+    processGoalReached() {
+        console.log("GOAL!")
+        this.pauseTimer();
+        this.changeTimerStatus(TimerStatusType.GOAL);
+    }
+
+        //get current time formatted as [hours]:[minutes]:[seconds]
+    getFormettedCurrentTime() {
+        let time = this.currentTime;
+
+        const hours = Math.floor(time/(60*60));
+        time = time%(60*60);
+        const minutes = Math.floor(time/60);
+        const seconds = time%60;
+
+        let stringHours, stringMinutes, stringSeconds;
+        if(hours < 10) {
+            stringHours = `0${hours}`;
+        } else {
+            stringHours = `${hours}`;
+        }
+        if(minutes < 10) {
+            stringMinutes = `0${minutes}`;
+        } else {
+            stringMinutes = `${minutes}`;
+        }
+        if(seconds < 10) {
+            stringSeconds = `0${seconds}`;
+        } else {
+            stringSeconds = `${seconds}`;
+        }
+        return `${stringHours}:${stringMinutes}:${stringSeconds}`;
+    }
+
+
+    fastForward(seconds) {
+        console.log(`Fast forward ${seconds} seconds`)
+    }
+
+    fastBackward(seconds) {
+        console.log(`Fast backward ${seconds} seconds`)
     }
 
 // GoalCycleReached -> Goal Cycle Finished

@@ -46,11 +46,13 @@ const Controller = (props) => {
 
     const handleFastForward = () => {
         props.soundBox.makeClickSound();
+        props.handleFastForward();
         // TO DO: implelement
     }
 
     const handleFastBackward = () => {
         props.soundBox.makeClickSound();
+        props.handleFastBackward();
         // TO DO: implelement
     }
 

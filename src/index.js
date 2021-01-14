@@ -7,9 +7,10 @@ import '@fortawesome/fontawesome-free/js/all.js';
 import TimerService from './service/timerService';
 import SoundBox from './service/soundBox';
 
-const focusTime = 2 * 60 * 60;
-const breakTime = 20 * 60;
-const goalCycle = 5;
+// Time settings in seconds
+const focusTime = 3;
+const breakTime = 2;
+const goalCycle = 3;
 
 const timerService = new TimerService(focusTime, breakTime, goalCycle);
 const soundBox = new SoundBox();

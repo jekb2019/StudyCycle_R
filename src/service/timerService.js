@@ -17,6 +17,26 @@ class TimerService {
         this.clock.pauseTimer();
     }
 
+    debug() {
+        this.clock.debug();
+    }
+
+    resetTimer() {
+        this.clock.resetTimer();
+    }
+
+    getFormattedCurrentTime() {
+        this.clock.getFormettedCurrentTime();
+    }
+
+    fastForward(seconds) {
+        this.clock.fastForward(seconds);
+    }
+
+    fastBackward(seconds) {
+        this.clock.fastBackward(seconds);
+    }
+
     // // called when the timer is first started
     // startTimer() {
     //     this.clock.startTimer();
