@@ -25,9 +25,9 @@ const ContentWrapper = (props) => {
 
     useEffect(() => {
         if(currentTimerStatus === TimerStatus.FOCUS) {
-            props.soundBox.makeFocusStartSound();
+            props.soundBox.playFocusStartSound();
         } else if(currentTimerStatus === TimerStatus.BREAK) {
-            props.soundBox.makeBreakStartSound();
+            props.soundBox.playBreakStartSound();
         }
     }, [currentTimerStatus])
 

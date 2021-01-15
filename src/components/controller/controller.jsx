@@ -27,7 +27,7 @@ const Controller = (props) => {
     ];
 
     const handlePrimaryControllerAction = () => {
-        props.soundBox.makeClickSound();
+        props.soundBox.playClickSound();
         const childId = primaryControllerRef.current.children[0].id;
         switch(childId) {
             case 'play':
@@ -45,13 +45,13 @@ const Controller = (props) => {
     }
 
     const handleFastForward = () => {
-        props.soundBox.makeClickSound();
+        props.soundBox.playClickSound();
         props.handleFastForward();
         // TO DO: implelement
     }
 
     const handleFastBackward = () => {
-        props.soundBox.makeClickSound();
+        props.soundBox.playClickSound();
         props.handleFastBackward();
         // TO DO: implelement
     }

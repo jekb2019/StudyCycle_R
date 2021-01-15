@@ -53,12 +53,12 @@ const SettingWindow = (props) => {
     ]
 
     const handleSettingWindowToggle = () => {
-        props.soundBox.makeClickSound();
+        props.soundBox.playClickSound();
         props.handleSettingWindowToggle()
     }
 
     const handleTimerSetting = () => {
-        props.soundBox.makeClickSound();
+        props.soundBox.playClickSound();
         props.handleTimerSetting()
     }
 

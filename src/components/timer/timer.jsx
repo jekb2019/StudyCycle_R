@@ -14,7 +14,7 @@ const Timer = (props) => {
         props.handlePauseTimer();
     }
     const handleResetTimer = () => {
-        props.soundBox.makeClickSound();
+        props.soundBox.playClickSound();
         props.handleResetTimer();
     }
 

@@ -11,19 +11,19 @@ class SoundBox {
     clickSound = new Audio(clickSound);
 
 
-    makeFocusStartSound() {
+    playFocusStartSound() {
         this.focusStartSound.play();  
     }
 
-    makeBreakStartSound() {
+    playBreakStartSound() {
         this.breakStartSound.play();
     }
 
-    makeGoalReachedSound() {
+    playGoalReachedSound() {
         this.goalReachedSound.play();
     }
 
-    makeClickSound() {
+    playClickSound() {
         this.clickSound.play();
     }
 }

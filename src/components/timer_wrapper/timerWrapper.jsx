@@ -14,7 +14,7 @@ const TimerWrapper = (props) => {
     }
 
     const handleSettingWindowToggle = () => {
-        props.soundBox.makeClickSound();
+        props.soundBox.playClickSound();
         props.handleSettingWindowToggle();
     }
 
