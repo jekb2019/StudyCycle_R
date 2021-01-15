@@ -4,6 +4,8 @@ import Controller from '../controller/controller';
 import styles from './timer.module.css';
 
 const Timer = (props) => {
+    const focusIndicatorRef = useRef();
+    const breakIndicatorRef = useRef();
 
     const handleStartTimer = () => {
         props.handleStartTimer();
@@ -16,10 +18,21 @@ const Timer = (props) => {
         props.handleResetTimer();
     }
 
+    if(props.currentTimerStatus === 'focus') {
+        focusIndicatorRef.current.style.opacity = "1";
+        breakIndicatorRef.current.style.opacity = "0.3";
+    } else if(props.currentTimerStatus === 'break') {
+        focusIndicatorRef.current.style.opacity = "0.3";
+        breakIndicatorRef.current.style.opacity = "1";
+    } else if(props.currentTimerStatus === 'none') {
+        focusIndicatorRef.current.style.opacity = "1";
+        breakIndicatorRef.current.style.opacity = "1";
+    }
+
     return(
         <div className={styles.timer}>
             <div className={styles.indicators}>
-                <div className={`${styles.indicator} ${styles.focusIndicator}`}>
+                <div ref={focusIndicatorRef} className={`${styles.indicator} ${styles.focusIndicator}`}>
                     <span>Focus</span>
                 </div>
                 <div className={styles.status}>
@@ -28,7 +41,7 @@ const Timer = (props) => {
                         <span className={styles.cycle}>{`1/5`}</span>
                     </div>
                 </div>
-                <div className={`${styles.indicator} ${styles.breakIndicator}`}>
+                <div ref={breakIndicatorRef} className={`${styles.indicator} ${styles.breakIndicator}`}>
                     <span>Break</span>
                 </div>
             </div>

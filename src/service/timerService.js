@@ -25,6 +25,10 @@ class TimerService {
         this.clock.resetTimer();
     }
 
+    getCurrentTimerStatus() {
+        return this.clock.getCurrentTimerStatus();
+    }
+
     getFormattedCurrentTime() {
         return this.clock.getFormettedCurrentTime();
     }

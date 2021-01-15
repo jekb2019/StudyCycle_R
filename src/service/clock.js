@@ -16,6 +16,10 @@ class Clock {
         this.timerObject = null;
     }
 
+    getCurrentTimerStatus() {
+        return this.currentTimerStatus;
+    }
+
     resetTimer() {
         this.pauseTimer();
         this.currentCycle = 1;
@@ -25,7 +29,7 @@ class Clock {
     }
 
     debug() {
-        console.log(`### DEBUG ###`);
+        console.log(`----- DEBUG -----`);
         console.log(`Timer Status: ${this.currentTimerStatus}`);
         console.log(`Timer Initiated: ${this.isTimerInitiated}`);
         console.log(`Is Clock Running: ${this.isClockRunning}`);

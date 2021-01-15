@@ -3,6 +3,12 @@ import TimerWrapper from '../timer_wrapper/timerWrapper';
 import SettingWindow from '../setting_window/settingWindow';
 import styles from './contentWrapper.module.css';
 
+const TimerStatus = {
+    NONE: 'none',
+    FOCUS: 'focus',
+    BREAK: 'break'
+}
+
 const ContentWrapper = (props) => {
     const [isSettingWindowOpen, setIsSettingWindowOpen] = useState(false);
     const [isTimerInitiated, setIsTimerInitiated] = useState(false);
@@ -10,10 +16,20 @@ const ContentWrapper = (props) => {
     const [isGoalCycleFinished, setIsGoalCycleFinished] = useState(false);
     const [currentTime, setCurrentTime] = useState(`00:00:00`);
     const [timerObject, setTimerObject] = useState(null);
+    const [currentTimerStatus, setCurrentTimerStatus] = useState(null);
 
     useEffect(() => {
         setCurrentTime(props.timerService.getFormattedCurrentTime());
+        setCurrentTimerStatus(TimerStatus.NONE);
     }, [])
+
+    useEffect(() => {
+        if(currentTimerStatus === TimerStatus.FOCUS) {
+            props.soundBox.makeFocusStartSound();
+        } else if(currentTimerStatus === TimerStatus.BREAK) {
+            props.soundBox.makeBreakStartSound();
+        }
+    }, [currentTimerStatus])
 
     useEffect(() => {
         if(isGoalCycleFinished) {
@@ -75,11 +91,24 @@ const ContentWrapper = (props) => {
             console.log("UI")
             setCurrentTime(props.timerService.getFormattedCurrentTime());
             setIsGoalCycleFinished(props.timerService.isGoalReached());
+            setCurrentTimerStatus(props.timerService.getCurrentTimerStatus())
         }, 100);
+    }
+
+    const debug = () => {
+        console.log(`-----UI DEBUG-----`)
+        console.log(`isTimerInitiated: ${isTimerInitiated}`);
+        console.log(`isTimerRunning: ${isTimerRunning}`);
+        console.log(`isGoalCycleFinished: ${isGoalCycleFinished}`);
+        console.log(`currentTime: ${currentTime}`);
+        console.log(`isSettingWindowOpen: ${isSettingWindowOpen}`);
+        console.log(`currentTimerStatus: ${currentTimerStatus}`)
+        console.log(`\n`)
     }
 
     return (
         <div className={styles.content_wrapper}>
+            <button onClick={debug}>UI DEBUG</button>
             <TimerWrapper
                 soundBox={props.soundBox}
                 handleSettingWindowToggle={handleSettingWindowToggle}
@@ -91,7 +120,8 @@ const ContentWrapper = (props) => {
                 handleResetTimer={handleResetTimer}
                 handleFastForward={handleFastForward}
                 handleFastBackward={handleFastBackward}
-                currentTime={currentTime}/>
+                currentTime={currentTime}
+                currentTimerStatus={currentTimerStatus}/>
             {isSettingWindowOpen && 
                 <SettingWindow 
                     soundBox={props.soundBox}

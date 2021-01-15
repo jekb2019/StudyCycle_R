@@ -12,7 +12,7 @@ const App = (props) => {
   window.addEventListener('resize', handleResize);
 
   // TODO: Remove
-  const debug = () => {
+  const serviceDebug = () => {
     props.timerService.debug();
   }
 
@@ -22,7 +22,7 @@ const App = (props) => {
         <Header/>
         {screenWidth >= 800 && <Banner/>}
       </div>
-      <button onClick={debug}>DEBUG</button>
+      <button onClick={serviceDebug}>Service DEBUG</button>
       <ContentWrapper timerService={props.timerService} soundBox={props.soundBox}/>
       {screenWidth < 800 && <Banner/>}
       <p className={styles.copyright}>&#169;2020 Study Cycle. All Rights Reserved</p>

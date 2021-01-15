@@ -49,7 +49,8 @@ const TimerWrapper = (props) => {
                 handleResetTimer={props.handleResetTimer}
                 handleFastForward={props.handleFastForward}
                 handleFastBackward={props.handleFastBackward}
-                currentTime={props.currentTime}/>
+                currentTime={props.currentTime}
+                currentTimerStatus={props.currentTimerStatus}/>
         </div>
     );     
 };
