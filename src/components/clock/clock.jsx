@@ -4,7 +4,7 @@ import styles from './clock.module.css';
 const Clock = (props) => {
     return (
         <>
-            <span className={styles.currentTimeIndicator}>00:00:00</span>    
+            <span className={styles.currentTimeIndicator}>{props.currentTime}</span>    
         </>
     )
 };

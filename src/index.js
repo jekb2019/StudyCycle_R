@@ -8,8 +8,8 @@ import TimerService from './service/timerService';
 import SoundBox from './service/soundBox';
 
 // Time settings in seconds
-const focusTime = 3;
-const breakTime = 2;
+const focusTime = 20;
+const breakTime = 10;
 const goalCycle = 3;
 
 const timerService = new TimerService(focusTime, breakTime, goalCycle);

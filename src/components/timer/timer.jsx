@@ -33,7 +33,7 @@ const Timer = (props) => {
                 </div>
             </div>
             <div className={styles.clock_display}>
-                <Clock className={styles.clock}/>
+                <Clock className={styles.clock} currentTime={props.currentTime}/>
                 <div className={styles.button} onClick={handleResetTimer}>
                     <i className={`fas fa-redo-alt ${styles.reset_icon}`}></i>
                 </div>

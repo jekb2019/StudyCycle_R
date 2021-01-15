@@ -87,13 +87,14 @@ class Clock {
                 this.changeTimerStatus(TimerStatusType.BREAK);
 
             } else if (this.currentTimerStatus === TimerStatusType.BREAK && this.currentTime >= this.breakTime) {
-                this.currentTime = 0;
-                this.changeTimerStatus(TimerStatusType.FOCUS);
-                this.currentCycle++;
-                if(this.currentCycle > this.goalCycle) {
+                const tempCurrentCycle = this.currentCycle + 1;
+                if(tempCurrentCycle > this.goalCycle) {
                     this.processGoalReached();
                     return;
                 }
+                this.currentTime = 0;
+                this.changeTimerStatus(TimerStatusType.FOCUS);
+                this.currentCycle = tempCurrentCycle;
             }
             this.currentTime++;
             console.log(`Current Time: ${this.getFormettedCurrentTime()}`);
@@ -112,6 +113,14 @@ class Clock {
         console.log("GOAL!")
         this.pauseTimer();
         this.changeTimerStatus(TimerStatusType.GOAL);
+    }
+
+    isGoalReached() {
+        if(this.currentTimerStatus === TimerStatusType.GOAL) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
         //get current time formatted as [hours]:[minutes]:[seconds]
@@ -144,11 +153,39 @@ class Clock {
 
 
     fastForward(seconds) {
-        console.log(`Fast forward ${seconds} seconds`)
+        const tempTime = this.currentTime + seconds;
+        if(this.currentTimerStatus === TimerStatusType.FOCUS) {
+            if(tempTime >= this.focusTime) {
+                // this.pauseTimer();
+                this.currentTime = this.focusTime;
+                // this.startTimer();
+            } else {
+                this.pauseTimer();
+                this.currentTime = tempTime;
+                this.startTimer();
+            }
+        } else if(this.currentTimerStatus === TimerStatusType.BREAK) {
+            if(tempTime >= this.breakTime) {
+                this.currentTime = this.breakTime;
+            } else {
+                this.pauseTimer();
+                this.currentTime = tempTime;
+                this.startTimer();
+            }
+        }
     }
 
     fastBackward(seconds) {
-        console.log(`Fast backward ${seconds} seconds`)
+        const tempTime = this.currentTime - seconds;
+        if(tempTime < 0) {
+            this.pauseTimer();
+            this.currentTime = 0;
+            this.startTimer();
+        } else {
+            this.pauseTimer();
+            this.currentTime = tempTime;
+            this.startTimer();
+        }
     }
 
 // GoalCycleReached -> Goal Cycle Finished

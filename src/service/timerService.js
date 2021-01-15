@@ -26,7 +26,7 @@ class TimerService {
     }
 
     getFormattedCurrentTime() {
-        this.clock.getFormettedCurrentTime();
+        return this.clock.getFormettedCurrentTime();
     }
 
     fastForward(seconds) {
@@ -35,6 +35,10 @@ class TimerService {
 
     fastBackward(seconds) {
         this.clock.fastBackward(seconds);
+    }
+
+    isGoalReached() {
+        return this.clock.isGoalReached();
     }
 
     // // called when the timer is first started

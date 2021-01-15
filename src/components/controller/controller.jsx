@@ -71,7 +71,7 @@ const Controller = (props) => {
                             return primaryController.element;
                         } else if(!props.isTimerRunning && primaryController.name === 'play' && !props.isGoalCycleFinished) {
                             return primaryController.element;
-                        } else if(props.isGoalCycleFinished) {
+                        } else if(props.isGoalCycleFinished && primaryController.name === 'reset') {
                             return primaryController.element;
                         }
                     })
