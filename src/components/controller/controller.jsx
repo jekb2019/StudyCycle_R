@@ -1,7 +1,7 @@
-import {useRef} from 'react';
+import {useRef, memo} from 'react';
 import styles from './controller.module.css';
 
-const Controller = (props) => {
+const Controller = memo((props) => {
 
     const primaryControllerRef = useRef();
 
@@ -84,7 +84,7 @@ const Controller = (props) => {
                 <span className={styles.fastWindingDescription}>+ 3 min</span>
             </div>
         </div>
-    )
-};
+    );
+});
 
 export default Controller;

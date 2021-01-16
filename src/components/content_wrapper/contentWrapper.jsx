@@ -105,15 +105,14 @@ const ContentWrapper = (props) => {
         setCurrentCycle(props.timerService.getCurrentCycle());
         clearInterval(timerObject);
         setCurrentTime(props.timerService.getFormattedCurrentTime());
+        setCurrentTimerStatus(TimerStatus.NONE);
     }
 
     const handleFastForward = () => {
-        // set to 3 minutes
         props.timerService.fastForward(props.fastForwardTime);
     }
 
     const handleFastBackward = () => {
-        // set to 3 minutes
         props.timerService.fastBackward(props.fastBackwardTime);
     }
 
