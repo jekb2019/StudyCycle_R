@@ -25,14 +25,15 @@ const TimerWrapper = (props) => {
                     <div className={styles.small_description}>
                         <span>Focus</span>
                     </div> 
-                    <span className={styles.settedTime_indicator}> 1 hr 10 min</span> 
+                    <span className={styles.settedTime_indicator}> {props.focusTimeHours} hr {props.focusTimeMinutes} min</span> 
                     <div className={styles.small_description}>
                         <span>Break</span>
                     </div>
-                    <span className={styles.settedTime_indicator}> 0 hr 10 min</span> 
+                    <span className={styles.settedTime_indicator}> {props.breakTimeHours} hr {props.breakTimeMinutes} min</span> 
                     <div className={styles.small_description}>
                         <span>Cycles</span>
                     </div>
+                    <span className={styles.settedTime_indicator}> {props.goalCycle}</span>
 
                 </span>
                 <div className={styles.button} onClick={handleSettingWindowToggle}>
@@ -50,7 +51,9 @@ const TimerWrapper = (props) => {
                 handleFastForward={props.handleFastForward}
                 handleFastBackward={props.handleFastBackward}
                 currentTime={props.currentTime}
-                currentTimerStatus={props.currentTimerStatus}/>
+                currentTimerStatus={props.currentTimerStatus}
+                goalCycle={props.goalCycle}
+                currentCycle={props.currentCycle}/>
         </div>
     );     
 };

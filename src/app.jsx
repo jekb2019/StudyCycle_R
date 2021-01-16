@@ -23,7 +23,7 @@ const App = (props) => {
         {screenWidth >= 800 && <Banner/>}
       </div>
       <button onClick={serviceDebug}>Service DEBUG</button>
-      <ContentWrapper timerService={props.timerService} soundBox={props.soundBox}/>
+      <ContentWrapper timerService={props.timerService} soundBox={props.soundBox} fastForwardTime={props.fastForwardTime} fastBackwardTime={props.fastBackwardTime}/>
       {screenWidth < 800 && <Banner/>}
       <p className={styles.copyright}>&#169;2020 Study Cycle. All Rights Reserved</p>
     </div>);

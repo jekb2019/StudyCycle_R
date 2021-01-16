@@ -38,7 +38,7 @@ const Timer = (props) => {
                 <div className={styles.status}>
                     <div>
                         <i className={`fas fa-biking ${styles.cycle_icon}`}></i>
-                        <span className={styles.cycle}>{`1/5`}</span>
+                        <span className={styles.cycle}>{`${props.currentCycle}/${props.goalCycle}`}</span>
                     </div>
                 </div>
                 <div ref={breakIndicatorRef} className={`${styles.indicator} ${styles.breakIndicator}`}>

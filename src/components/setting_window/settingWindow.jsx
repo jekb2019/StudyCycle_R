@@ -1,21 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SettingComponent from '../setting_components/settingComponent';
 import styles from './settingWindow.module.css';
 
-const SettingWindow = (props) => {    
+const SettingWindow = (props) => {
     const settingInputs = [
         {
             title: 'Focus Time',
             inputInfo: [
                 {
-                    subject: `Hours`, 
-                    default: 1, 
+                    key: 'Focus Hours',
+                    subject: 'Hours', 
+                    default: props.timerService.getFocusTimeHours(), 
                     min: 0, 
                     max: 24
                 },
                 {
-                    subject: `Minutes`,
-                    default: 10, 
+                    key: 'Focus Minutes',
+                    subject: 'Minutes',
+                    default: props.timerService.getFocusTimeMinutes(), 
                     min: 0,
                     max: 59
                 }
@@ -25,14 +27,16 @@ const SettingWindow = (props) => {
             title: 'Break Time',
             inputInfo: [
                 {
-                    subject: `Hours`, 
-                    default: 0, 
+                    key: 'Break Hours',
+                    subject: 'Hours', 
+                    default: props.timerService.getBreakTimeHours(), 
                     min: 0, 
-                    max: 24
+                    max: 24,
                 },
                 {
-                    subject: `Minutes`, 
-                    default: 10,
+                    key: 'Break Minutes',
+                    subject: 'Minutes', 
+                    default: props.timerService.getBreakTimeMinutes(),
                     min: 0, 
                     max: 59
                 }
@@ -42,8 +46,9 @@ const SettingWindow = (props) => {
             title: 'Goal Cycles',
             inputInfo: [
                 {
-                    subject: `Cycles`, 
-                    default: 5, 
+                    key: 'Goal Cycle',
+                    subject: 'Cycles', 
+                    default: props.timerService.getGoalCycle(), 
                     min: 0, 
                     max: 99
                 }
@@ -52,6 +57,20 @@ const SettingWindow = (props) => {
 
     ]
 
+    const [focusTimeHoursInput, setFocusTimeHoursInput] = useState(settingInputs[0].inputInfo[0].default);
+    const [focusTimeMinutesInput, setFocusTimeMinutesInput] = useState(settingInputs[0].inputInfo[1].default);
+    const [breakTimeHoursInput, setBreakTimeHoursInput] = useState(settingInputs[1].inputInfo[0].default);
+    const [breakTimeMinutesInput, setBreakTimeMinutesInput] = useState(settingInputs[1].inputInfo[1].default);
+    const [goalCycleInput, setGoalCycleInput] = useState(settingInputs[2].inputInfo[0].default);
+
+    useState(() => {
+        setFocusTimeHoursInput(props.timerService.getFocusTimeHours());
+        setFocusTimeMinutesInput(props.timerService.getFocusTimeMinutes());
+        setBreakTimeHoursInput(props.timerService.getBreakTimeHours());
+        setBreakTimeMinutesInput(props.timerService.getBreakTimeMinutes());
+        setGoalCycleInput(props.timerService.getGoalCycle());
+    }, [])
+
     const handleSettingWindowToggle = () => {
         props.soundBox.playClickSound();
         props.handleSettingWindowToggle()
@@ -59,7 +78,34 @@ const SettingWindow = (props) => {
 
     const handleTimerSetting = () => {
         props.soundBox.playClickSound();
-        props.handleTimerSetting()
+        props.handleTimerSetting(focusTimeHoursInput, focusTimeMinutesInput, breakTimeHoursInput, breakTimeMinutesInput, goalCycleInput);
+        
+        
+        console.log(focusTimeHoursInput, focusTimeMinutesInput, breakTimeHoursInput, breakTimeMinutesInput, goalCycleInput);
+    }
+
+    const handleSettingInputOnChange = (event, key) => {
+        console.log(key, event.target.value);
+        const value = parseInt(event.target.value);
+        switch (key) {
+            case 'Focus Hours':
+                setFocusTimeHoursInput(value);
+                break;
+            case 'Focus Minutes':
+                setFocusTimeMinutesInput(value);
+                break;
+            case 'Break Hours':
+                setBreakTimeHoursInput(value);
+                break;
+            case 'Break Minutes':
+                setBreakTimeMinutesInput(value);
+                break;
+            case 'Goal Cycle':
+                setGoalCycleInput(value);
+                break;
+            default:
+                console.log('Error: invalid input');
+        }
     }
 
     return (
@@ -77,6 +123,7 @@ const SettingWindow = (props) => {
                     <SettingComponent
                         key={item.title}
                         component={item}
+                        handleSettingInputOnChange={handleSettingInputOnChange}
                     />
                 ))
             }

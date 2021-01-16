@@ -8,8 +8,10 @@ import TimerService from './service/timerService';
 import SoundBox from './service/soundBox';
 
 // Time settings in seconds
-const focusTime = 20;
-const breakTime = 10;
+const focusTime = 1 * 60 * 60;
+const breakTime = 10 * 60;
+const fastForwardTime = 3 * 60;
+const fastBackwardTime = 3 * 60;
 const goalCycle = 3;
 
 const timerService = new TimerService(focusTime, breakTime, goalCycle);
@@ -17,7 +19,7 @@ const soundBox = new SoundBox();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App timerService={timerService} soundBox={soundBox}/>
+    <App timerService={timerService} soundBox={soundBox} fastForwardTime={fastForwardTime} fastBackwardTime={fastBackwardTime}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

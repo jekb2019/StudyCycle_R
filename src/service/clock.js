@@ -16,6 +16,94 @@ class Clock {
         this.timerObject = null;
     }
 
+    getGoalCycle() {
+        return this.goalCycle;
+    }
+
+    getCurrentCycle() {
+        return this.currentCycle;
+    }
+
+    // Focus Time Getters
+
+    getFocusTime() {
+        return this.focusTime;
+    }
+
+    getFocusTimeHours() {
+        return Math.floor(this.focusTime/(60*60));
+    }
+    
+    getFocusTimeMinutes() {
+        return Math.floor(this.focusTime%(60*60)/60);
+    }
+    
+    getFocusTimeSeconds() {
+        return (this.focusTime%(60*60)/60)%60;
+    }
+
+    // Break Time Getters
+
+    getBreakTime() {
+        return this.breakTime;
+    }
+
+    getBreakTimeHours() {
+        return Math.floor(this.breakTime/(60*60));
+    }
+    
+    getBreakTimeMinutes() {
+        return Math.floor(this.breakTime%(60*60)/60);
+    }
+    
+    getBreakTimeSeconds() {
+        return (this.breakTime%(60*60)/60)%60;
+    }
+
+    setGoalCycle(goalCycle) {
+        if(goalCycle < 1) {
+            return false
+        } else {
+            this.goalCycle = goalCycle;
+            return true;
+        }
+    }
+
+    // return true if focus time is valid
+    setFocusTime(focusHours, focusMinutes) {
+        const tempFocusTime = focusHours * 60 * 60 + focusMinutes * 60;
+        const minimumTime = 1 * 60;
+        if(tempFocusTime < minimumTime) {
+            return false;
+        } else if(this.currentTime >= tempFocusTime && this.currentTimerStatus === TimerStatusType.FOCUS){
+            this.changeTimerStatus(TimerStatusType.BREAK);
+            this.currentTime = 0;
+            return true;
+        } else {
+            this.focusTime = tempFocusTime;
+            return true;
+        }
+
+    }
+
+    // return true if break time is valid
+    setBreakTime(breakHours, breakMinutes) {
+        const tempBreakTime = breakHours * 60 * 60 + breakMinutes * 60;        
+        if(this.currentTime >= tempBreakTime && this.currentTimerStatus === TimerStatusType.BREAK) {
+            if(this.currentCycle === this.goalCycle) {
+                this.processGoalReached();
+                return true;
+            } else {
+                this.changeTimerStatus(TimerStatusType.FOCUS);
+                this.currentTime = 0;
+                return true;
+            }
+        } else {
+            this.breakTime = tempBreakTime;
+            return true;
+        }
+    }
+
     getCurrentTimerStatus() {
         return this.currentTimerStatus;
     }
@@ -35,6 +123,9 @@ class Clock {
         console.log(`Is Clock Running: ${this.isClockRunning}`);
         console.log(`Current Time: ${this.currentTime}`);
         console.log(`Current Cycle: ${this.currentCycle}`);
+        console.log(`Focus Time: ${this.focusTime}`);
+        console.log(`Break Time: ${this.breakTime}`);
+        console.log(`Goal Cycles: ${this.goalCycle}`);
         console.log(`\n`);
     }
 
