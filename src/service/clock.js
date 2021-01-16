@@ -59,7 +59,7 @@ class Clock {
     }
 
     setGoalCycle(goalCycle) {
-        if(goalCycle < 1) {
+        if(this.currentCycle > goalCycle) {
             return false
         } else {
             this.goalCycle = goalCycle;

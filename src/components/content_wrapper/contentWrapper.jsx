@@ -73,19 +73,19 @@ const ContentWrapper = (props) => {
         const focusCheck = props.timerService.setFocusTime(focusHours, focusMinutes);
         props.timerService.setBreakTime(breakHours, breakMinutes);
         const goalCheck = props.timerService.setGoalCycle(goalCycle);
-        if(!focusCheck && !goalCycle) {
-            alert("Focus Time and Goal Cycle must be more than 1 minute!");
+        if(goalCycle < 1) {
+            alert('Goal Cycles must be more than 1 cycle!');
             return;
-        } else {
-            if(!focusCheck) {
-                alert("Focus Time must be more than 1 minute!");
-                return;
-            }
-            if(!goalCheck) {
-                alert("Goal Cycles must be more than 1 minute!");
-                return;
-            }
         }
+        if(!focusCheck) {
+            alert('Focus Time must be more than 1 minute!');
+            return;
+        }
+        if(!goalCheck) {
+            alert('Current cycle exceeds the goal cycle! Please reset the timer and try again.');
+            return;
+        }
+
         setFocusTimeHours(focusHours);
         setFocusTimeMinutes(focusMinutes);
         setBreakTimeHours(breakHours);

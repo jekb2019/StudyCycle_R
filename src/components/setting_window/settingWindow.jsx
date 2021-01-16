@@ -50,7 +50,7 @@ const SettingWindow = (props) => {
                     key: 'Goal Cycle',
                     subject: 'Cycles', 
                     default: props.timerService.getGoalCycle(), 
-                    min: 0, 
+                    min: 1, 
                     max: 99
                 }
             ]
