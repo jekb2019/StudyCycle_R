@@ -23,9 +23,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: makerGray;
 }
 .cycle_icon {
-    color: makerGray;
+    /* color: makerGray; */
     font-size: medium;
     margin-right: 10px;
 }
@@ -33,7 +34,7 @@
     font-weight: 500;
     font-size: medium;
     margin-bottom: 5px;
-    color: makerGray;
+    /* color: makerGray; */
     user-select: none;
 }
 .time_info {
@@ -47,10 +48,10 @@
     background-color: makerSlightlierLightGray;
 }
 .indicator.focusIndicator {
-    opacity: 100%;
+    opacity: 30%;
 }
 .indicator.breakIndicator {
-    opacity: 100%;
+    opacity: 30%;
 }
 
 .indicator span {
