@@ -110,8 +110,14 @@ const SettingWindow = (props) => {
         }
     }
 
+    const handleOnKeyPressEnter = (event) => {
+        if(event.key === 'Enter') {
+            handleTimerSetting();
+        }
+    }
+
     return (
-        <div className={styles.window}>
+        <div className={styles.window} onKeyPress={handleOnKeyPressEnter}>
             <div className={styles.header}>
                 <img className={styles.logo} src="/images/small-logo.png" alt="Study Cycle small logo"/>
                 <h1 className={styles.subject}>Settings</h1>
