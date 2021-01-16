@@ -1,6 +1,7 @@
 @value makerLightGray from '../../common/colors.css';
 @value makerSlightlierLightGray from '../../common/colors.css';
 @value makerGray from '../../common/colors.css';
+@value makerDarkGray from '../../common/colors.css';
 @value medium from '../../common/sizes.css';
 @value small from '../../common/sizes.css';
 @value iconSmall from '../../common/sizes.css';
@@ -26,7 +27,6 @@
     color: makerGray;
 }
 .cycle_icon {
-    /* color: makerGray; */
     font-size: medium;
     margin-right: 10px;
 }
@@ -34,7 +34,6 @@
     font-weight: 500;
     font-size: medium;
     margin-bottom: 5px;
-    /* color: makerGray; */
     user-select: none;
 }
 .time_info {
@@ -46,6 +45,7 @@
     border-radius: 20px;
     text-align: center;
     background-color: makerSlightlierLightGray;
+    transition: 0.5s;
 }
 .indicator.focusIndicator {
     opacity: 30%;

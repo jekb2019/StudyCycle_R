@@ -32,6 +32,9 @@
 .primary_controller{
     font-size: iconVeryLarge;
 }
+.button {
+    cursor: pointer;
+}
 .button:hover .controller {
     transition: 100ms;
     color: makerGray;
@@ -42,7 +45,6 @@
 }
 .sub_controller_wrapper {
     margin-top: 10px;
-    cursor: pointer;
 }
 .fast_backward {
     margin-right: 40px;
