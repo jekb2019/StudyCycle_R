@@ -31,15 +31,15 @@ class Clock {
     }
 
     getFocusTimeHours() {
-        return Math.floor(this.focusTime/(60*60));
+        return Math.floor(this.focusTime / (60 * 60));
     }
     
     getFocusTimeMinutes() {
-        return Math.floor(this.focusTime%(60*60)/60);
+        return Math.floor(this.focusTime % (60 * 60) / 60);
     }
     
     getFocusTimeSeconds() {
-        return (this.focusTime%(60*60)/60)%60;
+        return (this.focusTime % (60 * 60) / 60) % 60;
     }
 
     // Break Time Getters
@@ -49,15 +49,15 @@ class Clock {
     }
 
     getBreakTimeHours() {
-        return Math.floor(this.breakTime/(60*60));
+        return Math.floor(this.breakTime / (60 * 60));
     }
     
     getBreakTimeMinutes() {
-        return Math.floor(this.breakTime%(60*60)/60);
+        return Math.floor(this.breakTime % (60 * 60) / 60);
     }
     
     getBreakTimeSeconds() {
-        return (this.breakTime%(60*60)/60)%60;
+        return (this.breakTime % (60 * 60) / 60) % 60;
     }
 
     setGoalCycle(goalCycle) {

@@ -41,6 +41,7 @@ const ContentWrapper = (props) => {
 
     useEffect(() => {
         if(isGoalCycleFinished) {
+            props.soundBox.playGoalReachedSound();
             setIsTimerRunning(false);
             clearInterval(timerObject);
         }
@@ -86,11 +87,11 @@ const ContentWrapper = (props) => {
             props.timerService.startTimer();
         }
 
-        setTimerObject(getUIUpdater());
+        // setTimerObject(runUIUpdater());
+        runUIUpdater();
     }
 
     const handlePauseTimer = () => {
-        // TO DO: implement
         setIsTimerRunning(false);
         props.timerService.pauseTimer();
         clearInterval(timerObject);
@@ -116,14 +117,35 @@ const ContentWrapper = (props) => {
         props.timerService.fastBackward(props.fastBackwardTime);
     }
 
-    const getUIUpdater = () => {
-        return setInterval(() => {
-            console.log("UI")
+    const runUIUpdater = () => {
+        // return setInterval(() => {
+        //     console.log("UI")
+        //     setCurrentTime(props.timerService.getFormattedCurrentTime());
+        //     setIsGoalCycleFinished(props.timerService.isGoalReached());
+        //     setCurrentTimerStatus(props.timerService.getCurrentTimerStatus());
+        //     setCurrentCycle(props.timerService.getCurrentCycle());
+        // }, 100);
+
+        const interval = 100;
+        let expectedTime = Date.now() + interval;
+        const start = () => {
+            setTimerObject(setTimeout(round, interval));
+        }
+        const round = () => {
+            let drift = Date.now() - expectedTime;
+            work();
+            expectedTime += interval;
+            setTimerObject(setTimeout(round, interval - drift));
+        }
+
+        const work = () => {
             setCurrentTime(props.timerService.getFormattedCurrentTime());
             setIsGoalCycleFinished(props.timerService.isGoalReached());
             setCurrentTimerStatus(props.timerService.getCurrentTimerStatus());
             setCurrentCycle(props.timerService.getCurrentCycle());
-        }, 100);
+        }
+
+        start();
     }
 
     const debug = () => {
