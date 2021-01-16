@@ -78,6 +78,7 @@ class Clock {
         } else if(this.currentTime >= tempFocusTime && this.currentTimerStatus === TimerStatusType.FOCUS){
             this.changeTimerStatus(TimerStatusType.BREAK);
             this.currentTime = 0;
+            this.focusTime = tempFocusTime;
             return true;
         } else {
             this.focusTime = tempFocusTime;
@@ -96,6 +97,7 @@ class Clock {
             } else {
                 this.changeTimerStatus(TimerStatusType.FOCUS);
                 this.currentTime = 0;
+                this.breakTime = tempBreakTime;
                 return true;
             }
         } else {

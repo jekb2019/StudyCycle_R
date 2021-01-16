@@ -32,7 +32,6 @@ const Timer = (props) => {
     }, [props.currentTimerStatus]);
 
     // Change cycle description UI color when goal is reached
-    
     useEffect(() => {
         if(props.isGoalCycleFinished) {
             cycleIndicatorRef.current.style.color = "#DBA55D";
