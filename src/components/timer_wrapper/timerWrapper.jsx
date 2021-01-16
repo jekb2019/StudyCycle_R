@@ -4,7 +4,6 @@ import styles from './timerWrapper.module.css';
 
 
 const TimerWrapper = (props) => {
-
     const handleStartTimer = () => {
         props.handleStartTimer();
     }

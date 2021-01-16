@@ -10,7 +10,6 @@ class SoundBox {
     goalReachedSound = new Audio(goalReachedSound);
     clickSound = new Audio(clickSound);
 
-
     playFocusStartSound() {
         this.focusStartSound.play();  
     }

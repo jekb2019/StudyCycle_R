@@ -2,9 +2,9 @@ import {useRef, memo} from 'react';
 import styles from './controller.module.css';
 
 const Controller = memo((props) => {
-
     const primaryControllerRef = useRef();
-
+    
+    // DOM elements for primary controllers
     const primaryControllers = [
         {
             name: 'pause',
@@ -47,13 +47,11 @@ const Controller = memo((props) => {
     const handleFastForward = () => {
         props.soundBox.playClickSound();
         props.handleFastForward();
-        // TO DO: implelement
     }
 
     const handleFastBackward = () => {
         props.soundBox.playClickSound();
         props.handleFastBackward();
-        // TO DO: implelement
     }
 
     return (

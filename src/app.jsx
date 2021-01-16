@@ -11,7 +11,7 @@ const App = (props) => {
   }
   window.addEventListener('resize', handleResize);
 
-  // TODO: Remove
+  // Console debugger - only for development purposes
   const serviceDebug = () => {
     props.timerService.debug();
   }

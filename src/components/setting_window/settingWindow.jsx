@@ -3,6 +3,7 @@ import SettingComponent from '../setting_components/settingComponent';
 import styles from './settingWindow.module.css';
 
 const SettingWindow = (props) => {
+    // List of customizable setting inputs
     const settingInputs = [
         {
             title: 'Focus Time',
@@ -57,12 +58,14 @@ const SettingWindow = (props) => {
 
     ]
 
+    // States holding currently input setting values (without 'OK' button clicked) 
     const [focusTimeHoursInput, setFocusTimeHoursInput] = useState(settingInputs[0].inputInfo[0].default);
     const [focusTimeMinutesInput, setFocusTimeMinutesInput] = useState(settingInputs[0].inputInfo[1].default);
     const [breakTimeHoursInput, setBreakTimeHoursInput] = useState(settingInputs[1].inputInfo[0].default);
     const [breakTimeMinutesInput, setBreakTimeMinutesInput] = useState(settingInputs[1].inputInfo[1].default);
     const [goalCycleInput, setGoalCycleInput] = useState(settingInputs[2].inputInfo[0].default);
 
+    // make default inputs as current timer settings
     useState(() => {
         setFocusTimeHoursInput(props.timerService.getFocusTimeHours());
         setFocusTimeMinutesInput(props.timerService.getFocusTimeMinutes());
@@ -76,14 +79,13 @@ const SettingWindow = (props) => {
         props.handleSettingWindowToggle()
     }
 
+    // Apply timer setting when 'OK' button is clicked
     const handleTimerSetting = () => {
         props.soundBox.playClickSound();
         props.handleTimerSetting(focusTimeHoursInput, focusTimeMinutesInput, breakTimeHoursInput, breakTimeMinutesInput, goalCycleInput);
-        
-        
-        console.log(focusTimeHoursInput, focusTimeMinutesInput, breakTimeHoursInput, breakTimeMinutesInput, goalCycleInput);
     }
 
+    // Update input states every time current input is changed (without 'OK' button clicked)
     const handleSettingInputOnChange = (event, key) => {
         console.log(key, event.target.value);
         const value = parseInt(event.target.value);
@@ -109,27 +111,28 @@ const SettingWindow = (props) => {
     }
 
     return (
-    <div className={styles.window}>
-        <div className={styles.header}>
-            <img className={styles.logo} src="/images/small-logo.png" alt="Study Cycle small logo"/>
-            <h1 className={styles.subject}>Settings</h1>
-            <div className={styles.close_button} onClick={handleSettingWindowToggle}>
-                <i className={`fas fa-times ${styles.close_icon}`}></i>
+        <div className={styles.window}>
+            <div className={styles.header}>
+                <img className={styles.logo} src="/images/small-logo.png" alt="Study Cycle small logo"/>
+                <h1 className={styles.subject}>Settings</h1>
+                <div className={styles.close_button} onClick={handleSettingWindowToggle}>
+                    <i className={`fas fa-times ${styles.close_icon}`}></i>
+                </div>
             </div>
+            <div className={styles.components}>
+                {
+                    settingInputs.map(item => (
+                        <SettingComponent
+                            key={item.title}
+                            component={item}
+                            handleSettingInputOnChange={handleSettingInputOnChange}
+                        />
+                    ))
+                }
+            </div>
+            <button className={styles.ok_button} onClick={handleTimerSetting}>OK</button>
         </div>
-        <div className={styles.components}>
-            {
-                settingInputs.map(item => (
-                    <SettingComponent
-                        key={item.title}
-                        component={item}
-                        handleSettingInputOnChange={handleSettingInputOnChange}
-                    />
-                ))
-            }
-        </div>
-        <button className={styles.ok_button} onClick={handleTimerSetting}>OK</button>
-    </div>)
+    )
 };
 
 export default SettingWindow;

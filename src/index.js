@@ -14,6 +14,7 @@ const fastForwardTime = 3 * 60;
 const fastBackwardTime = 3 * 60;
 const goalCycle = 3;
 
+// To-be-injected objects from service layer
 const timerService = new TimerService(focusTime, breakTime, goalCycle);
 const soundBox = new SoundBox();
 

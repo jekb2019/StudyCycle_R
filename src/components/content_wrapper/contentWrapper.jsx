@@ -3,6 +3,7 @@ import TimerWrapper from '../timer_wrapper/timerWrapper';
 import SettingWindow from '../setting_window/settingWindow';
 import styles from './contentWrapper.module.css';
 
+// Enum for timer status
 const TimerStatus = {
     NONE: 'none',
     FOCUS: 'focus',
@@ -51,8 +52,8 @@ const ContentWrapper = (props) => {
         isSettingWindowOpen ? setIsSettingWindowOpen(false) : setIsSettingWindowOpen(true);
     }
 
+    // Apply customized timer settings when 'OK' is clicked in setting window
     const handleTimerSetting = (focusHours, focusMinutes, breakHours, breakMinutes, goalCycle) => {
-        // To be implemented for OK click in the setting window
         handleSettingWindowToggle();
         const focusCheck = props.timerService.setFocusTime(focusHours, focusMinutes);
         props.timerService.setBreakTime(breakHours, breakMinutes);
@@ -86,8 +87,6 @@ const ContentWrapper = (props) => {
         } else {
             props.timerService.startTimer();
         }
-
-        // setTimerObject(runUIUpdater());
         runUIUpdater();
     }
 
@@ -116,15 +115,8 @@ const ContentWrapper = (props) => {
         props.timerService.fastBackward(props.fastBackwardTime);
     }
 
+    // Update clock UI every 100ms
     const runUIUpdater = () => {
-        // return setInterval(() => {
-        //     console.log("UI")
-        //     setCurrentTime(props.timerService.getFormattedCurrentTime());
-        //     setIsGoalCycleFinished(props.timerService.isGoalReached());
-        //     setCurrentTimerStatus(props.timerService.getCurrentTimerStatus());
-        //     setCurrentCycle(props.timerService.getCurrentCycle());
-        // }, 100);
-
         const interval = 100;
         let expectedTime = Date.now() + interval;
         const start = () => {
@@ -136,17 +128,16 @@ const ContentWrapper = (props) => {
             expectedTime += interval;
                 setTimerObject(setTimeout(round, interval - drift));
         }
-
         const work = () => {
             setCurrentTime(props.timerService.getFormattedCurrentTime());
             setIsGoalCycleFinished(props.timerService.isGoalReached());
             setCurrentTimerStatus(props.timerService.getCurrentTimerStatus());
             setCurrentCycle(props.timerService.getCurrentCycle());
         }
-
         start();
     }
 
+    // Console debugger for states - only used for development purposes
     const debug = () => {
         console.log(`-----UI DEBUG-----`);
         console.log(`isTimerInitiated: ${isTimerInitiated}`);

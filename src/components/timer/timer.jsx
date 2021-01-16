@@ -11,13 +11,17 @@ const Timer = (props) => {
     const handleStartTimer = () => {
         props.handleStartTimer();
     }
+
     const handlePauseTimer = () => {
         props.handlePauseTimer();
     }
+
     const handleResetTimer = () => {
         props.soundBox.playClickSound();
         props.handleResetTimer();
     }
+    
+    // Change indicator opacity depending on current timer status
     useEffect(() => {
         if(props.currentTimerStatus === 'focus') {
             focusIndicatorRef.current.style.opacity = "1";
@@ -31,7 +35,7 @@ const Timer = (props) => {
         }
     }, [props.currentTimerStatus]);
 
-    // Change cycle description UI color when goal is reached
+    // Change cycle indicator color when goal is reached
     useEffect(() => {
         if(props.isGoalCycleFinished) {
             cycleIndicatorRef.current.style.color = "#DBA55D";
@@ -63,7 +67,6 @@ const Timer = (props) => {
                     <i className={`fas fa-redo-alt ${styles.reset_icon}`}></i>
                 </div>
             </div>
-
             <Controller
                 soundBox={props.soundBox}
                 handleStartTimer={handleStartTimer}
