@@ -25,8 +25,8 @@ const Timer = (props) => {
         focusIndicatorRef.current.style.opacity = "0.3";
         breakIndicatorRef.current.style.opacity = "1";
     } else if(props.currentTimerStatus === 'none') {
-        focusIndicatorRef.current.style.opacity = "1";
-        breakIndicatorRef.current.style.opacity = "1";
+        focusIndicatorRef.current.style.opacity = "0.3";
+        breakIndicatorRef.current.style.opacity = "0.3";
     }
 
     return(
