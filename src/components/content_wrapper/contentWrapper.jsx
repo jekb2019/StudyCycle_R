@@ -135,11 +135,7 @@ const ContentWrapper = (props) => {
             let drift = Date.now() - expectedTime;
             work();
             expectedTime += interval;
-            if(interval - drift > 0) {
                 setTimerObject(setTimeout(round, interval - drift));
-            } else {
-                setTimerObject(setTimeout(round, interval));
-            }
         }
 
         const work = () => {
