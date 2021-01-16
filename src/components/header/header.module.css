@@ -1,8 +1,19 @@
 .logo {
-    width: 300px;
+    width: 350px;
 }
 .logo_wrapper {
-    margin: 0;
+    margin: 0 0 10px 0;
     padding: 0;
     height: 120px;
+}
+
+
+/* Mobile */
+@media only screen and (max-width: 609px) {
+    .logo {
+        width: 300px;
+    }
+    .logo_wrapper {
+        margin: 0;
+    }
 }

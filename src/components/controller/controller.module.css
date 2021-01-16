@@ -2,6 +2,7 @@
 @value makerGray from '../../common/colors.css';
 @value iconSmall from '../../common/sizes.css';
 @value iconMedium from '../../common/sizes.css';
+@value iconLarge from '../../common/sizes.css';
 @value iconVeryLarge from '../../common/sizes.css';
 @value verySmall from '../../common/sizes.css';
 @value small from '../../common/sizes.css';
@@ -55,11 +56,14 @@
 
 /* Mobile */
 @media only screen and (max-width: 609px) {
+    .controllers {
+        margin-top: 20px;
+    }
     .primary_controller {
-        font-size: iconMedium;
+        font-size: iconLarge;
     }
     .sub_controller {
-        font-size: iconSmall;
+        font-size: iconMedium;
     }
     .fastWindingDescription {
         font-size: verySmall;

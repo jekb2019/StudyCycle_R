@@ -153,22 +153,22 @@ const ContentWrapper = (props) => {
     }
 
     // Console debugger for states - only used for development purposes
-    const debug = () => {
-        console.log(`-----UI DEBUG-----`);
-        console.log(`isTimerInitiated: ${isTimerInitiated}`);
-        console.log(`isTimerRunning: ${isTimerRunning}`);
-        console.log(`isGoalCycleFinished: ${isGoalCycleFinished}`);
-        console.log(`currentTime: ${currentTime}`);
-        console.log(`isSettingWindowOpen: ${isSettingWindowOpen}`);
-        console.log(`currentTimerStatus: ${currentTimerStatus}`)
-        console.log(`goalCycle: ${goalCycle}`);
-        console.log(`currentCycle: ${currentCycle}`);
-        console.log(`\n`)
-    }
+    // const debug = () => {
+    //     console.log(`-----UI DEBUG-----`);
+    //     console.log(`isTimerInitiated: ${isTimerInitiated}`);
+    //     console.log(`isTimerRunning: ${isTimerRunning}`);
+    //     console.log(`isGoalCycleFinished: ${isGoalCycleFinished}`);
+    //     console.log(`currentTime: ${currentTime}`);
+    //     console.log(`isSettingWindowOpen: ${isSettingWindowOpen}`);
+    //     console.log(`currentTimerStatus: ${currentTimerStatus}`)
+    //     console.log(`goalCycle: ${goalCycle}`);
+    //     console.log(`currentCycle: ${currentCycle}`);
+    //     console.log(`\n`)
+    // }
 
     return (
         <div className={styles.content_wrapper}>
-            <button onClick={debug}>UI DEBUG</button>
+            {/* <button onClick={debug}>UI DEBUG</button> */}
             <TimerWrapper
                 soundBox={props.soundBox}
                 handleSettingWindowToggle={handleSettingWindowToggle}

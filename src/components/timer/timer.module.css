@@ -96,6 +96,9 @@
     font-size: small;
     line-height: 2;
  }
+ .clock_display {
+    margin-top: 35px;
+}
  .cycle_icon {
      font-size: small;
  }
