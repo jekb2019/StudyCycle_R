@@ -17,7 +17,7 @@ const ContentWrapper = (props) => {
     const [isGoalCycleFinished, setIsGoalCycleFinished] = useState(false);
     const [currentTime, setCurrentTime] = useState(`00:00:00`);
     const [timerObject, setTimerObject] = useState(null);
-    const [currentTimerStatus, setCurrentTimerStatus] = useState(null);
+    const [currentTimerStatus, setCurrentTimerStatus] = useState(TimerStatus.NONE);
     const [currentCycle, setCurrentCycle] = useState(null);
     const [goalCycle, setGoalCycle] = useState(props.timerService.getGoalCycle());
     const [focusTimeHours, setFocusTimeHours] = useState(props.timerService.getFocusTimeHours());
@@ -47,6 +47,21 @@ const ContentWrapper = (props) => {
             clearInterval(timerObject);
         }
     }, [isGoalCycleFinished])
+
+    // Update document title to match the current time
+    useEffect(() => {
+        if(isGoalCycleFinished) {
+            document.title = 'Goal Reached!';
+        } else if (currentTimerStatus === TimerStatus.NONE) {
+            document.title = 'Study Cycle - Online Study Timer';
+        } else {
+            if(currentTimerStatus === TimerStatus.FOCUS) {
+                document.title = `${currentTime} (${currentCycle}/${goalCycle}) - Focus Time`;
+            } else if (currentTimerStatus === TimerStatus.BREAK) {
+                document.title = `${currentTime} (${currentCycle}/${goalCycle}) - Break Time`;
+            }
+        }
+    }, [currentTime, currentTimerStatus, isGoalCycleFinished, currentCycle, goalCycle])
 
     const handleSettingWindowToggle = () => {
         isSettingWindowOpen ? setIsSettingWindowOpen(false) : setIsSettingWindowOpen(true);

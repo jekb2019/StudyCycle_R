@@ -150,7 +150,6 @@ class Clock {
     }
 
     initiateTimer() {
-        console.log("Clock: initiateTimer");
         this.isTimerInitiated = true;
         this.changeTimerStatus(TimerStatusType.FOCUS);
         this.startTimer();
@@ -194,7 +193,6 @@ class Clock {
                 this.currentCycle = tempCurrentCycle;
             }
             this.currentTime++;
-            console.log(`Current Time: ${this.getFormettedCurrentTime()}`);
         }
         start();
     }

@@ -87,7 +87,6 @@ const SettingWindow = (props) => {
 
     // Update input states every time current input is changed (without 'OK' button clicked)
     const handleSettingInputOnChange = (event, key) => {
-        console.log(key, event.target.value);
         const value = parseInt(event.target.value);
         switch (key) {
             case 'Focus Hours':

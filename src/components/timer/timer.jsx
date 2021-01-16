@@ -40,7 +40,6 @@ const Timer = (props) => {
         if(props.isGoalCycleFinished) {
             cycleIndicatorRef.current.style.color = "#DBA55D";
         } else {
-            console.log(cycleIndicatorRef.current)
             cycleIndicatorRef.current.style.color = "#808080";
         }
     }, [props.isGoalCycleFinished]);
