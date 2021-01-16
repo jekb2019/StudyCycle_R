@@ -124,10 +124,18 @@ const ContentWrapper = (props) => {
 
     const handleFastForward = () => {
         props.timerService.fastForward(props.fastForwardTime);
+        setCurrentTime(props.timerService.getFormattedCurrentTime());
+        setIsGoalCycleFinished(props.timerService.isGoalReached());
+        setCurrentTimerStatus(props.timerService.getCurrentTimerStatus());
+        setCurrentCycle(props.timerService.getCurrentCycle());
     }
 
     const handleFastBackward = () => {
         props.timerService.fastBackward(props.fastBackwardTime);
+        setCurrentTime(props.timerService.getFormattedCurrentTime());
+        setIsGoalCycleFinished(props.timerService.isGoalReached());
+        setCurrentTimerStatus(props.timerService.getCurrentTimerStatus());
+        setCurrentCycle(props.timerService.getCurrentCycle());
     }
 
     // Update clock UI every 100ms
