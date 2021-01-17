@@ -95,6 +95,9 @@ const ContentWrapper = (props) => {
         setBreakTimeHours(breakHours);
         setBreakTimeMinutes(breakMinutes);
         setGoalCycle(goalCycle);
+        setCurrentTime(props.timerService.getFormattedCurrentTime());
+        setCurrentTimerStatus(props.timerService.getCurrentTimerStatus());
+        setIsGoalCycleFinished(props.timerService.isGoalReached());
         return;
     }
 

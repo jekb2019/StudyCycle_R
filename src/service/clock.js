@@ -90,12 +90,14 @@ class Clock {
         const tempBreakTime = breakHours * 60 * 60 + breakMinutes * 60;        
         if(this.currentTime >= tempBreakTime && this.currentTimerStatus === TimerStatusType.BREAK) {
             if(this.currentCycle === this.goalCycle) {
+                this.breakTime = tempBreakTime;
                 this.processGoalReached();
                 return true;
             } else {
                 this.changeTimerStatus(TimerStatusType.FOCUS);
                 this.currentTime = 0;
                 this.breakTime = tempBreakTime;
+                this.currentCycle++;
                 return true;
             }
         } else {
