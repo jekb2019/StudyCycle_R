@@ -70,6 +70,10 @@ const ContentWrapper = (props) => {
     // Apply customized timer settings when 'OK' is clicked in setting window
     const handleTimerSetting = (focusHours, focusMinutes, breakHours, breakMinutes, goalCycle) => {
         handleSettingWindowToggle();
+        if(focusHours < 0 || focusMinutes < 0 || breakHours < 0 || breakMinutes < 0 || goalCycle < 0) {
+            alert('Input cannot be a negative number!');
+            return;
+        }
         const focusCheck = props.timerService.setFocusTime(focusHours, focusMinutes);
         props.timerService.setBreakTime(breakHours, breakMinutes);
         const goalCheck = props.timerService.setGoalCycle(goalCycle);
@@ -84,9 +88,6 @@ const ContentWrapper = (props) => {
         if(!goalCheck) {
             alert('Current cycle exceeds the goal cycle! Please reset the timer and try again.');
             return;
-        }
-        if(focusHours < 0 || focusMinutes < 0 || breakHours < 0 || breakMinutes < 0 || goalCycle < 0) {
-            alert('Input cannot be a negative number!');
         }
 
         setFocusTimeHours(focusHours);
