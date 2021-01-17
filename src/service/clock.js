@@ -145,7 +145,7 @@ class Clock {
                 this.currentTimerStatus = TimerStatusType.GOAL;
                 break;
             default:
-                console.log(`Invalid Timer Status`);
+                console.log(`ERROR: Invalid Timer Status`);
         }
     }
 
@@ -203,7 +203,6 @@ class Clock {
     }
 
     processGoalReached() {
-        console.log("GOAL!")
         this.pauseTimer();
         this.changeTimerStatus(TimerStatusType.GOAL);
     }
@@ -247,22 +246,38 @@ class Clock {
     fastForward(seconds) {
         const tempTime = this.currentTime + seconds;
         if(this.currentTimerStatus === TimerStatusType.FOCUS) {
-            if(tempTime >= this.focusTime) {
+            if(tempTime > this.focusTime) {
                 // this.pauseTimer();
-                this.currentTime = this.focusTime;
+                this.currentTime = 0;
+                this.changeTimerStatus(TimerStatusType.BREAK);
                 // this.startTimer();
             } else {
-                this.pauseTimer();
-                this.currentTime = tempTime;
-                this.startTimer();
+                if(this.isClockRunning) {
+                    this.pauseTimer();
+                    this.currentTime = tempTime;
+                    this.startTimer();
+                } else {
+                    this.currentTime = tempTime;
+                }
             }
         } else if(this.currentTimerStatus === TimerStatusType.BREAK) {
-            if(tempTime >= this.breakTime) {
-                this.currentTime = this.breakTime;
+            if(tempTime > this.breakTime) {
+                if(this.currentCycle === this.goalCycle) {
+                    this.currentTime = this.breakTime;
+                    this.processGoalReached()
+                } else {
+                    this.currentTime = 0;
+                    this.currentCycle++;
+                    this.changeTimerStatus(TimerStatusType.FOCUS);
+                }
             } else {
-                this.pauseTimer();
-                this.currentTime = tempTime;
-                this.startTimer();
+                if(this.isClockRunning) {
+                    this.pauseTimer();
+                    this.currentTime = tempTime;
+                    this.startTimer();
+                } else {
+                    this.currentTime = tempTime;
+                }
             }
         }
     }
@@ -270,13 +285,21 @@ class Clock {
     fastBackward(seconds) {
         const tempTime = this.currentTime - seconds;
         if(tempTime < 0) {
-            this.pauseTimer();
-            this.currentTime = 0;
-            this.startTimer();
+            if(this.isClockRunning) {
+                this.pauseTimer();
+                this.currentTime = 0;
+                this.startTimer();
+            } else {
+                this.currentTime = 0;
+            }
         } else {
-            this.pauseTimer();
-            this.currentTime = tempTime;
-            this.startTimer();
+            if(this.isClockRunning) {
+                this.pauseTimer();
+                this.currentTime = tempTime;
+                this.startTimer();
+            } else {
+                this.currentTime = tempTime;
+            }
         }
     }
 }

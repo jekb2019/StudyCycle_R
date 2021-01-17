@@ -30,7 +30,7 @@ const ContentWrapper = (props) => {
         setCurrentTimerStatus(TimerStatus.NONE);
         setGoalCycle(props.timerService.getGoalCycle());
         setCurrentCycle(props.timerService.getCurrentCycle());
-    }, [])
+    }, [props.timerService]);
 
     useEffect(() => {
         if(currentTimerStatus === TimerStatus.FOCUS) {
@@ -38,7 +38,7 @@ const ContentWrapper = (props) => {
         } else if(currentTimerStatus === TimerStatus.BREAK) {
             props.soundBox.playBreakStartSound();
         }
-    }, [currentTimerStatus])
+    }, [currentTimerStatus, props.soundBox]);
 
     useEffect(() => {
         if(isGoalCycleFinished) {
@@ -46,7 +46,7 @@ const ContentWrapper = (props) => {
             setIsTimerRunning(false);
             clearInterval(timerObject);
         }
-    }, [isGoalCycleFinished])
+    }, [isGoalCycleFinished, props.soundBox, timerObject]);
 
     // Update document title to match the current time
     useEffect(() => {
@@ -84,6 +84,9 @@ const ContentWrapper = (props) => {
         if(!goalCheck) {
             alert('Current cycle exceeds the goal cycle! Please reset the timer and try again.');
             return;
+        }
+        if(focusHours < 0 || focusMinutes < 0 || breakHours < 0 || breakMinutes < 0 || goalCycle < 0) {
+            alert('Input cannot be a negative number!');
         }
 
         setFocusTimeHours(focusHours);
@@ -123,19 +126,23 @@ const ContentWrapper = (props) => {
     }
 
     const handleFastForward = () => {
-        props.timerService.fastForward(props.fastForwardTime);
-        setCurrentTime(props.timerService.getFormattedCurrentTime());
-        setIsGoalCycleFinished(props.timerService.isGoalReached());
-        setCurrentTimerStatus(props.timerService.getCurrentTimerStatus());
-        setCurrentCycle(props.timerService.getCurrentCycle());
+        if(isTimerInitiated) {
+            props.timerService.fastForward(props.fastForwardTime);
+            setCurrentTime(props.timerService.getFormattedCurrentTime());
+            setIsGoalCycleFinished(props.timerService.isGoalReached());
+            setCurrentTimerStatus(props.timerService.getCurrentTimerStatus());
+            setCurrentCycle(props.timerService.getCurrentCycle());
+        }
     }
 
     const handleFastBackward = () => {
-        props.timerService.fastBackward(props.fastBackwardTime);
-        setCurrentTime(props.timerService.getFormattedCurrentTime());
-        setIsGoalCycleFinished(props.timerService.isGoalReached());
-        setCurrentTimerStatus(props.timerService.getCurrentTimerStatus());
-        setCurrentCycle(props.timerService.getCurrentCycle());
+        if(isTimerInitiated){
+            props.timerService.fastBackward(props.fastBackwardTime);
+            setCurrentTime(props.timerService.getFormattedCurrentTime());
+            setIsGoalCycleFinished(props.timerService.isGoalReached());
+            setCurrentTimerStatus(props.timerService.getCurrentTimerStatus());
+            setCurrentCycle(props.timerService.getCurrentCycle());
+        }
     }
 
     // Update clock UI every 100ms
@@ -161,22 +168,22 @@ const ContentWrapper = (props) => {
     }
 
     // Console debugger for states - only used for development purposes
-    // const debug = () => {
-    //     console.log(`-----UI DEBUG-----`);
-    //     console.log(`isTimerInitiated: ${isTimerInitiated}`);
-    //     console.log(`isTimerRunning: ${isTimerRunning}`);
-    //     console.log(`isGoalCycleFinished: ${isGoalCycleFinished}`);
-    //     console.log(`currentTime: ${currentTime}`);
-    //     console.log(`isSettingWindowOpen: ${isSettingWindowOpen}`);
-    //     console.log(`currentTimerStatus: ${currentTimerStatus}`)
-    //     console.log(`goalCycle: ${goalCycle}`);
-    //     console.log(`currentCycle: ${currentCycle}`);
-    //     console.log(`\n`)
-    // }
+    const debug = () => {
+        console.log(`-----UI DEBUG-----`);
+        console.log(`isTimerInitiated: ${isTimerInitiated}`);
+        console.log(`isTimerRunning: ${isTimerRunning}`);
+        console.log(`isGoalCycleFinished: ${isGoalCycleFinished}`);
+        console.log(`currentTime: ${currentTime}`);
+        console.log(`isSettingWindowOpen: ${isSettingWindowOpen}`);
+        console.log(`currentTimerStatus: ${currentTimerStatus}`)
+        console.log(`goalCycle: ${goalCycle}`);
+        console.log(`currentCycle: ${currentCycle}`);
+        console.log(`\n`)
+    }
 
     return (
         <div className={styles.content_wrapper}>
-            {/* <button onClick={debug}>UI DEBUG</button> */}
+            <button onClick={debug}>UI DEBUG</button>
             <TimerWrapper
                 soundBox={props.soundBox}
                 handleSettingWindowToggle={handleSettingWindowToggle}
