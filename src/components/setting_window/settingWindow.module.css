@@ -73,6 +73,7 @@
     color: makerGray;
     position: absolute;
     bottom: 10px;
+    user-select: none;
 }
 .ok_button:hover {
     background-color: makerGray;
