@@ -26,8 +26,8 @@ const ContentWrapper = (props) => {
     const [breakTimeMinutes, setBreakTimeMinutes] = useState(props.timerService.getBreakTimeMinutes());
 
     useEffect(() => {
-        setCurrentTime(props.timerService.getFormattedCurrentTime());
         setCurrentTimerStatus(TimerStatus.NONE);
+        setCurrentTime(props.timerService.getFormattedCurrentTime());
         setGoalCycle(props.timerService.getGoalCycle());
         setCurrentCycle(props.timerService.getCurrentCycle());
     }, [props.timerService]);
@@ -95,9 +95,8 @@ const ContentWrapper = (props) => {
         setBreakTimeHours(breakHours);
         setBreakTimeMinutes(breakMinutes);
         setGoalCycle(goalCycle);
-        setCurrentTime(props.timerService.getFormattedCurrentTime());
-        setCurrentTimerStatus(props.timerService.getCurrentTimerStatus());
-        setIsGoalCycleFinished(props.timerService.isGoalReached());
+
+        updateUI();
         return;
     }
 
@@ -123,29 +122,23 @@ const ContentWrapper = (props) => {
         setIsTimerInitiated(false);
         setIsTimerRunning(false);
         setIsGoalCycleFinished(false);
-        setCurrentCycle(props.timerService.getCurrentCycle());
         clearInterval(timerObject);
-        setCurrentTime(props.timerService.getFormattedCurrentTime());
         setCurrentTimerStatus(TimerStatus.NONE);
+        setCurrentTime(props.timerService.getFormattedCurrentTime());
+        setCurrentCycle(props.timerService.getCurrentCycle());
     }
 
     const handleFastForward = () => {
         if(isTimerInitiated) {
             props.timerService.fastForward(props.fastForwardTime);
-            setCurrentTime(props.timerService.getFormattedCurrentTime());
-            setIsGoalCycleFinished(props.timerService.isGoalReached());
-            setCurrentTimerStatus(props.timerService.getCurrentTimerStatus());
-            setCurrentCycle(props.timerService.getCurrentCycle());
+            updateUI();
         }
     }
 
     const handleFastBackward = () => {
         if(isTimerInitiated){
             props.timerService.fastBackward(props.fastBackwardTime);
-            setCurrentTime(props.timerService.getFormattedCurrentTime());
-            setIsGoalCycleFinished(props.timerService.isGoalReached());
-            setCurrentTimerStatus(props.timerService.getCurrentTimerStatus());
-            setCurrentCycle(props.timerService.getCurrentCycle());
+            updateUI();
         }
     }
 
@@ -163,12 +156,16 @@ const ContentWrapper = (props) => {
                 setTimerObject(setTimeout(round, interval - drift));
         }
         const work = () => {
-            setCurrentTime(props.timerService.getFormattedCurrentTime());
-            setIsGoalCycleFinished(props.timerService.isGoalReached());
-            setCurrentTimerStatus(props.timerService.getCurrentTimerStatus());
-            setCurrentCycle(props.timerService.getCurrentCycle());
+            updateUI();
         }
         start();
+    }
+
+    const updateUI = () => {
+        setCurrentTime(props.timerService.getFormattedCurrentTime());
+        setIsGoalCycleFinished(props.timerService.isGoalReached());
+        setCurrentTimerStatus(props.timerService.getCurrentTimerStatus());
+        setCurrentCycle(props.timerService.getCurrentCycle());
     }
 
     // Console debugger for states - only used for development purposes
