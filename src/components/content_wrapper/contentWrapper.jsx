@@ -96,7 +96,7 @@ const ContentWrapper = (props) => {
         setBreakTimeMinutes(breakMinutes);
         setGoalCycle(goalCycle);
 
-        updateUI();
+        matchUIwithServerStates();
         return;
     }
 
@@ -131,14 +131,14 @@ const ContentWrapper = (props) => {
     const handleFastForward = () => {
         if(isTimerInitiated) {
             props.timerService.fastForward(props.fastForwardTime);
-            updateUI();
+            matchUIwithServerStates();
         }
     }
 
     const handleFastBackward = () => {
         if(isTimerInitiated){
             props.timerService.fastBackward(props.fastBackwardTime);
-            updateUI();
+            matchUIwithServerStates();
         }
     }
 
@@ -156,12 +156,12 @@ const ContentWrapper = (props) => {
                 setTimerObject(setTimeout(round, interval - drift));
         }
         const work = () => {
-            updateUI();
+            matchUIwithServerStates();
         }
         start();
     }
 
-    const updateUI = () => {
+    const matchUIwithServerStates = () => {
         setCurrentTime(props.timerService.getFormattedCurrentTime());
         setIsGoalCycleFinished(props.timerService.isGoalReached());
         setCurrentTimerStatus(props.timerService.getCurrentTimerStatus());
@@ -169,22 +169,22 @@ const ContentWrapper = (props) => {
     }
 
     // Console debugger for states - only used for development purposes
-    const debug = () => {
-        console.log(`-----UI DEBUG-----`);
-        console.log(`isTimerInitiated: ${isTimerInitiated}`);
-        console.log(`isTimerRunning: ${isTimerRunning}`);
-        console.log(`isGoalCycleFinished: ${isGoalCycleFinished}`);
-        console.log(`currentTime: ${currentTime}`);
-        console.log(`isSettingWindowOpen: ${isSettingWindowOpen}`);
-        console.log(`currentTimerStatus: ${currentTimerStatus}`)
-        console.log(`goalCycle: ${goalCycle}`);
-        console.log(`currentCycle: ${currentCycle}`);
-        console.log(`\n`)
-    }
+    // const debug = () => {
+    //     console.log(`-----UI DEBUG-----`);
+    //     console.log(`isTimerInitiated: ${isTimerInitiated}`);
+    //     console.log(`isTimerRunning: ${isTimerRunning}`);
+    //     console.log(`isGoalCycleFinished: ${isGoalCycleFinished}`);
+    //     console.log(`currentTime: ${currentTime}`);
+    //     console.log(`isSettingWindowOpen: ${isSettingWindowOpen}`);
+    //     console.log(`currentTimerStatus: ${currentTimerStatus}`)
+    //     console.log(`goalCycle: ${goalCycle}`);
+    //     console.log(`currentCycle: ${currentCycle}`);
+    //     console.log(`\n`)
+    // }
 
     return (
         <div className={styles.content_wrapper}>
-            <button onClick={debug}>UI DEBUG</button>
+            {/* <button onClick={debug}>UI DEBUG</button> */}
             <TimerWrapper
                 soundBox={props.soundBox}
                 handleSettingWindowToggle={handleSettingWindowToggle}

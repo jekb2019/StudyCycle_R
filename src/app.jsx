@@ -12,9 +12,9 @@ const App = (props) => {
   window.addEventListener('resize', handleResize);
 
   // Console debugger - only for development purposes
-  const serviceDebug = () => {
-    props.timerService.debug();
-  }
+  // const serviceDebug = () => {
+  //   props.timerService.debug();
+  // }
 
   return(
     <div className={styles.app}>
@@ -22,7 +22,7 @@ const App = (props) => {
         <Header/>
         {screenWidth >= 800 && <Banner/>}
       </div>
-      <button onClick={serviceDebug}>Service DEBUG</button>
+      {/* <button onClick={serviceDebug}>Service DEBUG</button> */}
       <ContentWrapper timerService={props.timerService} soundBox={props.soundBox} fastForwardTime={props.fastForwardTime} fastBackwardTime={props.fastBackwardTime}/>
       {screenWidth < 800 && <Banner/>}
       <p className={styles.copyright}>&#169;2020 Study Cycle. All Rights Reserved</p>
