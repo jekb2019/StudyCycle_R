@@ -3,6 +3,7 @@ import styles from './app.module.css';
 import Banner from './components/banner/banner';
 import Header from './components/header/header';
 import ContentWrapper from'./components/content_wrapper/contentWrapper';
+import TaskTrackerWrapper from './components/task_tracker_wrapper/taskTrackerWrapper';
 
 const App = (props) => {
   const [screenWidth, setScreenWidth] = useState(window.screen.width);
@@ -25,6 +26,7 @@ const App = (props) => {
       {/* <button onClick={serviceDebug}>Service DEBUG</button> */}
       <ContentWrapper timerService={props.timerService} soundBox={props.soundBox} fastForwardTime={props.fastForwardTime} fastBackwardTime={props.fastBackwardTime}/>
       {screenWidth < 800 && <Banner/>}
+      <TaskTrackerWrapper className={styles.task_tracker_wrapper}/>
       <p className={styles.copyright}>&#169;2020 Study Cycle. All Rights Reserved</p>
     </div>);
 };

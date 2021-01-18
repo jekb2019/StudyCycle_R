@@ -1,0 +1,61 @@
+@value makerSlightlyLightGray from '../../common/colors.css';
+@value makerGray from '../../common/colors.css';
+@value makerDarkGray from '../../common/colors.css';
+
+button {
+    outline: none;
+    cursor: pointer;
+    border: none;
+}
+input {
+    border: none;
+}
+input:focus{
+    outline: none;
+}
+::placeholder {
+    color: makerSlightlyLightGray;
+}
+
+.whole_wrapper {
+    height: 200px;
+    width: 570px;
+    background-color: white;
+    margin-bottom: 20px;
+    border-radius: 30px;
+}
+.input_wrapper {
+    border-bottom: 3px solid makerSlightlyLightGray;
+    margin: 0 20px 0 20px;
+}
+.input_form {
+    display: flex;
+    justify-content: space-between;
+}
+.input {
+    margin-left: 10px;
+    height: 40px;
+    width: 460px;
+    margin-top: 10px;
+    font-size: 23px;
+    color: makerDarkGray;
+}
+.add_button {
+    margin-right: 10px;
+    margin-top: 10px;
+    height: 35px;
+    width: 40px;
+    background-color: makerSlightlyLightGray;
+    border-radius: 10px;
+    color: white;
+}
+.add_button:hover {
+    background-color: makerGray;
+}
+.add_button:active {
+    background-color: black;
+}
+.add_icon {
+    font-size: 20px;
+    margin-left: 1px;
+}

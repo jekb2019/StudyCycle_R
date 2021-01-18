@@ -1,0 +1,37 @@
+@value makerLightGray from '../../common/colors.css';
+@value makerGray from '../../common/colors.css';
+@value makerDarkGray from '../../common/colors.css';
+@value mediumMedium from '../../common/sizes.css';
+
+.wrapper {
+    margin-top: 20px;
+    width: 600px;
+    background-color: makerLightGray;
+    border-radius: 50px;
+    position: relative;
+}
+.title {
+    user-select: none;
+}
+.header {
+    color: makerGray;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    font-size: mediumMedium;
+    display: flex;
+    justify-content: center;
+}
+.button {
+    position: absolute;
+    right: 30px;
+}
+.button:hover .visibility_icon {
+    color: makerDarkGray;
+}
+.button:active .visibility_icon {
+    color: black;
+}
+.task_tracker_wrapper {
+    display: flex;
+    justify-content: center;
+}
