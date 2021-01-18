@@ -27,7 +27,9 @@ const App = (props) => {
       <ContentWrapper timerService={props.timerService} soundBox={props.soundBox} fastForwardTime={props.fastForwardTime} fastBackwardTime={props.fastBackwardTime}/>
       {screenWidth < 800 && <Banner/>}
       <TaskTrackerWrapper className={styles.task_tracker_wrapper}/>
-      <p className={styles.copyright}>&#169;2020 Study Cycle. All Rights Reserved</p>
+      <footer>
+        <p className={styles.copyright}>&#169;2020 Study Cycle. All Rights Reserved</p>
+      </footer>
     </div>);
 };
 

@@ -4,8 +4,35 @@ import styles from './taskTrackerWrapper.module.css';
 
 
 const TaskTrackerWrapper = (props) => {
-
     const [isTaskTrackerOpen, setIsTaskTrackerOpen] = useState(true);
+    const [tasks, setTasks] = useState(
+        [
+            {
+                key: new Date().getTime(),
+                name: 'Finish work',
+                isDone: false,
+            }
+        ]
+    );
+
+    const createNewTask = (name) => {
+        const tempTasks = tasks.map(task => {
+            return task;
+        });
+        tempTasks.unshift({
+            key: new Date().getTime(),
+            name,
+            isDone: false
+        });
+        console.log(tempTasks)
+        setTasks(tempTasks);
+        console.log(tasks)
+    }
+
+    const deleteTask = (key) => {
+        const tempTasks = tasks.filter(task => task.key !== key);
+        setTasks(tempTasks);
+    }
 
     useEffect(() => {
         console.log(isTaskTrackerOpen)
@@ -25,7 +52,7 @@ const TaskTrackerWrapper = (props) => {
                 </div>
             </div>
             <div className={styles.task_tracker_wrapper}>
-                {isTaskTrackerOpen && <TaskTracker/>}
+                {isTaskTrackerOpen && <TaskTracker tasks={tasks} createNewTask={createNewTask} deleteTask={deleteTask}/>}
             </div>
         </div>
     );

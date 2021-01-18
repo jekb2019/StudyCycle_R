@@ -4,7 +4,7 @@
 .app {
     border-radius: 30px;
     width: 1000px;
-    height: 100vh;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -16,9 +16,11 @@
     display: flex;
     justify-content: space-between;
 }
+footer {
+    margin-top: 100px;
+}
 .copyright{
     font-size: slightlySmall;
-    position: absolute;
     bottom: 10px;
     color: makerGray;
     user-select: none;

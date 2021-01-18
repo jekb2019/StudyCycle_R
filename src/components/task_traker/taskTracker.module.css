@@ -18,15 +18,15 @@ input:focus{
 }
 
 .whole_wrapper {
-    height: 200px;
     width: 570px;
     background-color: white;
     margin-bottom: 20px;
     border-radius: 30px;
+    padding-bottom: 20px;
 }
 .input_wrapper {
     border-bottom: 3px solid makerSlightlyLightGray;
-    margin: 0 20px 0 20px;
+    margin: 0 20px 10px 20px;
 }
 .input_form {
     display: flex;
@@ -48,6 +48,7 @@ input:focus{
     background-color: makerSlightlyLightGray;
     border-radius: 10px;
     color: white;
+    -webkit-tap-highlight-color: transparent;
 }
 .add_button:hover {
     background-color: makerGray;

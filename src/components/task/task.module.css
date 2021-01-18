@@ -1,0 +1,87 @@
+@value makerSlightlyLightGray from '../../common/colors.css';
+@value makerLightGray from '../../common/colors.css';
+@value makerGray from '../../common/colors.css';
+
+.task_wrapper {
+    display: flex;
+    justify-content: space-between;
+    border: 1.5px solid makerSlightlyLightGray;
+    border-radius: 15px;
+    margin: 5px 30px 0 30px;
+    padding: 5px 10px 5px 10px;
+    height: 40px;
+    font-size: 22px;
+}
+.tick_and_subject {
+    display: flex;
+}
+.checkbox_container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 22px;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+}
+.checkbox_container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+.custom_checkbox {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 25px;
+    width: 25px;
+    border: 1px solid makerGray;
+    border-radius: 5px;
+}
+.checkbox_container:hover input ~ .custom_checkbox {
+    background-color: makerSlightlyLightGray;
+}
+.checkbox_container input:checked ~ .custom_checkbox {
+    background-color: makerGray;
+}
+.custom_checkbox:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+.checkbox_container input:checked ~ .custom_checkbox:after {
+    display: block;
+}
+.checkbox_container .custom_checkbox:after {
+    left: 7px;
+    top: 4px;
+    width: 6px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    transform: rotate(45deg);
+}
+.name {
+    font-size: 22px;
+}
+.buttons {
+    display: flex;
+}
+.button {
+    margin-left: 10px;
+}
+.edit_button {
+    color: makerGray;
+}
+.edit_button:hover {
+    color: black;
+}
+.trash_button {
+    color: makerSlightlyLightGray;
+}
+.trash_button:hover {
+    color: #eb8d8d;
+}
