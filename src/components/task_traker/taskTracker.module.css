@@ -60,3 +60,39 @@ input:focus{
     font-size: 20px;
     margin-left: 1px;
 }
+
+/* Mobile */
+@media only screen and (max-width: 609px) {
+    .whole_wrapper {
+        width: 280px;
+        background-color: white;
+        margin-bottom: 20px;
+        border-radius: 30px;
+        padding-bottom: 20px;
+    }
+    .input_wrapper {
+        border-bottom: 2px solid makerSlightlyLightGray;
+        margin: 0 15px 5px 15px;
+    }
+    .input {
+        height: 20px;
+        width: 230px;
+        font-size: 15px;
+    }
+    .add_button {
+        margin-top: 13px;
+        height: 15px;
+        width: 20px;
+        border-radius: 5px;
+        background-color: makerGray;
+        color: white;
+    }
+    .add_button:active {
+        background-color: black;
+    }
+    .add_icon {
+        font-size: 8px;
+        margin-right: 0.6px;
+        margin-bottom: 1.5px;
+    }
+}

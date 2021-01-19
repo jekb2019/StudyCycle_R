@@ -1,5 +1,8 @@
 @value makerGray from './common/colors.css';
+@value makerDarkGray from './common/colors.css';
 @value slightlySmall from './common/sizes.css';
+@value iconMedium from './common/sizes.css';
+
 
 .app {
     border-radius: 30px;
@@ -17,7 +20,25 @@
     justify-content: space-between;
 }
 footer {
-    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 150px;
+}
+.links {
+    margin-bottom: 10px;
+}
+.links a{
+    text-decoration: none;
+    color: makerGray;
+    transition: 0.3s;
+    font-size: iconMedium;
+}
+.links a:hover {
+    color: makerDarkGray;
+}
+.feedback_link {
+    margin-right: 15px;
 }
 .copyright{
     font-size: slightlySmall;

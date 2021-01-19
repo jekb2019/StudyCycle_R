@@ -28,6 +28,14 @@ const App = (props) => {
       {screenWidth < 800 && <Banner/>}
       <TaskTrackerWrapper className={styles.task_tracker_wrapper}/>
       <footer>
+        <div className={styles.links}>
+          <a href="https://forms.gle/J7kSJT4vDfXYd2cf8" className={`${styles.link} ${styles.feedback_link}`}>
+            <i className="fas fa-comments"></i>
+          </a>
+          <a href="mailto:officialstudycycle@gmail.com" className={styles.link}>
+            <i className="fas fa-envelope"></i>
+          </a>
+        </div>
         <p className={styles.copyright}>&#169;2020 Study Cycle. All Rights Reserved</p>
       </footer>
     </div>);

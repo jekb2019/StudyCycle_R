@@ -61,7 +61,6 @@
 @media only screen and (max-width: 609px) {
     .wrapper {
         height: 270px;
-        margin-top: 50px;
     }
     .settings {
         font-size: small;

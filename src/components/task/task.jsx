@@ -12,7 +12,7 @@ const Task = (props) => {
 
     // Change edit button color when it is in edit mode
     useEffect(() => {
-        isEditEnabled ? editRef.current.style.color = '#59B563' : editRef.current.style.color = '#808080'; 
+        isEditEnabled ? editRef.current.style.color = '#59B563' : editRef.current.style.color = null; 
     }, [isEditEnabled]);
 
     useEffect(() => {
@@ -49,7 +49,7 @@ const Task = (props) => {
         setIsEditEnabled(false);
     }
 
-    const editName = () => {
+    const editName = (event) => {
         if(isEditEnabled) {
             disableEditMode();
         } else {
@@ -62,7 +62,8 @@ const Task = (props) => {
             changeTaskName(props.task.key, nameRef.current.value);
         }
     }
-    const handleOnBlur = () => {
+    const handleOnBlur = (event) => {
+        console.log(event)
         disableEditMode();
     }
     const handleOnKeyPressEnter = (event) => {
@@ -83,7 +84,7 @@ const Task = (props) => {
                 <input className={styles.name} ref={nameRef} type="text" defaultValue={name} readOnly onInput={handleOnInput} onBlur={handleOnBlur} onKeyPress={handleOnKeyPressEnter}/>
             </div>
             <div className={styles.buttons}>
-                <div ref={editRef} className={`${styles.button} ${styles.edit_button}`} onClick={editName}>
+                <div ref={editRef} className={`${styles.button} ${styles.edit_button}`} onMouseDown={(event) => {event.preventDefault()}} onClick={editName}>
                     <i className="fas fa-edit"></i>
                 </div>
                 <div className={`${styles.button} ${styles.trash_button}`} onClick={deleteTask}>

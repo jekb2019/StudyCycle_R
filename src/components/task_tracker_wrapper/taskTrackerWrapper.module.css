@@ -2,6 +2,7 @@
 @value makerGray from '../../common/colors.css';
 @value makerDarkGray from '../../common/colors.css';
 @value mediumMedium from '../../common/sizes.css';
+@value smallMedium from '../../common/sizes.css';
 
 .wrapper {
     margin-top: 20px;
@@ -24,6 +25,7 @@
 .button {
     position: absolute;
     right: 30px;
+    cursor: pointer;
 }
 .button:hover .visibility_icon {
     color: makerDarkGray;
@@ -34,4 +36,18 @@
 .task_tracker_wrapper {
     display: flex;
     justify-content: center;
+}
+
+/* Mobile */
+@media only screen and (max-width: 609px) {
+    .wrapper {
+        margin-top: 5px;
+        width: 300px;
+        border-radius: 40px;
+    }
+    .header {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        font-size: smallMedium;
+    }
 }
