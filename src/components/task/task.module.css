@@ -66,6 +66,7 @@
 }
 .name {
     font-size: 22px;
+    width: 370px;
 }
 .buttons {
     display: flex;

@@ -3,7 +3,7 @@ import TaskTracker from '../task_traker/taskTracker';
 import styles from './taskTrackerWrapper.module.css';
 
 
-const TaskTrackerWrapper = (props) => {
+const TaskTrackerWrapper = () => {
     const [isTaskTrackerOpen, setIsTaskTrackerOpen] = useState(true);
     const [tasks, setTasks] = useState(
         [
@@ -15,6 +15,29 @@ const TaskTrackerWrapper = (props) => {
         ]
     );
 
+    const setTaskIsDone = (key, isDone) => {
+        console.log("set task is done called", isDone)
+        const tempTasks = tasks.map(task => {
+            if(task.key === key) {
+                task.isDone = isDone;
+                return task;
+            }
+            return task;
+        });
+        setTasks(tempTasks);
+    }
+
+    const changeTaskName = (key, name) => {
+        const tempTasks = tasks.map(task => {
+            if(task.key === key) {
+                task.name = name;
+                return task;
+            }
+            return task;
+        });
+        setTasks(tempTasks);
+    };
+
     const createNewTask = (name) => {
         const tempTasks = tasks.map(task => {
             return task;
@@ -24,26 +47,30 @@ const TaskTrackerWrapper = (props) => {
             name,
             isDone: false
         });
-        console.log(tempTasks)
         setTasks(tempTasks);
-        console.log(tasks)
-    }
+    };
 
     const deleteTask = (key) => {
         const tempTasks = tasks.filter(task => task.key !== key);
         setTasks(tempTasks);
-    }
+    };
 
     useEffect(() => {
         console.log(isTaskTrackerOpen)
-    }, [])
+    }, []);
 
     const handleToggleTaskTracker = () => {
         isTaskTrackerOpen ? setIsTaskTrackerOpen(false) : setIsTaskTrackerOpen(true);
-    }
+    };
+
+    // Console debugger: Only used for development purposes
+    // const debugTasks = () => {
+    //     console.log(tasks);
+    // }
 
     return(
         <div className={styles.wrapper}>
+            {/* <button onClick={debugTasks}>DEBUG TASKS</button> */}
             <div className={styles.header}>
                 <p className={styles.title}>Task Tracker</p>
                 <div className={styles.button} onClick={handleToggleTaskTracker}>
@@ -52,7 +79,7 @@ const TaskTrackerWrapper = (props) => {
                 </div>
             </div>
             <div className={styles.task_tracker_wrapper}>
-                {isTaskTrackerOpen && <TaskTracker tasks={tasks} createNewTask={createNewTask} deleteTask={deleteTask}/>}
+                {isTaskTrackerOpen && <TaskTracker tasks={tasks} createNewTask={createNewTask} deleteTask={deleteTask} changeTaskName={changeTaskName} setTaskIsDone={setTaskIsDone}/>}
             </div>
         </div>
     );

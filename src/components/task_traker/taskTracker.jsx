@@ -4,13 +4,14 @@ import styles from './taskTracker.module.css';
 
 const TaskTracker = (props) => {
     const inputRef = useRef();
+
     const handleOnSubmit = event => {
         event.preventDefault();
         if(inputRef.current.value) {
             props.createNewTask(inputRef.current.value);
         }
         inputRef.current.value = '';
-    }
+    };
 
     return (
         <div className={styles.whole_wrapper}>
@@ -24,7 +25,7 @@ const TaskTracker = (props) => {
             </div>
             <div className={styles.tasks_wrapper}>
                 {props.tasks.map((task) => {
-                    return <Task key={task.key} task={task} deleteTask={props.deleteTask}/>;
+                    return <Task key={task.key} task={task} deleteTask={props.deleteTask} changeTaskName={props.changeTaskName} setTaskIsDone={props.setTaskIsDone}/>;
                 })}
             </div>
         </div>
