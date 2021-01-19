@@ -63,7 +63,6 @@ const Task = (props) => {
         }
     }
     const handleOnBlur = (event) => {
-        console.log(event)
         disableEditMode();
     }
     const handleOnKeyPressEnter = (event) => {

@@ -7,6 +7,7 @@ const TaskTracker = (props) => {
 
     const handleOnSubmit = event => {
         event.preventDefault();
+        props.soundBox.playClickSound();
         if(inputRef.current.value) {
             props.createNewTask(inputRef.current.value);
         }

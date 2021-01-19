@@ -3,7 +3,7 @@ import TaskTracker from '../task_traker/taskTracker';
 import styles from './taskTrackerWrapper.module.css';
 
 
-const TaskTrackerWrapper = () => {
+const TaskTrackerWrapper = (props) => {
     const [isTaskTrackerOpen, setIsTaskTrackerOpen] = useState(true);
     const [tasks, setTasks] = useState(
         [
@@ -16,7 +16,6 @@ const TaskTrackerWrapper = () => {
     );
 
     const setTaskIsDone = (key, isDone) => {
-        console.log("set task is done called", isDone)
         const tempTasks = tasks.map(task => {
             if(task.key === key) {
                 task.isDone = isDone;
@@ -60,6 +59,7 @@ const TaskTrackerWrapper = () => {
     }, []);
 
     const handleToggleTaskTracker = () => {
+        props.soundBox.playClickSound();
         isTaskTrackerOpen ? setIsTaskTrackerOpen(false) : setIsTaskTrackerOpen(true);
     };
 
@@ -79,7 +79,7 @@ const TaskTrackerWrapper = () => {
                 </div>
             </div>
             <div className={styles.task_tracker_wrapper}>
-                {isTaskTrackerOpen && <TaskTracker tasks={tasks} createNewTask={createNewTask} deleteTask={deleteTask} changeTaskName={changeTaskName} setTaskIsDone={setTaskIsDone}/>}
+                {isTaskTrackerOpen && <TaskTracker soundBox={props.soundBox} tasks={tasks} createNewTask={createNewTask} deleteTask={deleteTask} changeTaskName={changeTaskName} setTaskIsDone={setTaskIsDone}/>}
             </div>
         </div>
     );

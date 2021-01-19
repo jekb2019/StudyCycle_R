@@ -1,6 +1,7 @@
 @value makerSlightlyLightGray from '../../common/colors.css';
 @value makerLightGray from '../../common/colors.css';
 @value makerGray from '../../common/colors.css';
+@value makerDarkGray from '../../common/colors.css';
 
 .task_wrapper {
     display: flex;
@@ -66,6 +67,7 @@
 .name {
     font-size: 22px;
     width: 370px;
+    color: makerDarkGray;
 }
 .buttons {
     display: flex;
@@ -93,10 +95,10 @@
     .task_wrapper {
         border: 1px solid makerSlightlyLightGray;
         border-radius: 5px;
-        margin: 0 15px 0 15px;
-        height: 20px;
-        font-size: 12px;
-        padding: 2px 5px 2px 5px;
+        margin: 0 15px 3px 15px;
+        height: 30px;
+        font-size: 15px;
+        padding: 5px 5px 5px 5px;
     }
     .checkbox_container {
         padding-left: 20px;
@@ -107,26 +109,21 @@
         position: absolute;
         top: 1px;
         left: 0;
-        height: 12px;
-        width: 12px;
+        height: 16px;
+        width: 16px;
         border: 1px solid makerGray;
         border-radius: 3px;
     }
     .checkbox_container .custom_checkbox:after {
-        top: 0px;
-        left: 2px;
+        top: 2px;
+        left: 4px;
         width: 3.6px;
         height: 6px;
         border-width: 0 2px 2px 0;
     }
-
-
-
-
-
     .name {
-        font-size: 13px;
-        width: 140px;
+        font-size: 17px;
+        width: 175px;
     }
     .button {
         margin-left: 5px;
