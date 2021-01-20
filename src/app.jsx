@@ -29,10 +29,10 @@ const App = (props) => {
       <TaskTrackerWrapper soundBox={props.soundBox}/>
       <footer>
         <div className={styles.links}>
-          <a href="https://forms.gle/J7kSJT4vDfXYd2cf8" className={`${styles.link} ${styles.feedback_link}`}>
+          <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/J7kSJT4vDfXYd2cf8" className={`${styles.link} ${styles.feedback_link}`}>
             <i className="fas fa-comments"></i>
           </a>
-          <a href="mailto:officialstudycycle@gmail.com" className={styles.link}>
+          <a target="_blank" rel="noopener noreferrer" href="mailto:officialstudycycle@gmail.com" className={styles.link}>
             <i className="fas fa-envelope"></i>
           </a>
         </div>

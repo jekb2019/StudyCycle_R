@@ -54,10 +54,6 @@ const TaskTrackerWrapper = (props) => {
         setTasks(tempTasks);
     };
 
-    useEffect(() => {
-        console.log(isTaskTrackerOpen)
-    }, []);
-
     const handleToggleTaskTracker = () => {
         props.soundBox.playClickSound();
         isTaskTrackerOpen ? setIsTaskTrackerOpen(false) : setIsTaskTrackerOpen(true);
