@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Timer from '../timer/timer';
 import styles from './timerWrapper.module.css';
 

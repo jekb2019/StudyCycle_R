@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import TaskTracker from '../task_traker/taskTracker';
 import styles from './taskTrackerWrapper.module.css';
 

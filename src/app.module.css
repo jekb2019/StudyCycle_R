@@ -23,10 +23,11 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 150px;
+    margin-top: 300px;
 }
 .links {
     margin-bottom: 10px;
+    -webkit-tap-highlight-color: transparent;
 }
 .links a{
     text-decoration: none;

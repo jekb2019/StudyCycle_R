@@ -1,4 +1,4 @@
-import {useState } from 'react';
+import {useEffect, useState } from 'react';
 import styles from './app.module.css';
 import Banner from './components/banner/banner';
 import Header from './components/header/header';
@@ -9,8 +9,19 @@ const App = (props) => {
   const [screenWidth, setScreenWidth] = useState(window.screen.width);
   const handleResize = () => {
     setScreenWidth(window.screen.width);
+    handleShowHiddenInputs();
   }
-  window.addEventListener('resize', handleResize);
+
+  useEffect(() => {
+    window.addEventListener('resize', handleResize);
+  }, []);
+
+  const handleShowHiddenInputs = () => {
+    const inputs = document.activeElement;
+    if(inputs.tagName.toLocaleLowerCase() === 'input') {
+      inputs.scrollIntoView({ behavior: 'smooth'});
+    }
+  }
 
   // Console debugger - only for development purposes
   // const serviceDebug = () => {

@@ -26,6 +26,7 @@
     position: absolute;
     right: 30px;
     cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
 }
 .button:hover .visibility_icon {
     color: makerDarkGray;
