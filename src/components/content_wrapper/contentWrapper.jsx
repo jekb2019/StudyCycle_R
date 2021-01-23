@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import TimerWrapper from '../timer_wrapper/timerWrapper';
-import SettingWindow from '../setting_window/settingWindow';
+import SettingWindowWrapper from '../setting_window_wrapper/settingWindowWrapper';
 import styles from './contentWrapper.module.css';
 
 // Enum for timer status
@@ -205,11 +205,12 @@ const ContentWrapper = (props) => {
                 breakTimeHours={breakTimeHours}
                 breakTimeMinutes={breakTimeMinutes}/>
             {isSettingWindowOpen && 
-                <SettingWindow 
+                <SettingWindowWrapper
                     timerService={props.timerService}
                     soundBox={props.soundBox}
                     handleSettingWindowToggle={handleSettingWindowToggle}
-                    handleTimerSetting={handleTimerSetting}/>
+                    handleTimerSetting={handleTimerSetting}
+                />
             }
         </div>
     );

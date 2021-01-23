@@ -9,19 +9,19 @@ const App = (props) => {
   const [screenWidth, setScreenWidth] = useState(window.screen.width);
   const handleResize = () => {
     setScreenWidth(window.screen.width);
-    handleShowHiddenInputs();
+    // handleShowHiddenInputs();
   }
 
   useEffect(() => {
     window.addEventListener('resize', handleResize);
   }, []);
 
-  const handleShowHiddenInputs = () => {
-    const inputs = document.activeElement;
-    if(inputs.tagName.toLocaleLowerCase() === 'input') {
-      inputs.scrollIntoView({ behavior: 'smooth'});
-    }
-  }
+  // const handleShowHiddenInputs = () => {
+  //   const inputs = document.activeElement;
+  //   if(inputs.tagName.toLocaleLowerCase() === 'input') {
+  //     inputs.scrollIntoView({ behavior: 'smooth'});
+  //   }
+  // }
 
   // Console debugger - only for development purposes
   // const serviceDebug = () => {

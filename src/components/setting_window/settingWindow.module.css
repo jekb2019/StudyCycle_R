@@ -8,18 +8,29 @@
 @value mediumMedium from '../../common/sizes.css';
 @value mediumLarge from '../../common/sizes.css';
 
+.window::-webkit-scrollbar {
+    -webkit-appearance: none;
+}
+
 .window {
-    z-index: 1;
     box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.63);
     border-radius: 40px;
-    position: fixed;
-    top: 100px;
+    position: relative;
     width: 300px;
-    height: 400px;
+    max-height: 400px;
     background-color: white;
     display: flex;
     flex-direction: column;
     align-items: center;
+    overflow-y: scroll;
+    padding-bottom: 10px;
+    padding-left: 12px;
+}
+.content_wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-bottom: 25px;
 }
 .header {
     user-select: none;
@@ -39,10 +50,10 @@
     font-size: medium;
     height: 18px;
     position: absolute;
-    right: 20px;
     top: 10px;
     color: makerSlightlyLightGray;
     margin-top: 2px;
+    right: 8px;
 }
 .close_icon {
     margin-bottom: 2px;
@@ -72,9 +83,8 @@
     border: none;
     background-color: makerSlightlierLightGray;
     color: makerGray;
-    position: absolute;
-    bottom: 10px;
     user-select: none;
+    line-height: 1.5;
 }
 .ok_button:hover {
     background-color: makerGray;
@@ -89,4 +99,29 @@
     padding:0;
     background-color: black;
     color: white;
+}
+
+@media only screen and (max-height: 500px), (max-width: 609px) {
+    .window::-webkit-scrollbar {
+        -webkit-appearance: none;
+    }
+
+    .window::-webkit-scrollbar-button {
+        height: 20px;
+    }
+
+    .window::-webkit-scrollbar:vertical {
+        width: 12px;
+    }
+    
+    .window::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, .5);
+        border-radius: 10px;
+        border: 2px solid #ffffff;
+    }
+    
+    .window::-webkit-scrollbar-track {
+        border-radius: 10px;
+        background-color: #ffffff;
+    }
 }

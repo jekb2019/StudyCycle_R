@@ -1,0 +1,12 @@
+.setting_windwo_wrapper {
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 50px 0;
+    background-color: rgba(0,0,0,0.5);
+}

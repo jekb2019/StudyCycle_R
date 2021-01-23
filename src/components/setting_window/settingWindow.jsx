@@ -117,23 +117,25 @@ const SettingWindow = (props) => {
 
     return (
         <div className={styles.window} onKeyPress={handleOnKeyPressEnter}>
-            <div className={styles.header}>
-                <img className={styles.logo} src="/images/small-logo.png" alt="Study Cycle small logo"/>
-                <h1 className={styles.subject}>Settings</h1>
-                <div className={styles.close_button} onClick={handleSettingWindowToggle}>
-                    <i className={`fas fa-times ${styles.close_icon}`}></i>
+            <div className={styles.content_wrapper}>
+                <div className={styles.header}>
+                    <img className={styles.logo} src="/images/small-logo.png" alt="Study Cycle small logo"/>
+                    <h1 className={styles.subject}>Settings</h1>
+                    <div className={styles.close_button} onClick={handleSettingWindowToggle}>
+                        <i className={`fas fa-times ${styles.close_icon}`}></i>
+                    </div>
                 </div>
-            </div>
-            <div className={styles.components}>
-                {
-                    settingInputs.map(item => (
-                        <SettingComponent
-                            key={item.title}
-                            component={item}
-                            handleSettingInputOnChange={handleSettingInputOnChange}
-                        />
-                    ))
-                }
+                <div className={styles.components}>
+                    {
+                        settingInputs.map(item => (
+                            <SettingComponent
+                                key={item.title}
+                                component={item}
+                                handleSettingInputOnChange={handleSettingInputOnChange}
+                            />
+                        ))
+                    }
+                </div>
             </div>
             <button className={styles.ok_button} onClick={handleTimerSetting}>OK</button>
         </div>
