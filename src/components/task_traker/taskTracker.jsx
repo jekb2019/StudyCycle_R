@@ -12,6 +12,7 @@ const TaskTracker = (props) => {
             props.createNewTask(inputRef.current.value);
         }
         inputRef.current.value = '';
+        inputRef.current.focus();
     };
 
     return (

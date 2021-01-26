@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import TaskTracker from '../task_traker/taskTracker';
 import styles from './taskTrackerWrapper.module.css';
-
+import { CSSTransition } from 'react-transition-group';
+import transitionCSS from './transition.module.css';
 
 const TaskTrackerWrapper = (props) => {
     const [isTaskTrackerOpen, setIsTaskTrackerOpen] = useState(true);
@@ -74,9 +75,16 @@ const TaskTrackerWrapper = (props) => {
                     {!isTaskTrackerOpen && <div><i className={`${`fas fa-chevron-down`} ${styles.visibility_icon}`}></i></div>}
                 </div>
             </div>
-            <div className={styles.task_tracker_wrapper}>
-                {isTaskTrackerOpen && <TaskTracker soundBox={props.soundBox} tasks={tasks} createNewTask={createNewTask} deleteTask={deleteTask} changeTaskName={changeTaskName} setTaskIsDone={setTaskIsDone}/>}
-            </div>
+            <CSSTransition
+                in={isTaskTrackerOpen}
+                timeout={100}
+                classNames={transitionCSS}
+                unmountOnExit
+            >
+                <div className={styles.task_tracker_wrapper}>
+                    {isTaskTrackerOpen && <TaskTracker soundBox={props.soundBox} tasks={tasks} createNewTask={createNewTask} deleteTask={deleteTask} changeTaskName={changeTaskName} setTaskIsDone={setTaskIsDone}/>}
+                </div>
+            </CSSTransition>
         </div>
     );
 };

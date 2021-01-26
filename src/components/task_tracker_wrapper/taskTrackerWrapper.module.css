@@ -38,6 +38,10 @@
     display: flex;
     justify-content: center;
 }
+.alert-enter-done .task_tracker_wrapper{
+    height: 200px;
+    border: 1px solid black;
+}
 
 /* Mobile */
 @media only screen and (max-width: 609px) {
