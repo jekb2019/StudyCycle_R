@@ -8,11 +8,11 @@ import TimerService from './service/timerService';
 import SoundBox from './service/soundBox';
 
 // Time settings in seconds
-const focusTime = 1 * 60 * 60;
-const breakTime = 10 * 60;
+const focusTime = localStorage.getItem('focusTimeSettingStored') || 1 * 60 * 60;
+const breakTime = localStorage.getItem('breakTimeSettingStored') || 10 * 60;
+const goalCycle = localStorage.getItem('goalCycleSettingStored') || 3;
 const fastForwardTime = 3 * 60;
 const fastBackwardTime = 3 * 60;
-const goalCycle = 3;
 
 // To-be-injected objects from service layer
 const timerService = new TimerService(focusTime, breakTime, goalCycle);

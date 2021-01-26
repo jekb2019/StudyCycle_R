@@ -17,7 +17,11 @@ class Clock {
     }
 
     getGoalCycle() {
-        return this.goalCycle;
+        if(localStorage.getItem('goalCycleSettingStored')) {
+            return localStorage.getItem('goalCycleSettingStored');
+        } else {
+            return this.goalCycle;
+        }
     }
 
     getCurrentCycle() {
@@ -26,36 +30,44 @@ class Clock {
 
     // Focus Time Getters
     getFocusTime() {
-        return this.focusTime;
+        if(localStorage.getItem('focusTimeSettingStored')) {
+            return localStorage.getItem('focusTimeSettingStored');
+        } else {
+            return this.focusTime;
+        }
     }
 
     getFocusTimeHours() {
-        return Math.floor(this.focusTime / (60 * 60));
+        return Math.floor(this.getFocusTime() / (60 * 60));
     }
     
     getFocusTimeMinutes() {
-        return Math.floor(this.focusTime % (60 * 60) / 60);
+        return Math.floor(this.getFocusTime() % (60 * 60) / 60);
     }
     
     getFocusTimeSeconds() {
-        return (this.focusTime % (60 * 60) / 60) % 60;
+        return (this.getFocusTime() % (60 * 60) / 60) % 60;
     }
 
     // Break Time Getters
     getBreakTime() {
-        return this.breakTime;
+        if(localStorage.getItem('breakTimeSettingStored')) {
+            return localStorage.getItem('breakTimeSettingStored');
+        } else {
+            return this.breakTime;
+        }
     }
 
     getBreakTimeHours() {
-        return Math.floor(this.breakTime / (60 * 60));
+        return Math.floor(this.getBreakTime() / (60 * 60));
     }
     
     getBreakTimeMinutes() {
-        return Math.floor(this.breakTime % (60 * 60) / 60);
+        return Math.floor(this.getBreakTime() % (60 * 60) / 60);
     }
     
     getBreakTimeSeconds() {
-        return (this.breakTime % (60 * 60) / 60) % 60;
+        return (this.getBreakTime() % (60 * 60) / 60) % 60;
     }
 
     setGoalCycle(goalCycle) {
@@ -63,6 +75,7 @@ class Clock {
             return false
         } else {
             this.goalCycle = goalCycle;
+            localStorage.setItem('goalCycleSettingStored', this.goalCycle);
             return true;
         }
     }
@@ -77,9 +90,11 @@ class Clock {
             this.changeTimerStatus(TimerStatusType.BREAK);
             this.currentTime = 0;
             this.focusTime = tempFocusTime;
+            localStorage.setItem('focusTimeSettingStored', this.focusTime);
             return true;
         } else {
             this.focusTime = tempFocusTime;
+            localStorage.setItem('focusTimeSettingStored', this.focusTime);
             return true;
         }
 
@@ -92,16 +107,19 @@ class Clock {
             if(this.currentCycle === this.goalCycle) {
                 this.breakTime = tempBreakTime;
                 this.processGoalReached();
+                localStorage.setItem('breakTimeSettingStored', this.breakTime);
                 return true;
             } else {
                 this.changeTimerStatus(TimerStatusType.FOCUS);
                 this.currentTime = 0;
                 this.breakTime = tempBreakTime;
                 this.currentCycle++;
+                localStorage.setItem('breakTimeSettingStored', this.breakTime);
                 return true;
             }
         } else {
             this.breakTime = tempBreakTime;
+            localStorage.setItem('breakTimeSettingStored', this.breakTime);
             return true;
         }
     }
