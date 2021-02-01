@@ -16,6 +16,10 @@ class Clock {
         this.timerObject = null;
     }
 
+    getCurrentCycle() {
+        return this.currentCycle;
+    }
+
     getGoalCycle() {
         if(localStorage.getItem('goalCycleSettingStored')) {
             return localStorage.getItem('goalCycleSettingStored');
@@ -24,8 +28,14 @@ class Clock {
         }
     }
 
-    getCurrentCycle() {
-        return this.currentCycle;
+    setGoalCycle(goalCycle) {
+        if(this.currentCycle > goalCycle) {
+            return false
+        } else {
+            this.goalCycle = goalCycle;
+            localStorage.setItem('goalCycleSettingStored', this.goalCycle);
+            return true;
+        }
     }
 
     // Focus Time Getters
@@ -49,6 +59,25 @@ class Clock {
         return (this.getFocusTime() % (60 * 60) / 60) % 60;
     }
 
+    // return true if focus time is valid
+    setFocusTime(focusHours, focusMinutes) {
+        const tempFocusTime = focusHours * 60 * 60 + focusMinutes * 60;
+        const minimumTime = 1 * 60;
+        if(tempFocusTime < minimumTime) {
+            return false;
+        } else if(this.currentTime >= tempFocusTime && this.currentTimerStatus === TimerStatusType.FOCUS){
+            this.changeTimerStatus(TimerStatusType.BREAK);
+            this.currentTime = 0;
+            this.focusTime = tempFocusTime;
+            localStorage.setItem('focusTimeSettingStored', this.focusTime);
+            return true;
+        } else {
+            this.focusTime = tempFocusTime;
+            localStorage.setItem('focusTimeSettingStored', this.focusTime);
+            return true;
+        }
+    }
+
     // Break Time Getters
     getBreakTime() {
         if(localStorage.getItem('breakTimeSettingStored')) {
@@ -68,36 +97,6 @@ class Clock {
     
     getBreakTimeSeconds() {
         return (this.getBreakTime() % (60 * 60) / 60) % 60;
-    }
-
-    setGoalCycle(goalCycle) {
-        if(this.currentCycle > goalCycle) {
-            return false
-        } else {
-            this.goalCycle = goalCycle;
-            localStorage.setItem('goalCycleSettingStored', this.goalCycle);
-            return true;
-        }
-    }
-
-    // return true if focus time is valid
-    setFocusTime(focusHours, focusMinutes) {
-        const tempFocusTime = focusHours * 60 * 60 + focusMinutes * 60;
-        const minimumTime = 1 * 60;
-        if(tempFocusTime < minimumTime) {
-            return false;
-        } else if(this.currentTime >= tempFocusTime && this.currentTimerStatus === TimerStatusType.FOCUS){
-            this.changeTimerStatus(TimerStatusType.BREAK);
-            this.currentTime = 0;
-            this.focusTime = tempFocusTime;
-            localStorage.setItem('focusTimeSettingStored', this.focusTime);
-            return true;
-        } else {
-            this.focusTime = tempFocusTime;
-            localStorage.setItem('focusTimeSettingStored', this.focusTime);
-            return true;
-        }
-
     }
 
     // return true if break time is valid
@@ -124,16 +123,16 @@ class Clock {
         }
     }
 
-    getCurrentTimerStatus() {
-        return this.currentTimerStatus;
-    }
-
     resetTimer() {
         this.pauseTimer();
         this.currentCycle = 1;
         this.currentTime = 0;
         this.currentTimerStatus = TimerStatusType.NONE;
         this.isTimerInitiated = false;
+    }
+
+    getCurrentTimerStatus() {
+        return this.currentTimerStatus;
     }
 
     changeTimerStatus(timerStatus) {
@@ -155,13 +154,14 @@ class Clock {
         }
     }
 
+    // Initiate timer when it is first time ran (or ran after being reset)
     initiateTimer() {
         this.isTimerInitiated = true;
         this.changeTimerStatus(TimerStatusType.FOCUS);
         this.startTimer();
     }
 
-
+    // Start running timer
     startTimer() {
         this.isClockRunning = true;
         const interval = 1000;
@@ -249,6 +249,7 @@ class Clock {
         return `${stringHours}:${stringMinutes}:${stringSeconds}`;
     }
 
+    // Fast Forward the timer by a specific seconds
     fastForward(seconds) {
         const tempTime = this.currentTime + seconds;
         if(this.currentTimerStatus === TimerStatusType.FOCUS) {
@@ -288,6 +289,7 @@ class Clock {
         }
     }
 
+    // Fast Backward the timer by a specific seconds
     fastBackward(seconds) {
         const tempTime = this.currentTime - seconds;
         if(tempTime < 0) {

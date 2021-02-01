@@ -5,52 +5,16 @@ class TimerService {
         this.clock = new Clock(focusTime, breakTime, goalCycle);
     }
 
-    initiateTimer() {
-        this.clock.initiateTimer();
-    }
-
-    startTimer() {
-        this.clock.startTimer();
-    }
-
-    pauseTimer() {
-        this.clock.pauseTimer();
-    }
-
-    debug() {
-        this.clock.debug();
-    }
-
-    resetTimer() {
-        this.clock.resetTimer();
-    }
-
-    getCurrentTimerStatus() {
-        return this.clock.getCurrentTimerStatus();
-    }
-
-    getFormattedCurrentTime() {
-        return this.clock.getFormettedCurrentTime();
+    getCurrentCycle() {
+        return this.clock.getCurrentCycle();
     }
 
     getGoalCycle() {
         return this.clock.getGoalCycle();
     }
 
-    getCurrentCycle() {
-        return this.clock.getCurrentCycle();
-    }
-
     setGoalCycle(goalCycle) {
         return this.clock.setGoalCycle(goalCycle);
-    }
-
-    setFocusTime(focusHours, focusMinutes) {
-        return this.clock.setFocusTime(focusHours, focusMinutes);
-    }
-
-    setBreakTime(breakHours, breakMinutes) {
-        return this.clock.setBreakTime(breakHours, breakMinutes);
     }
 
     // Focus Time Getters
@@ -70,6 +34,10 @@ class TimerService {
         return this.clock.getFocusTimeSeconds();
     }
 
+    setFocusTime(focusHours, focusMinutes) {
+        return this.clock.setFocusTime(focusHours, focusMinutes);
+    }
+
     // Break Time Getters
     getBreakTime() {
         return this.clock.getBreakTime();
@@ -86,17 +54,53 @@ class TimerService {
     getBreakTimeSeconds() {
         return this.clock.getBreakTimeSeconds();
     }
-
-    fastForward(seconds) {
-        this.clock.fastForward(seconds);
+    
+    setBreakTime(breakHours, breakMinutes) {
+        return this.clock.setBreakTime(breakHours, breakMinutes);
     }
 
-    fastBackward(seconds) {
-        this.clock.fastBackward(seconds);
+    resetTimer() {
+        this.clock.resetTimer();
+    }
+
+    getCurrentTimerStatus() {
+        return this.clock.getCurrentTimerStatus();
+    }
+
+    initiateTimer() {
+        this.clock.initiateTimer();
+    }
+
+    startTimer() {
+        this.clock.startTimer();
+    }
+
+    pauseTimer() {
+        this.clock.pauseTimer();
     }
 
     isGoalReached() {
         return this.clock.isGoalReached();
+    }
+
+    //get current time formatted as [hours]:[minutes]:[seconds]
+    getFormattedCurrentTime() {
+        return this.clock.getFormettedCurrentTime();
+    }
+
+    // Fast Forward the timer by a specific seconds
+    fastForward(seconds) {
+        this.clock.fastForward(seconds);
+    }
+
+    // Fast Backward the timer by a specific seconds
+    fastBackward(seconds) {
+        this.clock.fastBackward(seconds);
+    }
+
+    // Console debugger: Only used for development purposes
+    debug() {
+        this.clock.debug();
     }
 }
 
