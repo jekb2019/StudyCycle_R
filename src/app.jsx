@@ -37,7 +37,7 @@ const App = (props) => {
       {/* <button onClick={serviceDebug}>Service DEBUG</button> */}
       <ContentWrapper timerService={props.timerService} soundBox={props.soundBox} fastForwardTime={props.fastForwardTime} fastBackwardTime={props.fastBackwardTime}/>
       {screenWidth < 800 && <Banner/>}
-      <TaskTrackerWrapper soundBox={props.soundBox}/>
+      <TaskTrackerWrapper taskTrackerService={props.taskTrackerService} soundBox={props.soundBox}/>
       <footer>
         <div className={styles.links}>
           <a target="_blank" rel="noopener noreferrer" href="https://forms.gle/J7kSJT4vDfXYd2cf8" className={`${styles.link} ${styles.feedback_link}`}>

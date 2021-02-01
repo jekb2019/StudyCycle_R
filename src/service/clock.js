@@ -136,20 +136,6 @@ class Clock {
         this.isTimerInitiated = false;
     }
 
-    // Console debugger - only used for development purposes
-    debug() {
-        console.log(`----- DEBUG -----`);
-        console.log(`Timer Status: ${this.currentTimerStatus}`);
-        console.log(`Timer Initiated: ${this.isTimerInitiated}`);
-        console.log(`Is Clock Running: ${this.isClockRunning}`);
-        console.log(`Current Time: ${this.currentTime}`);
-        console.log(`Current Cycle: ${this.currentCycle}`);
-        console.log(`Focus Time: ${this.focusTime}`);
-        console.log(`Break Time: ${this.breakTime}`);
-        console.log(`Goal Cycles: ${this.goalCycle}`);
-        console.log(`\n`);
-    }
-
     changeTimerStatus(timerStatus) {
         switch(timerStatus) {
             case TimerStatusType.NONE:
@@ -321,6 +307,20 @@ class Clock {
                 this.currentTime = tempTime;
             }
         }
+    }
+
+    // Console debugger - only used for development purposes
+    debug() {
+        console.log(`----- DEBUG -----`);
+        console.log(`Timer Status: ${this.currentTimerStatus}`);
+        console.log(`Timer Initiated: ${this.isTimerInitiated}`);
+        console.log(`Is Clock Running: ${this.isClockRunning}`);
+        console.log(`Current Time: ${this.currentTime}`);
+        console.log(`Current Cycle: ${this.currentCycle}`);
+        console.log(`Focus Time: ${this.focusTime}`);
+        console.log(`Break Time: ${this.breakTime}`);
+        console.log(`Goal Cycles: ${this.goalCycle}`);
+        console.log(`\n`);
     }
 }
 

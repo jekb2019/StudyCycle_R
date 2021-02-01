@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import '@fortawesome/fontawesome-free/js/all.js';
 import TimerService from './service/timerService';
 import SoundBox from './service/soundBox';
+import TaskTrackerService from './service/taskTrackerService';
 
 // Time settings in seconds
 const focusTime = localStorage.getItem('focusTimeSettingStored') || 1 * 60 * 60;
@@ -17,10 +18,11 @@ const fastBackwardTime = 3 * 60;
 // To-be-injected objects from service layer
 const timerService = new TimerService(focusTime, breakTime, goalCycle);
 const soundBox = new SoundBox();
+const taskTrackerService = new TaskTrackerService();
 
 ReactDOM.render(
   <React.StrictMode>
-    <App timerService={timerService} soundBox={soundBox} fastForwardTime={fastForwardTime} fastBackwardTime={fastBackwardTime}/>
+    <App timerService={timerService} taskTrackerService={taskTrackerService} soundBox={soundBox} fastForwardTime={fastForwardTime} fastBackwardTime={fastBackwardTime}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

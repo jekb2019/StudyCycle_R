@@ -1,18 +1,38 @@
+import Task from './task';
+
 class TaskTrackerService {
-    constructor (defaultTaskName) {
-        this.tasks = new Array(new Task(defaultTaskName));
+    constructor () {
+        this.tasks = [];
+        this.addTask('Initial Task');
+        this.debug();
+    }
+    
+    // Create a new task object and add to task array
+    addTask(name) {
+        const task = new Task(name);
+        this.tasks.unshift(task);
     }
 
-    editName(name, key) {
+    getAllTasks() {
+        return this.tasks;
+    }
+
+    // Get a specific task of matching key
+    getTask(key) {
+        let matchingTask;
+        this.tasks.map(task => {
+            if(task.getKey() === key ) {
+                matchingTask = task;
+                return task;
+            }
+            return null;
+        })
+        return matchingTask;
+    }
+
+    // Edit task name of matching key
+    editName(key, name) {
         this.getTask(key).editName(name);
-    }
-
-    setIsEditable(key) {
-        this.getTask(key).setIsEditable();
-    }
-
-    unsetIsEditable(key) {
-        this.getTask(key).unsetIsEditable();
     }
 
     setIsDone(key) {
@@ -24,25 +44,16 @@ class TaskTrackerService {
     }
 
     deleteTask(key) {
-        const tempTasks = this.tasks.filter(task => task.key !== key);
-        this.tasks = tempTasks;
+        this.tasks = this.tasks.filter(task => task.key !== key);
     }
-
-    getTask(key) {
-        let matchingTask = null;
+    
+    // Console debugger: Only used for development purposes
+    debug() {
         this.tasks.map(task => {
-            if(task.getKey() === key ) {
-                matchingTask = task;
-                return task;
-            }
-        })
-        return matchingTask;
+            task.debug();
+            return null;
+        });
     }
-
-    createTask(name) {
-        const task = new Task(name);
-        this.tasks.unshift(task);
-        return task.getKey();
-    }
-
 }
+
+export default TaskTrackerService;

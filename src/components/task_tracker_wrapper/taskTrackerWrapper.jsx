@@ -1,25 +1,26 @@
 import React, { useState } from 'react';
 import TaskTracker from '../task_traker/taskTracker';
 import styles from './taskTrackerWrapper.module.css';
-import { CSSTransition } from 'react-transition-group';
-import transitionCSS from './transition.module.css';
 
 const TaskTrackerWrapper = (props) => {
     const [isTaskTrackerOpen, setIsTaskTrackerOpen] = useState(true);
-    const [tasks, setTasks] = useState(
-        [
-            {
-                key: new Date().getTime(),
-                name: 'Finish work',
-                isDone: false,
-            }
-        ]
-    );
+    const [tasks, setTasks] = useState(props.taskTrackerService.getAllTasks());
 
-    const setTaskIsDone = (key, isDone) => {
+    const setTaskIsDone = (key) => {
         const tempTasks = tasks.map(task => {
             if(task.key === key) {
-                task.isDone = isDone;
+                task.setIsDone();
+                return task;
+            }
+            return task;
+        });
+        setTasks(tempTasks);
+    };
+
+    const unsetTaskIsDone = (key) => {
+        const tempTasks = tasks.map(task => {
+            if(task.key === key) {
+                task.unsetIsDone();
                 return task;
             }
             return task;
@@ -28,30 +29,26 @@ const TaskTrackerWrapper = (props) => {
     }
 
     const changeTaskName = (key, name) => {
-        const tempTasks = tasks.map(task => {
-            if(task.key === key) {
-                task.name = name;
-                return task;
-            }
+        props.taskTrackerService.editName(key, name);
+        const tempTasks = props.taskTrackerService.getAllTasks().map(task => {
             return task;
         });
         setTasks(tempTasks);
     };
 
     const createNewTask = (name) => {
-        const tempTasks = tasks.map(task => {
+        props.taskTrackerService.addTask(name);
+        const tempTasks = props.taskTrackerService.getAllTasks().map(task => {
             return task;
-        });
-        tempTasks.unshift({
-            key: new Date().getTime(),
-            name,
-            isDone: false
         });
         setTasks(tempTasks);
     };
 
     const deleteTask = (key) => {
-        const tempTasks = tasks.filter(task => task.key !== key);
+        props.taskTrackerService.deleteTask(key);
+        const tempTasks = props.taskTrackerService.getAllTasks().map(task => {
+            return task;
+        });
         setTasks(tempTasks);
     };
 
@@ -62,7 +59,8 @@ const TaskTrackerWrapper = (props) => {
 
     // Console debugger: Only used for development purposes
     // const debugTasks = () => {
-    //     console.log(tasks);
+    //     console.log('State debugger',tasks);
+    //     console.log('Service debugger', props.taskTrackerService.debug());
     // }
 
     return(
@@ -75,16 +73,17 @@ const TaskTrackerWrapper = (props) => {
                     {!isTaskTrackerOpen && <div><i className={`${`fas fa-chevron-down`} ${styles.visibility_icon}`}></i></div>}
                 </div>
             </div>
-            <CSSTransition
-                in={isTaskTrackerOpen}
-                timeout={100}
-                classNames={transitionCSS}
-                unmountOnExit
-            >
-                <div className={styles.task_tracker_wrapper}>
-                    {isTaskTrackerOpen && <TaskTracker soundBox={props.soundBox} tasks={tasks} createNewTask={createNewTask} deleteTask={deleteTask} changeTaskName={changeTaskName} setTaskIsDone={setTaskIsDone}/>}
-                </div>
-            </CSSTransition>
+            <div className={styles.task_tracker_wrapper}>
+                {isTaskTrackerOpen && <TaskTracker 
+                    taskTrackerService={props.taskTrackerService}
+                    soundBox={props.soundBox} 
+                    tasks={tasks} 
+                    createNewTask={createNewTask} 
+                    deleteTask={deleteTask} 
+                    changeTaskName={changeTaskName} 
+                    setTaskIsDone={setTaskIsDone} 
+                    unsetTaskIsDone={unsetTaskIsDone}/>}
+            </div>
         </div>
     );
 };

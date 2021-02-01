@@ -4,7 +4,7 @@ import styles from './task.module.css';
 const Task = (props) => {
     const [name, setName] = useState(props.task.name);
     const [isEditEnabled, setIsEditEnabled] = useState(false);
-    const [isDone, setIsDone] = useState(props.task.isDone);
+    const [isDone, setIsDone] = useState(props.task.getIsDone());
 
     const checkboxRef = useRef();
     const nameRef = useRef();
@@ -18,10 +18,10 @@ const Task = (props) => {
     useEffect(() => {
         if(isDone) {
             checkboxRef.current.checked = true;
-            props.setTaskIsDone(props.task.key, true);
+            props.setTaskIsDone(props.task.key);
         } else {
             checkboxRef.current.checked = false;
-            props.setTaskIsDone(props.task.key, false);
+            props.unsetTaskIsDone(props.task.key);
         }
     }, [isDone]);
 
@@ -33,46 +33,52 @@ const Task = (props) => {
             checkboxRef.current.checked = true;
             setIsDone(true);
         }
-    }
+    };
+
     const deleteTask = () => {
         props.deleteTask(props.task.key);
-    }
+    };
 
     const setEditMode = () => {
         nameRef.current.readOnly = false;
         setIsEditEnabled(true);
         nameRef.current.focus();
-    }
+    };
 
     const disableEditMode = () => {
         nameRef.current.readOnly = true;
         setIsEditEnabled(false);
-    }
+    };
 
-    const editName = (event) => {
+    const editName = () => {
         if(isEditEnabled) {
             disableEditMode();
         } else {
             setEditMode();
         }
-    }
+    };
+
     const handleOnInput = () => {
         if(isEditEnabled) {
             setName(nameRef.current.value);
             changeTaskName(props.task.key, nameRef.current.value);
         }
-    }
+    };
+
     const handleOnBlur = (event) => {
         disableEditMode();
-    }
+    };
+
     const handleOnKeyPressEnter = (event) => {
         if(event.key === 'Enter') {
             disableEditMode();
         }
-    }
+    };
+
     const changeTaskName = (key, name) => {
         props.changeTaskName(key, name)
-    }
+    };
+    
     return (
         <div className={styles.task_wrapper}>
             <div className={styles.tick_and_subject}>

@@ -27,7 +27,13 @@ const TaskTracker = (props) => {
             </div>
             <div className={styles.tasks_wrapper}>
                 {props.tasks.map((task) => {
-                    return <Task key={task.key} task={task} deleteTask={props.deleteTask} changeTaskName={props.changeTaskName} setTaskIsDone={props.setTaskIsDone}/>;
+                    return <Task 
+                        key={task.getKey()} 
+                        task={task} 
+                        deleteTask={props.deleteTask} 
+                        changeTaskName={props.changeTaskName} 
+                        setTaskIsDone={props.setTaskIsDone}
+                        unsetTaskIsDone={props.unsetTaskIsDone}/>;
                 })}
             </div>
         </div>

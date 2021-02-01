@@ -2,26 +2,15 @@ class Task {
     constructor(name) {
         this.name = name;
         this.key = new Date().getTime();
-        this.isEditable = false;
         this.isDone = false;
     }
 
-    setIsEditable() {
-        if(!this.isEditable) {
-            this.isEditable = true;
-        }
-    }
-
-    unsetIsEditable() {
-        if(this.isEditable) {
-            this.isEditable = false;
-        }
-    }
-
     editName(name) {
-        if(this.isEditable) {
-            this.name = name;
-        }
+        this.name = name;
+    }
+
+    getIsDone() {
+        return this.isDone;
     }
 
     setIsDone() {
@@ -39,4 +28,14 @@ class Task {
     getKey() {
         return this.key;
     }
+
+    // Console debugger: Only used for development purposes
+    debug() {
+        console.log(`-----Task-----`);
+        console.log(`Key: ${this.key}`);
+        console.log(`Name: ${this.name}`);
+        console.log(`isDone: ${this.isDone}`);
+    }
 }
+
+export default Task;
