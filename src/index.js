@@ -4,9 +4,9 @@ import './index.module.css';
 import App from './app';
 import reportWebVitals from './reportWebVitals';
 import '@fortawesome/fontawesome-free/js/all.js';
-import TimerService from './service/timerService';
-import SoundBox from './service/soundBox';
-import TaskTrackerService from './service/taskTrackerService';
+import TimerService from './service/timer_services/timerService';
+import SoundBox from './service/common/soundBox';
+import TaskTrackerService from './service/task_tracker_services/taskTrackerService';
 
 // Time settings in seconds
 const focusTime = localStorage.getItem('focusTimeSettingStored') || 1 * 60 * 60;
