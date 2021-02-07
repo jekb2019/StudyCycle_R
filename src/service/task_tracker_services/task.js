@@ -1,8 +1,20 @@
 class Task {    
-    constructor(name) {
+    constructor(name, key, isDone) {
         this.name = name;
-        this.key = new Date().getTime();
-        this.isDone = false;
+        if(key === undefined) {
+            this.key = new Date().getTime();
+        } else {
+            this.key = key;
+        }
+        if(isDone === undefined) {
+            this.isDone = false;
+        } else {
+            this.isDone = isDone;
+        }
+    }
+
+    getName() {
+        return this.name;
     }
 
     editName(name) {

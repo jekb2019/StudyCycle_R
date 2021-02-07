@@ -7,22 +7,16 @@ const TaskTrackerWrapper = (props) => {
     const [tasks, setTasks] = useState(props.taskTrackerService.getAllTasks());
 
     const setTaskIsDone = (key) => {
-        const tempTasks = tasks.map(task => {
-            if(task.key === key) {
-                task.setIsDone();
-                return task;
-            }
+        props.taskTrackerService.setIsDone(key);
+        const tempTasks = props.taskTrackerService.getAllTasks().map(task => {
             return task;
         });
         setTasks(tempTasks);
     };
 
     const unsetTaskIsDone = (key) => {
-        const tempTasks = tasks.map(task => {
-            if(task.key === key) {
-                task.unsetIsDone();
-                return task;
-            }
+        props.taskTrackerService.unsetIsDone(key);
+        const tempTasks = props.taskTrackerService.getAllTasks().map(task => {
             return task;
         });
         setTasks(tempTasks);
