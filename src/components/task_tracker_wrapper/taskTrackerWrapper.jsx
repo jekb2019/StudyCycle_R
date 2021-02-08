@@ -52,14 +52,15 @@ const TaskTrackerWrapper = (props) => {
     };
 
     // Console debugger: Only used for development purposes
-    // const debugTasks = () => {
-    //     console.log('State debugger',tasks);
-    //     console.log('Service debugger', props.taskTrackerService.debug());
-    // }
+    const debugTasks = () => {
+        // console.log('State debugger',tasks);
+        // console.log('Service debugger', props.taskTrackerService.debug());
+        console.log('Storage Debugger:', props.taskTrackerService.debugStorage());
+    }
 
     return(
         <div className={styles.wrapper}>
-            {/* <button onClick={debugTasks}>DEBUG TASKS</button> */}
+            <button onClick={debugTasks}>DEBUG TASKS</button>
             <div className={styles.header}>
                 <p className={styles.title}>Task Tracker</p>
                 <div className={styles.button} onClick={handleToggleTaskTracker}>

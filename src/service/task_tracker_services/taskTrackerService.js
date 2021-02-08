@@ -6,19 +6,19 @@ class TaskTrackerService {
         this.locallyStoredTasks = {}
         if(localStorage.getItem('storedTasks')) {
             for(const [key, value] of Object.entries(JSON.parse(localStorage.getItem('storedTasks')))) {
-                this.addTask(value.name, key, value.isDone);
+                this.addTask(value.name, parseInt(key), value.isDone);
             }
         } else {
             this.initializeTaskTracker('Initial Task');
         }
-        this.debug();
+        // this.debug();
     }
 
     initializeTaskTracker(name) {
         const task = new Task(name);
         this.tasks.unshift(task);
         this.locallyStoredTasks[task.getKey()] = {
-            key: task.getKey,
+            key: task.getKey(),
             name: task.getName(),
             isDone: task.getIsDone()
         };
@@ -27,6 +27,7 @@ class TaskTrackerService {
     }
 
     // Create a new task object and add to task array
+    // Leave key and isDone parameter empty if creating a new task from the user
     addTask(name, key, isDone) {
         let task;
         if(key === undefined) {
@@ -35,9 +36,8 @@ class TaskTrackerService {
             task = new Task(name, key, isDone);
         }
         this.tasks.unshift(task);
-
         this.locallyStoredTasks[task.getKey()] = {
-            key: task.getKey,
+            key: task.getKey(),
             name: task.getName(),
             isDone: task.getIsDone()
         };
@@ -68,7 +68,7 @@ class TaskTrackerService {
     editName(key, name) {
         this.getTask(key).editName(name);
         for(const [objKey, value] of Object.entries(this.locallyStoredTasks)) {
-            if(objKey === key) {
+            if(parseInt(objKey) === key) {
                 value.name = name;
             }
         }
@@ -86,13 +86,19 @@ class TaskTrackerService {
 
     deleteTask(key) {
         this.tasks = this.tasks.filter(task => task.key !== key);
-        for(const [objKey, value] of Object.entries(this.locallyStoredTasks)) {
-            if(objKey === key) {
+        for(const [locallyStoredTaskKey] of Object.entries(this.locallyStoredTasks)) {
+            if(parseInt(locallyStoredTaskKey) === key) {
                 delete this.locallyStoredTasks[key];
             }
         }
         localStorage.removeItem('storedTasks');
         localStorage.setItem('storedTasks', JSON.stringify(this.locallyStoredTasks));
+    }
+
+    // Console debugger: Only used for development purposes
+    debugStorage() {
+        console.log('Locally Stored Tasks: ', this.locallyStoredTasks);
+        console.log('Tasks: ', this.tasks);
     }
 
     // Console debugger: Only used for development purposes
