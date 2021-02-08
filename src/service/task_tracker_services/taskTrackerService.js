@@ -78,10 +78,24 @@ class TaskTrackerService {
 
     setIsDone(key) {
         this.getTask(key).setIsDone();
+        for(const [objKey, value] of Object.entries(this.locallyStoredTasks)) {
+            if(parseInt(objKey) === key) {
+                value.isDone = true;
+            }
+        }
+        localStorage.removeItem('storedTasks');
+        localStorage.setItem('storedTasks', JSON.stringify(this.locallyStoredTasks));
     }
 
     unsetIsDone(key) {
         this.getTask(key).unsetIsDone();
+        for(const [objKey, value] of Object.entries(this.locallyStoredTasks)) {
+            if(parseInt(objKey) === key) {
+                value.isDone = false;
+            }
+        }
+        localStorage.removeItem('storedTasks');
+        localStorage.setItem('storedTasks', JSON.stringify(this.locallyStoredTasks));
     }
 
     deleteTask(key) {
