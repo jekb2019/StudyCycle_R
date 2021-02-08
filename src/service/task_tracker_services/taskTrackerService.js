@@ -116,12 +116,12 @@ class TaskTrackerService {
     }
 
     // Console debugger: Only used for development purposes
-    debug() {
-        this.tasks.map(task => {
-            task.debug();
-            return null;
-        });
-    }
+    // debug() {
+    //     this.tasks.map(task => {
+    //         task.debug();
+    //         return null;
+    //     });
+    // }
 }
 
 export default TaskTrackerService;
