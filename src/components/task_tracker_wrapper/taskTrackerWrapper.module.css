@@ -1,4 +1,5 @@
 @value makerLightGray from '../../common/colors.css';
+@value makerSlightlierLightGray from '../../common/colors.css';
 @value makerGray from '../../common/colors.css';
 @value makerDarkGray from '../../common/colors.css';
 @value mediumMedium from '../../common/sizes.css';
@@ -7,7 +8,7 @@
 .wrapper {
     margin-top: 20px;
     width: 600px;
-    background-color: makerLightGray;
+    background-color: makerSlightlierLightGray;
     border-radius: 50px;
     position: relative;
 }
@@ -15,7 +16,7 @@
     user-select: none;
 }
 .header {
-    color: makerGray;
+    color: makerDarkGray;
     padding-top: 10px;
     padding-bottom: 10px;
     font-size: mediumMedium;
