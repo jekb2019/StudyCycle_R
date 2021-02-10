@@ -9,9 +9,9 @@ import SoundBox from './service/common/soundBox';
 import TaskTrackerService from './service/task_tracker_services/taskTrackerService';
 
 // Time settings in seconds
-const focusTime = localStorage.getItem('focusTimeSettingStored') || 1 * 60 * 60;
-const breakTime = localStorage.getItem('breakTimeSettingStored') || 10 * 60;
-const goalCycle = localStorage.getItem('goalCycleSettingStored') || 3;
+const focusTime = parseInt(localStorage.getItem('focusTimeSettingStored')) || 1 * 60 * 60;
+const breakTime = parseInt(localStorage.getItem('breakTimeSettingStored')) || 10 * 60;
+const goalCycle = parseInt(localStorage.getItem('goalCycleSettingStored')) || 3;
 const fastForwardTime = 3 * 60;
 const fastBackwardTime = 3 * 60;
 

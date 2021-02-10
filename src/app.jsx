@@ -16,17 +16,10 @@ const App = (props) => {
     window.addEventListener('resize', handleResize);
   }, []);
 
-  // const handleShowHiddenInputs = () => {
-  //   const inputs = document.activeElement;
-  //   if(inputs.tagName.toLocaleLowerCase() === 'input') {
-  //     inputs.scrollIntoView({ behavior: 'smooth'});
-  //   }
-  // }
-
   // Console debugger - only for development purposes
-  // const serviceDebug = () => {
-  //   props.timerService.debug();
-  // }
+  const serviceDebug = () => {
+    props.timerService.debug();
+  }
 
   return(
     <div className={styles.app}>
@@ -34,7 +27,7 @@ const App = (props) => {
         <Header/>
         {screenWidth >= 800 && <Banner/>}
       </div>
-      {/* <button onClick={serviceDebug}>Service DEBUG</button> */}
+      <button onClick={serviceDebug}>Service DEBUG</button>
       <ContentWrapper timerService={props.timerService} soundBox={props.soundBox} fastForwardTime={props.fastForwardTime} fastBackwardTime={props.fastBackwardTime}/>
       {screenWidth < 800 && <Banner/>}
       <TaskTrackerWrapper taskTrackerService={props.taskTrackerService} soundBox={props.soundBox}/>

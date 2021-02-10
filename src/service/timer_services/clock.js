@@ -22,7 +22,7 @@ class Clock {
 
     getGoalCycle() {
         if(localStorage.getItem('goalCycleSettingStored')) {
-            return localStorage.getItem('goalCycleSettingStored');
+            return parseInt(localStorage.getItem('goalCycleSettingStored'));
         } else {
             return this.goalCycle;
         }
@@ -41,7 +41,7 @@ class Clock {
     // Focus Time Getters
     getFocusTime() {
         if(localStorage.getItem('focusTimeSettingStored')) {
-            return localStorage.getItem('focusTimeSettingStored');
+            return parseInt(localStorage.getItem('focusTimeSettingStored'));
         } else {
             return this.focusTime;
         }
@@ -81,7 +81,7 @@ class Clock {
     // Break Time Getters
     getBreakTime() {
         if(localStorage.getItem('breakTimeSettingStored')) {
-            return localStorage.getItem('breakTimeSettingStored');
+            return parseInt(localStorage.getItem('breakTimeSettingStored'));
         } else {
             return this.breakTime;
         }
@@ -270,6 +270,7 @@ class Clock {
         } else if(this.currentTimerStatus === TimerStatusType.BREAK) {
             if(tempTime > this.breakTime) {
                 if(this.currentCycle === this.goalCycle) {
+                    console.log('run goal schedule')
                     this.currentTime = this.breakTime;
                     this.processGoalReached()
                 } else {
