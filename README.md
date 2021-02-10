@@ -14,9 +14,9 @@ Study Cycle is a web based online timer which supports customised focus-break ti
 </p>
 
 # Getting Started
-Simply [clck here](studycycle.netlify.app) to open up Study Cycle on your web browser.
+Simply [clck here](www.study-cycle.com) to open up Study Cycle on your web browser.
 
-**URL: studycycle.netlify.app**
+**URL: www.study-cycle.com**
 
 # How To Use
 The user interface of Study Cycle focuses on intuitiveness so that no user manual is necessary for the new users. However, here are some basic user manual to be even more clearer!
