@@ -18,7 +18,7 @@ Simply [clck here](www.study-cycle.com) to open up Study Cycle on your web brows
 
 **URL: www.study-cycle.com**
 
-# How To Use
+# How To Use - Study Cycle Timer
 The user interface of Study Cycle focuses on intuitiveness so that no user manual is necessary for the new users. However, here are some basic user manual to be even more clearer!
 
 ## Basic Controll
@@ -40,6 +40,18 @@ You can customize your Study Cycle by clicking the <img src="public/images/cog-s
 </p>
 
 Customize your focus time, break time, and goal cycles in the settings window and simply click **OK** or hit enter.
+
+# How To Use - Task Tracker
+Using our fantastic Task Tracker, you can manage tasks that you need to complete. Simply add new tasks and check/delete whenever you complete a task!
+<p align="center">
+  <img src="public/images/task-tracker.png" width="500" title="task tracker">
+</p>
+
+## Edit Name
+You can click the edit icon to change the name of your tasks.
+<p align="center">
+  <img src="public/images/task-tracker-edit-name.png" width="500" title="task tracker">
+</p>
 
 # Responsive UI
 Study Cycle is friendly for desktops, laptops, tablets, and mobiles.
