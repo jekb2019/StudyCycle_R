@@ -270,7 +270,6 @@ class Clock {
         } else if(this.currentTimerStatus === TimerStatusType.BREAK) {
             if(tempTime > this.breakTime) {
                 if(this.currentCycle === this.goalCycle) {
-                    console.log('run goal schedule')
                     this.currentTime = this.breakTime;
                     this.processGoalReached()
                 } else {
