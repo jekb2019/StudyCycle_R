@@ -76,6 +76,7 @@ Study Cycle is friendly for desktops, laptops, tablets, and mobiles.
 # Built With...
 * React.js - The JavaScript framework used
 * JavaScript
+* Netlify - Serverless deployement
 
 # Author
 * Jason Ko - the owner of this repository
