@@ -14,7 +14,7 @@ Study Cycle is a web based online timer which supports customised focus-break ti
 </p>
 
 # Getting Started
-Simply [click here](www.study-cycle.com) to open up Study Cycle on your web browser.
+Simply [click here](https://www.study-cycle.com/) to open up Study Cycle on your web browser.
 
 # Demo
 Here is a short demo GIF for you!
